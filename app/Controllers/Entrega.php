@@ -109,6 +109,7 @@ class Entrega extends Controller
         /* $datos = $_POST['bookss'];
        print_r($datos); */
         $entrega = new M_entrega();
+        $libros = new M_book();
 
         $request = \Config\Services::request();
         extract($request->getPost());
@@ -122,5 +123,8 @@ class Entrega extends Controller
                 $entrega->updateEstado(intval($dI), $date_devol);
         }
         echo "Registro actualizado!" . $perdido;
+
+        /* Pendiente: actualizar la cantidad de libros al entregar */        
+
     }
 }
