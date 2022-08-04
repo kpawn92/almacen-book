@@ -1,7 +1,4 @@
 Sistema informático para el control en el almacén de libros de la Universidad de Ciencias Médicas de Granma
 Gestionar los estudiantes matriculados, libros existentes, prestamos de libros y ventas de libros.
 
-
-Tarea:
-Para la devolucion de books, crear un form con select multiple devol[], en el controller pasar: (arrar(idLibros), idSt, dateDevol) en un forEach que ejecute las 
-consultas SQL: update historialLS set date_devol=dateDevol where fk_estudiante=idSt and fk_libro=idLibros;
+Sistema de prestamo de libros 90%

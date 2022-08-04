@@ -12,8 +12,10 @@ class Entrega extends Controller
 {
     public function list_entrega()
     {
-        //$id_estudiante = $_POST['ci'];
-        if ($_POST['f'] == "listarEntegados") {
+        if ($_POST["f"] == "listarEntregados") {
+            //$id_estudiante = $_POST['ci'];
+            //$ci = $_POST["f"];
+
             $librosEntregado = new M_entrega();
 
             $json = array();
@@ -36,6 +38,21 @@ class Entrega extends Controller
         foreach ($books as $book) :
             echo '<option value="' . $book['id'] . '">' . $book['codigo'] . ' | ' . $book['titulo'] . '</option>';
         endforeach;
+    }
+
+    public function b_entregados()
+    {
+        $request = \Config\Services::request();
+        extract($request->getPost());
+        $entregados = new M_entrega();
+        $student = $fk_estudiante;
+        $books = $entregados->getBooks($student);
+        foreach ($books as $book) :
+            //echo '<option value="' . $book['id'] . '">' . $book['codigo'] . ' | ' . $book['titulo'] . '</option>';
+            $json['data'][] = $book;
+        endforeach;
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
     }
 
     public function save_entrega()
@@ -85,5 +102,25 @@ class Entrega extends Controller
         $entrega = new M_entrega();
         extract($request->getPost());
         $entrega->del_entrega($id_entrega);
+    }
+
+    public function devolution()
+    {
+        /* $datos = $_POST['bookss'];
+       print_r($datos); */
+        $entrega = new M_entrega();
+
+        $request = \Config\Services::request();
+        extract($request->getPost());
+
+        $date_devol = strtotime($date_dev);
+
+        foreach ($bookss as $nArr => $dI) {
+            if ($perdido == "false") {
+                $entrega->actualizar(intval($dI), $date_devol);
+            } else
+                $entrega->updateEstado(intval($dI), $date_devol);
+        }
+        echo "Registro actualizado!" . $perdido;
     }
 }

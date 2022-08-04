@@ -11,7 +11,7 @@
  Target Server Version : 100419
  File Encoding         : 65001
 
- Date: 24/06/2022 08:43:20
+ Date: 04/08/2022 15:00:20
 */
 
 SET NAMES utf8mb4;
@@ -50,26 +50,14 @@ CREATE TABLE `op_historial_libroestudiante`  (
   INDEX `fk_op_historial_libroestudiante_tb_libro_1`(`fk_libro`) USING BTREE,
   CONSTRAINT `fk_op_historial_libroestudiante_tb_estudiante_1` FOREIGN KEY (`fk_estudiante`) REFERENCES `tb_estudiante` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_op_historial_libroestudiante_tb_libro_1` FOREIGN KEY (`fk_libro`) REFERENCES `tb_libro` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 108 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of op_historial_libroestudiante
 -- ----------------------------
-INSERT INTO `op_historial_libroestudiante` VALUES (15, 84, 11, 1655442000, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (16, 84, 10, 1655442000, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (17, 83, 11, 1655442000, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (18, 84, 9, 1655442000, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (19, 83, 10, 1655787600, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (20, 84, 28, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (21, 83, 28, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (22, 83, 9, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (25, 87, 28, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (26, 87, 11, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (27, 85, 9, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (28, 86, 28, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (29, 87, 10, 1655960400, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (30, 85, 29, 1655787600, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (31, 85, 10, 1655960400, NULL, 1);
+INSERT INTO `op_historial_libroestudiante` VALUES (105, 86, 29, 1656046800, NULL, 1);
+INSERT INTO `op_historial_libroestudiante` VALUES (106, 88, 29, 1656046800, NULL, 1);
+INSERT INTO `op_historial_libroestudiante` VALUES (107, 88, 31, 1656046800, NULL, 1);
 
 -- ----------------------------
 -- Table structure for tb_brigada
@@ -129,16 +117,17 @@ CREATE TABLE `tb_estudiante`  (
   CONSTRAINT `fk_tb_estudiante_tb_carrera_1` FOREIGN KEY (`fk_carrera`) REFERENCES `tb_carrera` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_tb_estudiante_tb_municipio_1` FOREIGN KEY (`fk_municipio`) REFERENCES `tb_municipio` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_tb_estudiante_tb_year_academico_1` FOREIGN KEY (`fk_year_academico`) REFERENCES `tb_year_academico` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 88 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 89 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_estudiante
 -- ----------------------------
 INSERT INTO `tb_estudiante` VALUES (83, '34234234234', 'dasdad', 'asdasda', 'sdasdasdas', 1, 1, 1, 1, 0);
-INSERT INTO `tb_estudiante` VALUES (84, '44234234222', 'Juan Carlos', 'asdasda', 'sdasdasdas', 1, 1, 1, 1, 0);
-INSERT INTO `tb_estudiante` VALUES (85, '92102047481', 'Heriberto ', 'Pozo', 'DSDSDASADSAS', 1, 1, 1, 1, 0);
+INSERT INTO `tb_estudiante` VALUES (84, '44234234222', 'Juan Carlos', 'asdasda', 'sdasdasdas', 3, 2, 1, 1, 0);
+INSERT INTO `tb_estudiante` VALUES (85, '92102047481', 'Heriberto ', 'Pozo', 'DSDSDASADSAS', 1, 2, 1, 1, 0);
 INSERT INTO `tb_estudiante` VALUES (86, '54545454545', 'Juan', 'Wide', 'fsdsdsdaSASASASASA', 1, 1, 1, 1, 0);
 INSERT INTO `tb_estudiante` VALUES (87, '12312131231', 'dsassds', 'sadasdada', 'asdasd', 1, 1, 1, 1, 0);
+INSERT INTO `tb_estudiante` VALUES (88, '33333333333', 'otro', 'asas', 'asas', 1, 1, 1, 1, 0);
 
 -- ----------------------------
 -- Table structure for tb_libro
@@ -153,16 +142,17 @@ CREATE TABLE `tb_libro`  (
   `isbn` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `cantidad` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 30 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_libro
 -- ----------------------------
-INSERT INTO `tb_libro` VALUES (9, 'AS1221A', 'PYTON', 'asdasd', 'asda', 'sdasd', 6);
-INSERT INTO `tb_libro` VALUES (10, '23ERSA', 'REACT la mejor libreria', '120.36', 'Juan Ilustre', 'sdasd', 11);
-INSERT INTO `tb_libro` VALUES (11, '2QSA2', 'PHP', '12.3', 'sada', '121', 7);
-INSERT INTO `tb_libro` VALUES (28, 'ASW12', 'ANGULAR', '150.69', 'JUAN', '12145ASQA', 9);
-INSERT INTO `tb_libro` VALUES (29, 'ASAW122', 'SQL', '54.58', 'CARLOS', '45A45S4A5A-SAS2A', 12);
+INSERT INTO `tb_libro` VALUES (9, 'AS1221A', 'PYTON', 'asdasd', 'asda', 'sdasd', 13);
+INSERT INTO `tb_libro` VALUES (11, '2QSA2', 'PHP', '12.3', 'sada', '121', 12);
+INSERT INTO `tb_libro` VALUES (28, 'ASW12', 'ANGULAR', '150.69', 'JUAN', '12145ASQA', 10);
+INSERT INTO `tb_libro` VALUES (29, 'ASAW122', 'SQL', '54.58', 'CARLOS', '45A45S4A5A-SAS2A', 7);
+INSERT INTO `tb_libro` VALUES (30, '63-ASW', 'JS', '45.85', 'Swthers', '4558-555-557', 0);
+INSERT INTO `tb_libro` VALUES (31, 'SD-ASA', 'NODE ', '154.59', 'CARLOS SOSA', '45845-4545458-45', 14);
 
 -- ----------------------------
 -- Table structure for tb_municipio

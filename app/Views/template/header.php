@@ -22,6 +22,9 @@
     <link href="assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
     <link href="assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
 
+    <!-- My style -->
+    <link href="assets/css/my-style.css" rel="stylesheet" type="text/css" />
+
     
 
 
