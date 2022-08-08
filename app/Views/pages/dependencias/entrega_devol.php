@@ -63,9 +63,9 @@
 
         /* Reload table */
         function reoladTbentrega() {
-            setInterval(function() {
+            setTimeout(function() {
                 tableEntregados.ajax.reload();
-            }, 3000);
+            }, 500);
         }
 
 
@@ -129,8 +129,9 @@
 
         /* Paso #1 - Caja de Entrega */
         const cajaEntrega = (e) => {
+            booksEntregar();
             let objetTable = tableEntregados.row().data();
-            
+
 
             e.stopPropagation();
             $('#dataTable-entrega input[type=search]').prop({
@@ -229,7 +230,7 @@
 
         identidades();
 
-        booksEntregar();
+
 
         listCI.addEventListener('click', identidades);
         genCI.addEventListener('click', cajaEntrega);
@@ -296,9 +297,11 @@
                 if (checks.checked) {
                     formDevolution.append('bookss[]', checks.id);
 
-                    //console.log(checks.id)
+                    //console.log(checks)
                 }
             });
+
+            //console.log(inputsArr.find(chek => chek.checked));
 
             fetch("<?php echo base_url('/devolution') ?>", {
                     method: "POST",
@@ -306,19 +309,35 @@
                 })
                 .then(r => r.text())
                 .then(d => {
-                    console.log(d);
-                    reoladTbentrega()
+                    /* Encontrar un objeto en un array por una de sus propiedades */
+                    let condition = inputsArr.find(chek => chek.checked);
+                    console.log(condition);
+                    if (condition != undefined) {
+                        if (d.length === 0) {
+                            mensaje.innerHTML = "Libros actualizados";
+                            divAlert.classList.remove('t-inactive');
+                            setTimeout(function() {
+                                divAlert.classList.add('t-inactive');
+                            }, 5000);
+                            divDevol.classList.remove('t-inactive');
+                            $('#load-prestamo').click();
+                            reoladTbentrega();
+                        } else {
+                            mensaje.innerHTML = d;
+                            divAlert.classList.remove('t-inactive');
+                            setTimeout(function() {
+                                divAlert.classList.add('t-inactive');
+                            }, 5000);
+                            divDevol.classList.remove('t-inactive');
+                            $('#load-prestamo').click();
+                            //reoladTbentrega();
+                        }
+                    }
                 });
-
             //console.log(...formDevolution)
-
             //console.log(inputsArr[0].checked)
             //console.log(inputs)
-
             //console.log(e.target)            
-            divDevol.classList.remove('t-inactive');
-            $('#load-prestamo').click();
-
         });
 
         volver.addEventListener('click', (e) => {

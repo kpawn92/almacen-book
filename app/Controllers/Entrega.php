@@ -113,18 +113,21 @@ class Entrega extends Controller
 
         $request = \Config\Services::request();
         extract($request->getPost());
-
+        $n = 1;
         $date_devol = strtotime($date_dev);
 
         foreach ($bookss as $nArr => $dI) {
-            if ($perdido == "false") {
-                $entrega->actualizar(intval($dI), $date_devol);
-            } else
-                $entrega->updateEstado(intval($dI), $date_devol);
+            $idLibro = $entrega->getIdBook(intval($dI));
+            if ($idLibro["date_entrega"] <= $date_devol) {
+                if ($perdido == "false") {
+                    $entrega->actualizar(intval($dI), $date_devol);
+                    $libros->contar($idLibro["fk_libro"]);
+                } else
+                    $entrega->updateEstado(intval($dI), $date_devol);
+            } else {
+                echo "<li>" . $n++ . ".- Error en la selecci&oacute;n de la fecha: " . $date_dev . " del libro: ".$idLibro['titulo']."</li>";
+            }
         }
-        echo "Registro actualizado!" . $perdido;
-
-        /* Pendiente: actualizar la cantidad de libros al entregar */        
-
+        //echo "Registro actualizado!" . $perdido;
     }
 }

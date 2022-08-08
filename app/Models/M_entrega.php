@@ -9,7 +9,7 @@ class M_entrega extends Model
     protected $table      = 'op_historial_libroestudiante';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id';
-    protected $allowedFields= ['fk_estudiante', 'fk_libro', 'date_entrega', 'date_devol', 'status'];
+    protected $allowedFields = ['fk_estudiante', 'fk_libro', 'date_entrega', 'date_devol', 'status'];
 
     function row_preport($fk_estudiante, $fk_libro)
     {
@@ -61,5 +61,12 @@ class M_entrega extends Model
         $db = \Config\Database::connect();
         $query = $db->query("UPDATE op_historial_libroestudiante SET date_devol='$date_devol', `status`= 3  WHERE id = '$dI'");
         return $query;
+    }
+
+    function getIdBook($dI)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT fk_libro, date_entrega, tb_libro.titulo FROM op_historial_libroestudiante JOIN tb_libro ON tb_libro.id = fk_libro WHERE op_historial_libroestudiante.id = '$dI'");
+        return $query->getRowArray();
     }
 }

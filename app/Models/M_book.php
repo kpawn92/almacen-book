@@ -76,4 +76,11 @@ class M_book extends Model
         $query = $db->query("UPDATE tb_libro SET cantidad=cantidad-1 WHERE id = '$fk_libro'");
         return $query;
     }
+
+    function contar($idBook)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("UPDATE tb_libro SET cantidad=cantidad+1 WHERE id = '$idBook'");
+        return $query;
+    }
 }
