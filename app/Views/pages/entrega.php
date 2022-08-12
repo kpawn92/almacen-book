@@ -8,9 +8,10 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
                             <li class="breadcrumb-item active">Pr&eacute;stamo</li>
+                            <li class="breadcrumb-item active">Disponibilidad</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Proceso para el pr&eacute;stamo de libros</h4>
+                    <h4 class="page-title">Relaciones de los libros con los estudiantes</h4>
                 </div>
             </div>
         </div>

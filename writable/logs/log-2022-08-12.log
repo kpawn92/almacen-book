@@ -74,3 +74,19 @@ CRITICAL - 2022-08-12 10:07:08 --> Undefined variable $bookss
 #3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #5 {main}
+ERROR - 2022-08-12 12:27:14 --> Table 'db_almacen.tb_municipio' doesn't exist
+CRITICAL - 2022-08-12 12:27:14 --> Call to a member function getResult() on bool
+#0 C:\xampp\htdocs\almacen\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#1 C:\xampp\htdocs\almacen\app\Controllers\Dash.php(18): CodeIgniter\BaseModel->findAll()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Dash->index()
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dash))
+#4 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#5 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#6 {main}
+CRITICAL - 2022-08-12 12:33:11 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

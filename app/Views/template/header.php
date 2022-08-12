@@ -85,7 +85,7 @@
                     <li class="side-nav-item">
                         <a href="#" class="side-nav-link" id="prestamo">
                             <i class="uil-notebooks"></i>
-                            <span> Pr&eacute;stamo | Libros </span>
+                            <span> Operaciones | Libros </span>
                         </a>
                     </li>
                     <li class="side-nav-item">
