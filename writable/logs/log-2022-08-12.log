@@ -1,0 +1,76 @@
+ERROR - 2022-08-12 10:02:00 --> Error connecting to the database: Unknown database 'db_almacen'
+CRITICAL - 2022-08-12 10:02:00 --> Unable to connect to the database.
+Main connection [MySQLi]: Unknown database 'db_almacen'
+#0 C:\xampp\htdocs\almacen\system\Database\BaseConnection.php(577): CodeIgniter\Database\BaseConnection->initialize()
+#1 C:\xampp\htdocs\almacen\system\Database\BaseBuilder.php(1455): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 C:\xampp\htdocs\almacen\system\Model.php(183): CodeIgniter\Database\BaseBuilder->get()
+#3 C:\xampp\htdocs\almacen\system\BaseModel.php(584): CodeIgniter\Model->doFindAll(0, 0)
+#4 C:\xampp\htdocs\almacen\app\Controllers\Dash.php(18): CodeIgniter\BaseModel->findAll()
+#5 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Dash->index()
+#6 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Dash))
+#7 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#8 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#9 {main}
+CRITICAL - 2022-08-12 10:03:36 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 96)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->id_ci()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:03:38 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 96)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->id_ci()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:05:07 --> Trying to access array offset on value of type null
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(96): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Trying to acces...', 'C:\\xampp\\htdocs...', 96)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->id_ci()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:07:07 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:07:07 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:07:07 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:07:07 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:07:08 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 10:07:08 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
