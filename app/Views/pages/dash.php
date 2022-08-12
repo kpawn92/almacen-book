@@ -1,4 +1,4 @@
-<div class="row" id="dash" style="display: contents;">
+<div class="cerodiv row" id="dash">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">

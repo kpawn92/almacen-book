@@ -1,4 +1,4 @@
-<div class="row" id="libros" style="display: none;">
+<div class="cerodiv row" id="libros" >
     <!-- start page title -->
     <div class="row">
         <div class="col-12">

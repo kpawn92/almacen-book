@@ -1,4 +1,4 @@
-<div class="row" id="ventaB" style="display: none;">
+<div class="cerodiv row" id="ventaB" >
     <!-- start page title -->
     <div class="row">
         <div class="col-12">

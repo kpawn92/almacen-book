@@ -1,4 +1,38 @@
 /* Paginado puro JS */
+//console.log(...listaMenu);
+
+let contenedorDivs = document.querySelectorAll('div .cerodiv');
+let uls = document.querySelectorAll('#menu-ul a');
+
+contenedorDivs.forEach(divs => {
+    divs.classList.toggle('cerodiv')
+    divs.classList.add('t-inactive')
+})
+const arrDiv = [...contenedorDivs]
+const arrUl = [...uls]
+
+/* 
+    console.log(arrDiv[2])
+    console.log(arrUl[2]) 
+*/
+
+//console.log(arrUl.length)
+
+//arrUl.forEach((e,i) => console.log(e,i))
+
+
+for (let i = 0; i < arrUl.length; i++) {
+    arrUl[i].addEventListener('click', (event) => {
+        event.stopPropagation()
+        arrDiv[i].classList.toggle('t-inactive')
+        const arrResto = arrDiv.filter(div => div != arrDiv[i])
+        arrResto.forEach(caja => {
+            caja.classList.add('t-inactive')
+        })
+    })
+}
+
+/*
 var st = document.getElementById("estud");
 st.addEventListener("click", pagEst);
 function pagEst() {
@@ -7,8 +41,8 @@ function pagEst() {
     var book = document.getElementById('libros');
     var entrega = document.getElementById('entrega');
     var venta = document.getElementById('ventaB');
-    entrega.style.display = 'none'; 
-    venta.style.display = 'none';         
+    entrega.style.display = 'none';
+    venta.style.display = 'none';
     dash.style.display = 'none';
     estudiant.style.display = 'contents';
     book.style.display = 'none';
@@ -23,11 +57,11 @@ function pagDash() {
     var book = document.getElementById('libros');
     var entrega = document.getElementById('entrega');
     var venta = document.getElementById('ventaB');
-    entrega.style.display = 'none'; 
-    venta.style.display = 'none'; 
+    entrega.style.display = 'none';
+    venta.style.display = 'none';
     dash.style.display = 'contents';
     estudiant.style.display = 'none';
-    book.style.display = 'none';      
+    book.style.display = 'none';
 };
 
 var libro = document.getElementById("book");
@@ -38,11 +72,11 @@ function pagBook() {
     var book = document.getElementById('libros');
     var entrega = document.getElementById('entrega');
     var venta = document.getElementById('ventaB');
-    entrega.style.display = 'none'; 
-    venta.style.display = 'none'; 
+    entrega.style.display = 'none';
+    venta.style.display = 'none';
     book.style.display = 'contents';
     estudiant.style.display = 'none';
-    dash.style.display = 'none';     
+    dash.style.display = 'none';
 };
 
 var prestamos = document.getElementById("prestamo");
@@ -53,11 +87,11 @@ function pagPrestamo() {
     var book = document.getElementById('libros');
     var entrega = document.getElementById('entrega');
     var venta = document.getElementById('ventaB');
-    entrega.style.display = 'contents'; 
-    venta.style.display = 'none'; 
+    entrega.style.display = 'contents';
+    venta.style.display = 'none';
     book.style.display = 'none';
     estudiant.style.display = 'none';
-    dash.style.display = 'none';     
+    dash.style.display = 'none';
 };
 
 var ventas = document.getElementById("venta");
@@ -68,39 +102,12 @@ function pagVenta() {
     var book = document.getElementById('libros');
     var entrega = document.getElementById('entrega');
     var venta = document.getElementById('ventaB');
-    entrega.style.display = 'none'; 
-    venta.style.display = 'contents'; 
+    entrega.style.display = 'none';
+    venta.style.display = 'contents';
     book.style.display = 'none';
     estudiant.style.display = 'none';
-    dash.style.display = 'none';     
+    dash.style.display = 'none';
 };
-
-/* Paginado con Jquery */
-/*$("#estud").on('click', function () {
-    var dash = document.getElementById('dash');
-    var estudiant = document.getElementById('estudiante');
-    var book = document.getElementById('libros');
-    dash.style.display = 'none';
-    estudiant.style.display = 'contents';
-    book.style.display = 'none';
-});
-
-$("#panel").on('click', function () {
-    var dash = document.getElementById('dash');
-    var estudiant = document.getElementById('estudiante');
-    var book = document.getElementById('libros');
-    dash.style.display = 'contents';
-    estudiant.style.display = 'none';
-    book.style.display = 'none';
-});
-
-$("#book").on('click', function () {
-    var dash = document.getElementById('dash');
-    var estudiant = document.getElementById('estudiante');
-    var book = document.getElementById('libros');
-    book.style.display = 'contents';
-    estudiant.style.display = 'none';
-    dash.style.display = 'none';
-});
 //dash.style.display = 'none';
-//console.log(dash);*/
+//console.log(dash);
+*/

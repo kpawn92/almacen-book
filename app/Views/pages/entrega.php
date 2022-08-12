@@ -1,4 +1,4 @@
-<div class="row" id="entrega" style="display: none;">
+<div class="cerodiv row" id="entrega">
     <section id="entrega-devolution">
         <!-- start page title -->
         <div class="row" id="title-entrega">
