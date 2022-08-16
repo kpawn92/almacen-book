@@ -16,14 +16,14 @@
             </div>
         </div>
         <!-- end page title -->
-        <div class="col-12 shadow-lg p-3 mb-5 mt-4 bg-body rounded" id="panel-entrega">
+        <div class="col-3 shadow-lg p-3 mb-5 mt-4 bg-body rounded" id="panel-entrega">
             <div id="selector">
                 <h4 class="page-title">
-                    <button type="button" class="btn btn-primary btn-rounded" id="g-entrega"><i class="uil-file-search-alt"></i> Generar entrega</button>
-                    <button type="button" class="btn btn-warning btn-rounded" id="load-ci"><i class=" uil-users-alt "></i>+ CI</button>
-                    <button type="button" class="t-inactive btn btn-dark btn-rounded" id="close-entrega"><i class="mdi mdi-window-close"></i> Cerrar</button>
+                    <button type="button" class="btn btn-primary" id="g-entrega"><i class="uil-file-search-alt"></i> Generar entrega</button>
+                    <button type="button" class="btn btn-warning" id="load-ci"><i class=" uil-users-alt "></i>+</button>
+                    <button type="button" class="t-inactive btn btn-dark" id="close-entrega"><i class="mdi mdi-window-close"></i> Cerrar</button>
                 </h4>
-                <div class="mb-3 col-md-3 col-sm-12" id="select-entrega">
+                <div class="mb-3" id="select-entrega">
                     <!-- Single Select -->
                     <label class="form-label" for="id_student">Seleccione el <strong>carne de identidad</strong></label>
                     <select class="form-control select2" data-toggle="select2" id="selectCI" name="id_student">

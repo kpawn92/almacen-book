@@ -68,43 +68,6 @@
             }, 500);
         }
 
-
-
-
-        /* function tableHistorial(datos) {
-            contTable.innerHTML = '';
-            for (let i = 0; i < datos.data.length; i++) {
-                console.log(datos.data[i].codigo)
-
-                contTable.innerHTML += `<tr>
-                                            <td>button</td>
-                                            <td>${datos.data[i].ci}</td>
-                                            <td>${datos.data[i].codigo}</td>
-                                            <td>${datos.data[i].titulo}</td>
-                                            <td>${datos.data[i].fecha_entrega}</td>
-                                            <td>${datos.data[i].fecha_dev}</td>                                        
-                                        </tr>`;
-            }
-
-        }
-
-        const traerEntregados = () => {
-            let dat = new FormData();
-            dat.append('f', selectEst.value);
-            fetch("<? //= base_url('/list_entrega'); 
-                    ?>", {
-                method: "POST",
-                body: dat
-            }).then(res => res.json()).then(datos => {
-                console.log(datos)
-                tableHistorial(datos)
-            })
-        } */
-
-
-
-
-
         /* Get CI */
         const identidades = () => {
             $.ajax({
@@ -138,6 +101,11 @@
                 document.getElementById('label1').innerHTML = text.bold()
             })
 
+            document.querySelector('#panel-entrega').classList.remove('col-3')
+            document.querySelector('#panel-entrega').classList.add('col-12')
+            document.querySelector('#select-entrega').classList.add('col-md-3')
+
+            
 
             e.stopPropagation();
             $('#dataTable-entrega input[type=search]').prop({
@@ -150,7 +118,7 @@
             listCI.classList.toggle('t-inactive');
             selectEst.setAttribute('disabled', '');
             genCI.setAttribute('disabled', '');
-            window.location.href = '#entreg';
+            //window.location.href = '#entreg';
 
             /* Get ID del ci seleccionado */
             $.ajax({
@@ -249,6 +217,11 @@
             selectEst.removeAttribute('disabled');
             genCI.removeAttribute('disabled');
             divDevol.classList.add('t-inactive');
+
+            document.querySelector('#panel-entrega').classList.remove('col-12')
+            document.querySelector('#panel-entrega').classList.add('col-3')
+            document.querySelector('#select-entrega').classList.remove('col-md-3')
+
         });
 
         /* Generar entrega */
