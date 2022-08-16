@@ -132,6 +132,12 @@
             booksEntregar();
             let objetTable = tableEntregados.row().data();
 
+            let text = "Extraviado(s)"
+
+            document.getElementById('label1').addEventListener('mouseover', () => {
+                document.getElementById('label1').innerHTML = text.bold()
+            })
+
 
             e.stopPropagation();
             $('#dataTable-entrega input[type=search]').prop({

@@ -90,3 +90,122 @@ CRITICAL - 2022-08-12 12:33:11 --> Undefined variable $bookss
 #3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
 #4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
 #5 {main}
+CRITICAL - 2022-08-12 18:12:07 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:12:08 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:12:08 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:12:08 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:15:07 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:16:38 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:18:01 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:18:18 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:21:18 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:21:46 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:22:44 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:29:04 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:29:17 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:32:11 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:34:47 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:36:27 --> Undefined variable $json
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(54): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 54)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->b_entregados()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}
+CRITICAL - 2022-08-12 18:58:52 --> Undefined variable $bookss
+#0 C:\xampp\htdocs\almacen\app\Controllers\Entrega.php(119): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined varia...', 'C:\\xampp\\htdocs...', 119)
+#1 C:\xampp\htdocs\almacen\system\CodeIgniter.php(832): App\Controllers\Entrega->devolution()
+#2 C:\xampp\htdocs\almacen\system\CodeIgniter.php(419): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Entrega))
+#3 C:\xampp\htdocs\almacen\system\CodeIgniter.php(326): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 C:\xampp\htdocs\almacen\public\index.php(37): CodeIgniter\CodeIgniter->run()
+#5 {main}

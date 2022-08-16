@@ -91,7 +91,7 @@
                             </div> <!-- end card-->
                             <div class="col-4 form-check form-checkbox-primary mb-3" style="margin-top: 15px;">
                                 <input type="checkbox" class="form-check-input" id="customCheckcolor3" name="check">
-                                <label class="form-check-label" for="customCheckcolor3">Extraviado(s)</label>
+                                <label id="label1" class="form-check-label" for="customCheckcolor3">Extraviado(s)</label>
                             </div>
                             <!-- Single Date Picker -->
                             <div class="mb-3">
@@ -99,7 +99,7 @@
                                 <input type="text" class="form-control date" id="birthdatepicker" name="fechaD" data-toggle="date-picker" data-single-date-picker="true">
                             </div>
                             <div class="mb-3">
-                                <button class="btn btn-primary" id="send-devol">Actualizar</button>
+                                <button class="btn btn-warning" id="send-devol">Actualizar</button>
                                 <button type="button" class="btn btn-secondary" id="load-prestamo">Volver</button>
                             </div>
                         </form>
@@ -108,7 +108,7 @@
                 <div class="col-md-9 col-lg-9 col-sm-12" id="dataTable-entrega">
                     <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                         <div class="row">
-                            <h4 class="header-title"><button class="btn btn-info" id="copy-devolution"><i class=" uil-books "></i></button> Libros pendientes:</h4>
+                            <h4 class="header-title"><button class="btn btn-sm btn-warning" id="copy-devolution"><i class=" uil-list-ul "></i></button> Libros pendientes:</h4>
                         </div>
                         <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion del DataTable}</code> dolor sit amet
                             consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
