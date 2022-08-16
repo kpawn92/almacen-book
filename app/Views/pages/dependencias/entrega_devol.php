@@ -105,6 +105,11 @@
             document.querySelector('#panel-entrega').classList.add('col-12')
             document.querySelector('#select-entrega').classList.add('col-md-3')
 
+            document.querySelector('#upto-dev').addEventListener('click', (e) => {
+                e.stopPropagation()
+                reoladTbentrega()
+            })
+
             
 
             e.stopPropagation();

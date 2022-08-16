@@ -11,7 +11,7 @@
                             <li class="breadcrumb-item active">Disponibilidad</li>
                         </ol>
                     </div>
-                    <h4 class="page-title">Relaciones de los libros con los estudiantes</h4>
+                    <h4 class="page-title">Formularios operacionales</h4>
                 </div>
             </div>
         </div>
@@ -108,7 +108,11 @@
                 <div class="col-md-9 col-lg-9 col-sm-12" id="dataTable-entrega">
                     <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                         <div class="row">
-                            <h4 class="header-title"><button class="btn btn-sm btn-warning" id="copy-devolution"><i class=" uil-list-ul "></i></button> Libros pendientes:</h4>
+                            <h4 class="header-title">
+                                <button class="btn btn-sm btn-warning" id="copy-devolution"><i class=" uil-list-ul "></i></button>
+                                <button class="btn btn-sm btn-primary" id="upto-dev"><i class="mdi mdi-autorenew"></i></button>
+                                Libros pendientes:
+                            </h4>
                         </div>
                         <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion del DataTable}</code> dolor sit amet
                             consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
