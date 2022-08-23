@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\M_student;
 use App\Models\M_book;
 use App\Models\M_entrega;
+use App\Models\M_disponibles;
 
 use CodeIgniter\Controller;
 
@@ -36,7 +37,7 @@ class Entrega extends Controller
         $libro = new M_book();
         $books = $libro->getBook();
         foreach ($books as $book) :
-            echo '<option value="' . $book['id'] . '">' . $book['codigo'] . ' | ' . $book['titulo'] . '</option>';
+            echo '<option value="' . $book['id'] . '">' . $book['codigo'] . ' | ' . $book['titulo'] . ' | ' . $book['cantidad'] . '</option>';
         endforeach;
     }
 
@@ -100,7 +101,11 @@ class Entrega extends Controller
     {
         $request = \Config\Services::request();
         $entrega = new M_entrega();
+        $book = new M_book();
         extract($request->getPost());
+        $booksElement = $entrega->getIdBook($id_entrega);
+        //print_r($booksElement['fk_libro']);
+        $book->contar($booksElement['fk_libro']);
         $entrega->del_entrega($id_entrega);
     }
 
@@ -125,9 +130,50 @@ class Entrega extends Controller
                 } else
                     $entrega->updateEstado(intval($dI), $date_devol);
             } else {
-                echo "<li>" . $n++ . ".- Error en la selecci&oacute;n de la fecha: " . $date_dev . " del libro: ".$idLibro['titulo']."</li>";
+                echo "<li>" . $n++ . ".- Error en la selecci&oacute;n de la fecha: " . $date_dev . " del libro: " . $idLibro['titulo'] . "</li>";
             }
         }
         //echo "Registro actualizado!" . $perdido;
+    }
+
+    public function disponibility()
+    {
+        $request = \Config\Services::request();
+
+        extract($request->getPost());
+
+        $dispo = new M_disponibles();
+        $book = new M_book();
+        $cantidadE = $book->cantIdBook($fk_libro);
+        $comprobation = $dispo->comprobation($fk_libro);
+
+
+        if ($cantidadE['cantidad'] >= $c_disponibles) {
+            $book->restarForDispo($fk_libro, $c_disponibles);
+            if ($comprobation->getNumRows() > 0) {
+                //print_r($comprobation->getRowArray()['id']);
+                $dispo->actualizarCant($comprobation->getRowArray()['id'], $c_disponibles);
+            } else {
+                //echo "No hay que actualizar";
+                $dispo->saveDatos($fk_libro, $c_disponibles);
+            }
+        } else
+            echo "Error en la cantidad!";
+    }
+
+    public function tb_dispo()
+    {
+        $request = \Config\Services::request();
+
+        extract($request->getPost());
+        $dispo = new M_disponibles();
+        $json = array();
+        $books = $dispo->librosDispo();
+
+        foreach ($books as $data) {
+            $json[] = $data;
+        }
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
     }
 }

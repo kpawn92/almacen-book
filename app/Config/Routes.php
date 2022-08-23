@@ -57,6 +57,8 @@ $routes->post('id_ci', 'Entrega::id_ci');
 $routes->post('del_entrega', 'Entrega::del_entrega');
 $routes->post('b_entregados', 'Entrega::b_entregados');
 $routes->post('devolution', 'Entrega::devolution');
+$routes->post('dispo', 'Entrega::disponibility');
+$routes->post('tb_dispo', 'Entrega::tb_dispo');
 
 
 

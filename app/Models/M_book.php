@@ -76,11 +76,23 @@ class M_book extends Model
         $query = $db->query("UPDATE tb_libro SET cantidad=cantidad-1 WHERE id = '$fk_libro'");
         return $query;
     }
+    function restarForDispo($fk_libro, $c_disponibles)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("UPDATE tb_libro SET cantidad=cantidad-'$c_disponibles' WHERE id = '$fk_libro'");
+        return $query;
+    }
 
     function contar($idBook)
     {
         $db = \Config\Database::connect();
         $query = $db->query("UPDATE tb_libro SET cantidad=cantidad+1 WHERE id = '$idBook'");
         return $query;
+    }
+    function cantIdBook($fk_libro)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT cantidad FROM tb_libro WHERE id = '$fk_libro'");
+        return $query->getRowArray();
     }
 }

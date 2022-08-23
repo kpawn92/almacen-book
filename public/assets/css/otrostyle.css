@@ -1,0 +1,10 @@
+picture table{    
+    table-layout: fixed;
+    width: 200px;
+}
+
+th, td {
+    overflow: hidden;
+    width: 100px;
+}
+

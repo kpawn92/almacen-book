@@ -1,6 +1,7 @@
 <script>
     $(document).ready(function() {
-
+        const panelEntrega = document.querySelector('#panel-entrega');
+        const panelDispo = document.querySelector('#panel-dispo');
         const listCI = document.querySelector('#load-ci');
         const genCI = document.querySelector('#g-entrega');
         const closeEntrega = document.querySelector('#close-entrega');
@@ -12,19 +13,34 @@
         const sendEntrega = document.getElementById('send-entrega');
         const selectEst = document.getElementById('selectCI');
         const idEst = document.querySelector('#diEstudiant');
-
         const formE = document.querySelector('#form-entrega');
         const formD = document.querySelector('#form-devolution');
         const contTable = document.querySelector('#prestamosBook tbody');
-
         const formEntrega = document.querySelector('#form-entrega');
-
         const divAlert = document.querySelector('#div-alertEntrega');
         const mensaje = document.querySelector('#alert-entrega');
         const selector = document.querySelector('#selector');
-        //const labelBook = document.querySelector('#labelBook');
         const btnBorrador = document.querySelectorAll('.del-entrega');
 
+        document.getElementById('aPrestamo').classList.remove('active');
+
+        document.querySelectorAll('.lista').forEach(li => li.style.cursor = "pointer");
+
+        /* Funcionalidades de los <page-title-box> */
+        document.querySelector('#aPrestamo').addEventListener('click', (e) => {
+            e.target.classList.remove('active')
+            document.querySelector('#aDispo').classList.add('active')
+            panelEntrega.classList.remove('t-inactive')
+            panelDispo.classList.add('t-inactive')
+        })
+        document.querySelector('#aDispo').addEventListener('click', (e) => {
+            e.target.classList.remove('active')
+            document.querySelector('#aPrestamo').classList.add('active')
+            panelEntrega.classList.add('t-inactive')
+            panelDispo.classList.remove('t-inactive')
+            booksEntregar()
+        })
+        //---.
         /* Table entregas */
         let f = "listarEntregados"
         let tableEntregados = $('#prestamosBook').DataTable({
@@ -86,9 +102,80 @@
                 url: '<?php echo base_url('/books'); ?>',
                 success: function(res) {
                     $("#idLibro").html(res).fadeIn();
+                    $("#idL").html(res).fadeIn();
                 }
             });
         }
+
+        const librosDisponibles = () => {
+            document.querySelector('#t-libros').innerHTML = "";
+
+            fetch("<?php echo base_url('/tb_dispo') ?>", {
+                    method: "POST"
+                })
+                .then(data => data.json())
+                .then(dato => {
+                    let tableDispo = document.querySelector('#tb-dispo tbody');
+                    tableDispo.innerHTML = "";
+                    document.querySelector('#t-libros').innerHTML = "0";
+                    // Suma de los disponibles asignados;
+                    const sumaTotal = dato.map(item => parseInt(item.c_disponibles, 10)).reduce((prev, curr) => prev + curr, 0);
+                    //... 
+                    let precios = 0;
+                    dato.forEach(element => {
+                        let total = element.precio * element.c_disponibles
+                        tableDispo.innerHTML += `<tr>
+                                                <td>${element.titulo}</td>
+                                                <td>$${element.precio}</td>
+                                                <td><span class="badge bg-primary">${element.c_disponibles} disponibles</span></td>
+                                                <td>$${total.toFixed(2)}</td>
+                                            </tr>`;
+                        precios += total
+                    });
+                    document.querySelector('#t-libros').innerHTML = sumaTotal;
+                    document.querySelector('#t-recauda').innerHTML = "$" + precios.toFixed(2);
+                });
+        }
+
+        booksEntregar();
+        librosDisponibles();
+
+        /* Form disponibility */
+        document.querySelector('#formDispo').addEventListener('submit', (e) => {
+            e.preventDefault()
+            //console.log(e.target.cantidadL.value)
+
+            let fD = new FormData();
+            fD.append('fk_libro', e.target.idL.value);
+            fD.append('c_disponibles', e.target.cantidadL.value);
+
+            fetch("<?php echo base_url('/dispo') ?>", {
+                method: "POST",
+                body: fD
+            }).then(response => response.text()).then(res => {
+                booksEntregar()
+                document.getElementById('message').innerHTML = `
+                            <div class="alert alert-success" role="alert">
+                                        <strong id="alert-entrega">${res}</strong>
+                                    </div>`;
+                document.getElementById('message').classList.remove('t-inactive');
+
+                if (res.length === 0) {
+                    document.getElementById('message').innerHTML = `
+                            <div class="alert alert-success" role="alert">
+                                        <strong id="alert-entrega">Datos actualizados correctamente</strong>
+                                    </div>`;
+                }
+                setTimeout(() => {
+                    document.getElementById('message').classList.add('t-inactive');
+                }, 10000);
+                librosDisponibles();
+
+            });
+
+        });
+
+
 
         /* Paso #1 - Caja de Entrega */
         const cajaEntrega = (e) => {
@@ -101,8 +188,8 @@
                 document.getElementById('label1').innerHTML = text.bold()
             })
 
-            document.querySelector('#panel-entrega').classList.remove('col-3')
-            document.querySelector('#panel-entrega').classList.add('col-12')
+            panelEntrega.classList.remove('col-3')
+            panelEntrega.classList.add('col-12')
             document.querySelector('#select-entrega').classList.add('col-md-3')
 
             document.querySelector('#upto-dev').addEventListener('click', (e) => {
@@ -110,7 +197,7 @@
                 reoladTbentrega()
             })
 
-            
+
 
             e.stopPropagation();
             $('#dataTable-entrega input[type=search]').prop({
@@ -169,9 +256,8 @@
                         data: {
                             id_entrega: id_entrega
                         }
-                    });
+                    }).done((res) => console.log(res));
                     reoladTbentrega();
-                    console.log(id_entrega);
                 }
             });
 
@@ -182,6 +268,10 @@
         /* click double funtion */
         document.getElementById('copy-devolution').addEventListener('click', () => {
             $('#load-devolution').click();
+        });
+        /* Click al modal */
+        document.getElementById('continue').addEventListener('click', () => {
+            $('#send-dispo').click();
         });
 
         /* Enviar datos de entrega de libros */
@@ -223,8 +313,8 @@
             genCI.removeAttribute('disabled');
             divDevol.classList.add('t-inactive');
 
-            document.querySelector('#panel-entrega').classList.remove('col-12')
-            document.querySelector('#panel-entrega').classList.add('col-3')
+            panelEntrega.classList.remove('col-12')
+            panelEntrega.classList.add('col-3')
             document.querySelector('#select-entrega').classList.remove('col-md-3')
 
         });
@@ -240,14 +330,6 @@
                 method: "POST",
                 body: fdD
             }).then(respuesta => respuesta.json()).then(datas => {
-                //console.log(datas.data.length);
-                //console.log(datas.data.length);
-                /* 
-                                labelBook.innerHTML = '';
-                                for (let i = 0; i < datas.data.length; i++) {
-
-                                    labelBook.innerHTML += `<option value="${datas.data[i].id}">${datas.data[i].codigo} | ${datas.data[i].titulo}</option>`;
-                                } */
                 divEntrega.classList.add('t-inactive');
                 selector.classList.add('t-inactive');
                 divDevol.classList.remove('t-inactive');

@@ -11,7 +11,7 @@
  Target Server Version : 100419
  File Encoding         : 65001
 
- Date: 04/08/2022 15:00:20
+ Date: 23/08/2022 17:04:19
 */
 
 SET NAMES utf8mb4;
@@ -28,11 +28,17 @@ CREATE TABLE `op_books_disponibles`  (
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `fk_op_books_disponibles_tb_libro_1`(`fk_libro`) USING BTREE,
   CONSTRAINT `fk_op_books_disponibles_tb_libro_1` FOREIGN KEY (`fk_libro`) REFERENCES `tb_libro` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of op_books_disponibles
 -- ----------------------------
+INSERT INTO `op_books_disponibles` VALUES (21, 30, 55);
+INSERT INTO `op_books_disponibles` VALUES (22, 31, 24);
+INSERT INTO `op_books_disponibles` VALUES (23, 29, 4);
+INSERT INTO `op_books_disponibles` VALUES (24, 9, 4);
+INSERT INTO `op_books_disponibles` VALUES (25, 28, 2);
+INSERT INTO `op_books_disponibles` VALUES (26, 11, 1);
 
 -- ----------------------------
 -- Table structure for op_historial_libroestudiante
@@ -50,14 +56,13 @@ CREATE TABLE `op_historial_libroestudiante`  (
   INDEX `fk_op_historial_libroestudiante_tb_libro_1`(`fk_libro`) USING BTREE,
   CONSTRAINT `fk_op_historial_libroestudiante_tb_estudiante_1` FOREIGN KEY (`fk_estudiante`) REFERENCES `tb_estudiante` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_op_historial_libroestudiante_tb_libro_1` FOREIGN KEY (`fk_libro`) REFERENCES `tb_libro` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 108 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
+) ENGINE = InnoDB AUTO_INCREMENT = 158 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of op_historial_libroestudiante
 -- ----------------------------
-INSERT INTO `op_historial_libroestudiante` VALUES (105, 86, 29, 1656046800, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (106, 88, 29, 1656046800, NULL, 1);
-INSERT INTO `op_historial_libroestudiante` VALUES (107, 88, 31, 1656046800, NULL, 1);
+INSERT INTO `op_historial_libroestudiante` VALUES (153, 85, 31, 1660712400, NULL, 1);
+INSERT INTO `op_historial_libroestudiante` VALUES (157, 88, 30, 1659502800, 1661144400, 2);
 
 -- ----------------------------
 -- Table structure for tb_brigada
@@ -123,7 +128,6 @@ CREATE TABLE `tb_estudiante`  (
 -- Records of tb_estudiante
 -- ----------------------------
 INSERT INTO `tb_estudiante` VALUES (83, '34234234234', 'dasdad', 'asdasda', 'sdasdasdas', 1, 1, 1, 1, 0);
-INSERT INTO `tb_estudiante` VALUES (84, '44234234222', 'Juan Carlos', 'asdasda', 'sdasdasdas', 3, 2, 1, 1, 0);
 INSERT INTO `tb_estudiante` VALUES (85, '92102047481', 'Heriberto ', 'Pozo', 'DSDSDASADSAS', 1, 2, 1, 1, 0);
 INSERT INTO `tb_estudiante` VALUES (86, '54545454545', 'Juan', 'Wide', 'fsdsdsdaSASASASASA', 1, 1, 1, 1, 0);
 INSERT INTO `tb_estudiante` VALUES (87, '12312131231', 'dsassds', 'sadasdada', 'asdasd', 1, 1, 1, 1, 0);
@@ -147,12 +151,12 @@ CREATE TABLE `tb_libro`  (
 -- ----------------------------
 -- Records of tb_libro
 -- ----------------------------
-INSERT INTO `tb_libro` VALUES (9, 'AS1221A', 'PYTON', 'asdasd', 'asda', 'sdasd', 13);
-INSERT INTO `tb_libro` VALUES (11, '2QSA2', 'PHP', '12.3', 'sada', '121', 12);
-INSERT INTO `tb_libro` VALUES (28, 'ASW12', 'ANGULAR', '150.69', 'JUAN', '12145ASQA', 10);
-INSERT INTO `tb_libro` VALUES (29, 'ASAW122', 'SQL', '54.58', 'CARLOS', '45A45S4A5A-SAS2A', 7);
-INSERT INTO `tb_libro` VALUES (30, '63-ASW', 'JS', '45.85', 'Swthers', '4558-555-557', 0);
-INSERT INTO `tb_libro` VALUES (31, 'SD-ASA', 'NODE ', '154.59', 'CARLOS SOSA', '45845-4545458-45', 14);
+INSERT INTO `tb_libro` VALUES (9, 'AS1221A', 'PYTON', '152.45', 'asda', 'sdasd', 4);
+INSERT INTO `tb_libro` VALUES (11, '2QSA2', 'PHP', '12.3', 'sada', '121', 1);
+INSERT INTO `tb_libro` VALUES (28, 'ASW12', 'ANGULAR', '150.69', 'JUAN', '12145ASQA', 1);
+INSERT INTO `tb_libro` VALUES (29, 'ASAW122', 'SQL', '54.58', 'CARLOS', '45A45S4A5A-SAS2A', 1);
+INSERT INTO `tb_libro` VALUES (30, '63-ASW', 'JS', '45.85', 'Swthers', '4558-555-557', 15);
+INSERT INTO `tb_libro` VALUES (31, 'SD-ASA', 'NODE ', '154.59', 'CARLOS SOSA', '45845-4545458-45', 0);
 
 -- ----------------------------
 -- Table structure for tb_municipio

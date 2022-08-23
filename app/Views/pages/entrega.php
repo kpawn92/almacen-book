@@ -1,4 +1,21 @@
 <div class="cerodiv row" id="entrega">
+    <article>
+        <!-- Warning Alert Modal -->
+        <div id="warning-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-body p-4">
+                        <div class="text-center">
+                            <i class="dripicons-warning h1 text-warning"></i>
+                            <h4 class="mt-2">Informaci&oacute;n</h4>
+                            <p class="mt-3">La cantidad seleccionada ser&aacute; restadas de los disponibles para pr&eacute;stamos. Estas seguro que deseas continuar?</p>
+                            <button type="button" id="continue" class="btn btn-warning my-2" data-bs-dismiss="modal">Continuar</button>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </article>
     <section id="entrega-devolution">
         <!-- start page title -->
         <div class="row" id="title-entrega">
@@ -6,9 +23,9 @@
                 <div class="page-title-box">
                     <div class="page-title-right">
                         <ol class="breadcrumb m-0">
-                            <li class="breadcrumb-item"><a href="javascript: void(0);">Hyper</a></li>
-                            <li class="breadcrumb-item active">Pr&eacute;stamo</li>
-                            <li class="breadcrumb-item active">Disponibilidad</li>
+                            <li class="breadcrumb-item active">Hyper</li>
+                            <li class="lista breadcrumb-item active" id="aPrestamo">Pr&eacute;stamo</li>
+                            <li class="lista cursore breadcrumb-item active" id="aDispo">Disponibilidad</li>
                         </ol>
                     </div>
                     <h4 class="page-title">Formularios operacionales</h4>
@@ -43,7 +60,7 @@
 
                         <div class="mb-3" id="select-libro">
                             <!-- Single Select -->
-                            <label class="form-label" for="id_book">Libro <code>(c&oacute;digo|t&iacute;tulo)</code>:</label>
+                            <label class="form-label" for="id_book">Libro <code>(c&oacute;digo|t&iacute;tulo|cantidad)</code>:</label>
                             <select class="form-control select2" data-toggle="select2" id="idLibro" name="id_book">
                             </select>
                         </div>
@@ -140,11 +157,64 @@
                 </div>
             </div>
         </div>
-        <!-- <form action="<? //= base_url('/list_entrega'); 
-                            ?>" method="POST">
-            <input type="text" name="f" value="listarEntregados">
-            <input type="submit">
-        </form> -->
+
+        <picture>
+            <div class="t-inactive col-12 shadow-lg p-3 mb-5 mt-4 bg-body rounded" id="panel-dispo">
+                <div class="chart-content-bg">
+                    <div class="row text-center">
+                        <div class="col-md-6">
+                            <p class="text-muted mb-0 mt-3">Libros</p>
+                            <h2 class="fw-normal mb-3">
+                                <span id="t-libros">0</span>
+                            </h2>
+                        </div>
+                        <div class="col-md-6">
+                            <p class="text-muted mb-0 mt-3">Recaudaci&oacute;n</p>
+                            <h2 class="fw-normal mb-3">
+                                <span id="t-recauda"></span>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <form id="formDispo">
+                            <div class="mb-3" id="message">
+                            </div>
+                            <div class="mb-3" id="selector-libro">
+                                <!-- Single Select -->
+                                <label class="form-label" for="id_b">Libro <code>(c&oacute;digo|t&iacute;tulo|cantidad)</code>:</label>
+                                <select class="form-control select2" data-toggle="select2" id="idL" name="id_b">
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="cantVenta" class="form-label">Cantidad a vender</label>
+                                <input type="number" id="cantVenta" class="form-control" name="cantidadL" placeholder="Entre la cantidad" pattern="^[0-9]$" required>
+                            </div>
+                            <div class="mb-3">
+                                <button type="button" class="btn btn-warning" id="modal-dispo" data-bs-toggle="modal" data-bs-target="#warning-alert-modal">Actualizar</button>
+                                <button class="t-inactive btn btn-warning" id="send-dispo">Actualizar</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-8 mb-3">
+                        <table class="table table-sm table-centered mb-0" id="tb-dispo">
+                            <thead>
+                                <tr>
+                                    <th>T&iacute;tulo</th>
+                                    <th>Precio</th>
+                                    <th>Cantidad</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </picture>
         <?= $this->include('pages/dependencias/entrega_devol'); ?>
     </section>
 </div>

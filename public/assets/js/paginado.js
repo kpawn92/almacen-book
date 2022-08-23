@@ -21,7 +21,7 @@ arrUl.forEach((a, i) => {
         arrDiv[i].classList.remove('t-inactive')
         arrDiv.filter(div => div != arrDiv[i]).forEach(caja => caja.classList.add('t-inactive'))
     })
-})
+});
 
 /*
     console.log(arrDiv[2])
