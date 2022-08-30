@@ -155,14 +155,14 @@
             }).then(response => response.text()).then(res => {
                 booksEntregar()
                 document.getElementById('message').innerHTML = `
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-warning" role="alert">
                                         <strong id="alert-entrega">${res}</strong>
                                     </div>`;
                 document.getElementById('message').classList.remove('t-inactive');
 
                 if (res.length === 0) {
                     document.getElementById('message').innerHTML = `
-                            <div class="alert alert-success" role="alert">
+                            <div class="alert alert-primary" role="alert">
                                         <strong id="alert-entrega">Datos actualizados correctamente</strong>
                                     </div>`;
                 }

@@ -151,10 +151,9 @@ class Entrega extends Controller
         if ($cantidadE['cantidad'] >= $c_disponibles) {
             $book->restarForDispo($fk_libro, $c_disponibles);
             if ($comprobation->getNumRows() > 0) {
-                //print_r($comprobation->getRowArray()['id']);
+                /* Obtengo el id, para actualizar */
                 $dispo->actualizarCant($comprobation->getRowArray()['id'], $c_disponibles);
             } else {
-                //echo "No hay que actualizar";
                 $dispo->saveDatos($fk_libro, $c_disponibles);
             }
         } else
