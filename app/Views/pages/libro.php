@@ -1,4 +1,4 @@
-<div class="cerodiv row" id="libros" >
+<div class="cerodiv row" id="libros">
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -18,13 +18,16 @@
         <div class="col-12">
             <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                 <h4 class="header-title">Formulario</h4>
-
-                <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion del form}</code> dolor sit amet
-                    consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
-                    incidunt exercitationem quibusdam tempore repudiandae, enim deserunt dolorum eos excepturi rerum.
-                    Aut, culpa mollitia hic quidem, vel ex veritatis assumenda vero minus repudiandae dolor inventore
-                    accusamus deleniti cum placeat sapiente blanditiis dolorum expedita enim repellendus perspiciatis
-                    quasi quae. Quia, accusamus commodi?</p>
+                <details>
+                    <summary class="text-muted font-15">Detalles del formulario</summary>
+                    <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion del form}</code> dolor sit amet
+                        consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
+                        incidunt exercitationem quibusdam tempore repudiandae, enim deserunt dolorum eos excepturi rerum.
+                        Aut, culpa mollitia hic quidem, vel ex veritatis assumenda vero minus repudiandae dolor inventore
+                        accusamus deleniti cum placeat sapiente blanditiis dolorum expedita enim repellendus perspiciatis
+                        quasi quae. Quia, accusamus commodi?
+                    </p>
+                </details>
                 <br>
                 <div class="row">
                     <div class="col-6">
@@ -153,7 +156,7 @@
         </div>
     </div>
     <form action="<?= base_url('/del_book'); ?>" method="post">
-        <input type="hidden"  name="id_libro" id="retornoDelB">
+        <input type="hidden" name="id_libro" id="retornoDelB">
     </form>
     <?= $this->include('pages/dependencias/books'); ?>
 </div>
