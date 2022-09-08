@@ -184,12 +184,6 @@
             booksEntregar();
             let objetTable = tableEntregados.row().data();
 
-            let text = "Extraviado(s)"
-
-            document.getElementById('label1').addEventListener('mouseover', () => {
-                document.getElementById('label1').innerHTML = text.bold()
-            })
-
             panelEntrega.classList.remove('col-3')
             panelEntrega.classList.add('col-12')
             document.querySelector('#select-entrega').classList.add('col-md-3')
@@ -314,8 +308,8 @@
                 reoladTbentrega();
             });
             setTimeout(() => {
-                    divDttEntregas.classList.remove('t-inactive')
-                }, 1000);
+                divDttEntregas.classList.remove('t-inactive')
+            }, 1000);
         });
 
 
@@ -417,9 +411,8 @@
                             setTimeout(function() {
                                 divAlert.classList.add('t-inactive');
                             }, 5000);
-                            divDevol.classList.remove('t-inactive');
+                            divDevol.classList.remove('t-inactive');                            
                             $('#load-prestamo').click();
-                            //reoladTbentrega();
                         }
                     }
                 });
@@ -435,6 +428,7 @@
             divDevol.classList.add('t-inactive');
             selector.classList.remove('t-inactive');
             document.getElementById('copy-devolution').classList.remove("t-inactive");
+            document.querySelector('#check__perdido').checked = false;
             identidades()
         });
 

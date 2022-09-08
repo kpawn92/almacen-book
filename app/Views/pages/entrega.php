@@ -107,8 +107,8 @@
                                 </div> <!-- end card-body -->
                             </div> <!-- end card-->
                             <div class="col-4 form-check form-checkbox-primary mb-3" style="margin-top: 15px;">
-                                <input type="checkbox" class="form-check-input" id="customCheckcolor3" name="check">
-                                <label id="label1" class="form-check-label" for="customCheckcolor3">Extraviado(s)</label>
+                                <input type="checkbox" class="form-check-input" id="check__perdido" name="check">
+                                <label id="label1" class="form-check-label" for="check__perdido">Extraviado(s)</label>
                             </div>
                             <!-- Single Date Picker -->
                             <div class="mb-3">
