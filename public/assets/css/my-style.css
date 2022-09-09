@@ -1,23 +1,8 @@
 .t-inactive {
     display: none;
 }
-
-/* .form_input {
-    border: 1px black;
-    width: 100%;
-    background: #fff;
-    border: 3px solid transparent;
-    border-radius: 3px;
-    transition: .3s ease all;
-} 
-
-.form_input:focus {
-    border: 2px solid #0075FF;
-    outline: none;
-    box-shadow: 3px 0px 30px rgba(163, 163, 163, .4);
-} */
-
-/* #tb-dispo{
+/*
+#tb-dispo{
     table-layout: fixed;
     width: 250px;
 }
@@ -25,4 +10,5 @@
 #tb-dispo th td{
     width: 100px;
     word-wrap: break-word;
-} */
+}
+*/

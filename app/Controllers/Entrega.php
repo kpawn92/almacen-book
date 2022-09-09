@@ -104,9 +104,12 @@ class Entrega extends Controller
         $book = new M_book();
         extract($request->getPost());
         $booksElement = $entrega->getIdBook($id_entrega);
-        //print_r($booksElement['fk_libro']);
-        $book->contar($booksElement['fk_libro']);
+        $libro = $entrega->getLibro($id_entrega);
         $entrega->del_entrega($id_entrega);
+
+        if ($libro['date_devol'] == NULL) {
+            $book->contar($booksElement['fk_libro']);
+        }
     }
 
     public function devolution()

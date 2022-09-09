@@ -21,6 +21,7 @@
         const mensaje = document.querySelector('#alert-entrega');
         const selector = document.querySelector('#selector');
         const btnBorrador = document.querySelectorAll('.del-entrega');
+        const divDttEntregas = document.querySelector('#dataTable-entrega');
 
         document.getElementById('aPrestamo').classList.remove('active');
 
@@ -77,12 +78,13 @@
             },
         });
 
+
         /* Reload table */
         function reoladTbentrega() {
             setTimeout(function() {
                 tableEntregados.ajax.reload();
             }, 500);
-        }
+        };
 
         /* Get CI */
         const identidades = () => {
@@ -192,9 +194,15 @@
             panelEntrega.classList.add('col-12')
             document.querySelector('#select-entrega').classList.add('col-md-3')
 
+            const mostrarTableEntregas = () => {
+                if (!tableEntregados.data().any()) {
+                    divDttEntregas.classList.add('t-inactive')
+                }
+            }
             document.querySelector('#upto-dev').addEventListener('click', (e) => {
                 e.stopPropagation()
                 reoladTbentrega()
+                mostrarTableEntregas()
             })
 
 
@@ -256,8 +264,17 @@
                         data: {
                             id_entrega: id_entrega
                         }
-                    }).done((res) => console.log(res));
-                    reoladTbentrega();
+                    }).done((res) => {
+                        console.log(res)
+                        reoladTbentrega();
+                        booksEntregar();
+                        /* *@event {mousemove}
+                         * @function {}
+                         */
+                        divDttEntregas.addEventListener("mousemove", mostrarTableEntregas);
+                        //divDttEntregas.removeEventListener("mousemove", mostrarTableEntregas);
+                    });
+
                 }
             });
 
@@ -282,6 +299,7 @@
             formData.append('fk_libro', document.getElementById('idLibro').value);
             formData.append('fecha_entrega', document.getElementById('dateEntrega').value);
 
+            /**@argument {probar con los Async await} */
             fetch("<?php echo base_url('/save_entrega'); ?>", {
                 method: "POST",
                 body: formData
@@ -292,8 +310,12 @@
                 setTimeout(function() {
                     divAlert.classList.add('t-inactive');
                 }, 4000);
+                booksEntregar();
+                reoladTbentrega();
             });
-            reoladTbentrega();
+            setTimeout(() => {
+                    divDttEntregas.classList.remove('t-inactive')
+                }, 1000);
         });
 
 
@@ -388,6 +410,7 @@
                             divDevol.classList.remove('t-inactive');
                             $('#load-prestamo').click();
                             reoladTbentrega();
+                            booksEntregar();
                         } else {
                             mensaje.innerHTML = d;
                             divAlert.classList.remove('t-inactive');
@@ -403,7 +426,7 @@
             //console.log(...formDevolution)
             //console.log(inputsArr[0].checked)
             //console.log(inputs)
-            //console.log(e.target)            
+            //console.log(e.target)
         });
 
         volver.addEventListener('click', (e) => {
@@ -412,6 +435,7 @@
             divDevol.classList.add('t-inactive');
             selector.classList.remove('t-inactive');
             document.getElementById('copy-devolution').classList.remove("t-inactive");
+            identidades()
         });
 
         /* Listar los libros pendientes en to-DO.js */

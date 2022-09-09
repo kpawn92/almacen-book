@@ -14,18 +14,20 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="alert alert-info" role="alert" id="alerta-del" style="display: none">
+    <!-- Message alert! -->
+    <!-- <div class="row">
+        <div class="alert alert-info" role="alert" id="alerta-del">
             <i class="dripicons-information me-2"></i>
             <p id="del-respuesta"></p>
         </div>
-    </div>
-    <div class="row" id="formulario-student" style="display: contents;">
+    </div> -->
+    <div class="row" id="formulario-student">
         <div class="col-12">
             <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                 <h4 class="header-title">Formulario</h4>
                 <details>
                     <summary class="text-muted font-15">Detalles del formulario</summary>
+                    <span class="t-inactive text-success font-12">Texto de prueba</span>
                     <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion del form}</code> dolor sit amet
                         consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
                         incidunt exercitationem quibusdam tempore repudiandae, enim deserunt dolorum eos excepturi rerum.
@@ -37,28 +39,39 @@
                 <br>
                 <div class="row">
                     <div class="col-6">
-                        <div class="alert alert-primary" role="alert" id="alert" style="display: none">
+                        <div class="t-inactive alert alert-info" role="alert" id="msg-back">
                             <i class="dripicons-information me-2"></i>
-                            <p id="resp"></p>
+                            <p id="resp__back"></p>
                         </div>
                     </div>
                 </div>
+                <!-- text-danger ->class para los input_span -->
                 <div class="tab-content">
-                    <form action="" id="form">
+                    <form id="form__student">
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="nombre">Nombre(s)</label>
                                     <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre o nombres">
+                                    <span class="t-inactive font-14" id="novalidate__nombre">El campo solo puede contener caracteres alfab&eacute;ticos</span>
+                                    <span class="t-inactive font-14" id="validate__nombre">Campo validado</span>
+                                    <span class="t-inactive font-14" id="empty__nombre">Campo vac&iacute;o error!</span>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="lastname">Apellidos</label>
                                     <input type="text" class="form-control" id="lastname" name="lastname" placeholder="Apellidos">
+                                    <span class="t-inactive font-14" id="novalidate__lastname">El campo solo puede contener caracteres alfab&eacute;ticos</span>
+                                    <span class="t-inactive font-14" id="validate__lastname">Campo validado</span>
+                                    <span class="t-inactive font-14" id="empty__lastname">Campo vac&iacute;o error!</span>
+
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="ci">CI</label>
-                                    <input type="text" class="form-control" data-toggle="input-mask" data-mask-format="00000000000" id="ci" name="ci">
-                                    <span class="font-13 text-muted">Ej. "921015xxx81"</span>
+                                    <input type="text" class="form_input form-control" data-toggle="input-mask" data-mask-format="00000000000" id="ci" name="ci">
+                                    <span class="t-inactive font-14" id="novalidate__ci">El campo es obligatorio</span>
+                                    <span class="t-inactive font-14" id="validate__ci">Campo validado</span>
+                                    <span class="t-inactive font-14" id="empty__ci">Campo vac&iacute;o error!</span>
+                                    <!-- <span class="font-13 text-muted">Ej. "921015xxx81"</span> -->
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label">Textareas</label>
@@ -117,13 +130,13 @@
                             </div>
                         </div>
                 </div>
-                <button class="btn btn-warning" type="button" id="sub_e">Enviar form</button>
-                <a class="btn btn-primary" href="#dow-student" id="btn-listStudents">Mostrar Listado <i class="uil-angle-double-down"></i></a>
+                <button class="btn btn-warning" id="sub_e">Enviar form</button>
+                <a class="btn btn-primary" href="#dow-student" id="btn-liStd">Mostrar Listado <i class="uil-angle-double-down"></i></a>
                 </form>
             </div>
         </div>
     </div>
-    <div class="row" id="dataTable-student" style="display: none;">
+    <div class="t-inactive row" id="dataTable-student">
         <div class="col-12">
             <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                 <div class="row">

@@ -1,7 +1,14 @@
 <script>
     $(document.getElementById('estudiante')).ready(function() {
-        var funcion = "listar";
-        var table = $('#students').DataTable({
+
+        document.querySelector('#estudiante').addEventListener('click', (e) => e.stopPropagation());
+        const expresiones = {
+            nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+            lastname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
+            ci: /^[0-9]{11}$/, // Solo caracteres numericos.
+        }
+        let funcion = "listar";
+        let tb__student = $('#students').DataTable({
             ajax: {
                 "url": "<?php echo base_url('/list_student'); ?>",
                 "method": "POST",
@@ -43,43 +50,128 @@
             },
         });
 
+        /* Reload table */
+        const reoladTbestudiante = () => {
+            setTimeout(() => {
+                tb__student.ajax.reload();
+            }, 500);
+        };
 
 
+        const formulario__estudiante = document.querySelector('#form__student');
+        const inputs__std = document.querySelectorAll('#form__student input');
+        const alertBack = document.querySelector('#resp__back');
+        const divMSG = document.querySelector('#msg-back');
+        const divDatatableStudent = document.querySelector('#dataTable-student');
+        const btn_mostrarStudent = document.querySelector('#btn-liStd');
 
-        /*var btnUpdateListStudent = document.getElementById("btn-update");
-        btnUpdateListStudent.addEventListener("click", reloadListStudent);
-
-        function reloadListStudent() {
-
-            table.ajax.reload();
-            console.log("update")
-        };*/
-        $("#btn-update").on('click', function() {
-            table.ajax.reload();
-            var data = table.row().data();
-            //console.log(data);
-            ocultarDivTable(data);
-        });
-
-        $("#btn-listStudents").on('click', function() {
-            table.ajax.reload();
-            var data = table.row().data();
-            ocultarDivTable(data);
+        btn_mostrarStudent.addEventListener('click', () => {
+            //**__verification si la tabla es null
+            if (!!tb__student.data().any()) {
+                divDatatableStudent.classList.remove('t-inactive')
+            }
         })
 
-        function ocultarDivTable(data) {
-            var divDatatableStudent = document.getElementById("dataTable-student");
-            if (data == undefined) {
-                divDatatableStudent.style.display = "none";
-                //console.log("bien");
-            } else {
-                divDatatableStudent.style.display = "contents";
+        const mostrarTableEstudiantes = (e) => {
+            e.stopPropagation();
+            if (!tb__student.data().any()) {
+                divDatatableStudent.classList.add('t-inactive')
             }
         }
 
+        document.querySelector('#dataTable-student').addEventListener("mousemove", mostrarTableEstudiantes);
+
+
+        const validarForm = (e) => {
+            //console.log(e.target.name);
+            switch (e.target.name) {
+                case "nombre":
+                    validarCampo(expresiones.nombre, e.target, 'nombre');
+                    break;
+                case "lastname":
+                    validarCampo(expresiones.lastname, e.target, 'lastname');
+                    break;
+                case "ci":
+                    validarCampo(expresiones.ci, e.target, 'ci');
+                    break;
+            }
+        }
+
+        const validarCampo = (expresion, input, campo) => {
+            if (expresion.test(input.value)) {
+                document.querySelector(`#empty__${campo}`).classList.add('t-inactive')
+                document.querySelector(`#novalidate__${campo}`).classList.add('t-inactive')
+                document.querySelector(`#validate__${campo}`).classList.remove('t-inactive')
+                document.querySelector(`#validate__${campo}`).classList.add('badge', 'badge-success-lighten')
+            } else if (input.value.length === 0) {
+                document.querySelector(`#empty__${campo}`).classList.add('badge', 'badge-warning-lighten')
+                document.querySelector(`#empty__${campo}`).classList.remove('t-inactive')
+                document.querySelector(`#validate__${campo}`).classList.add('t-inactive')
+                document.querySelector(`#novalidate__${campo}`).classList.add('t-inactive')
+            } else {
+                document.querySelector(`#empty__${campo}`).classList.add('t-inactive')
+                document.querySelector(`#validate__${campo}`).classList.add('t-inactive')
+                document.querySelector(`#novalidate__${campo}`).classList.remove('t-inactive')
+                document.querySelector(`#novalidate__${campo}`).classList.add('badge', 'badge-danger-lighten')
+            }
+        }
+
+        inputs__std.forEach((input) => {
+            input.addEventListener('keyup', validarForm)
+            input.addEventListener('blur', validarForm)
+        })
+
+
+        formulario__estudiante.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            fD__estudiante = new FormData();
+            const {
+                nombre,
+                lastname,
+                ci,
+                direccion,
+                fk_municipio,
+                fk_carrera,
+                fk_year_academico,
+                fk_brigada
+            } = e.target;
+
+            fD__estudiante.append('nombre', nombre.value.toUpperCase());
+            fD__estudiante.append('lastname', lastname.value.toUpperCase());
+            fD__estudiante.append('ci', ci.value);
+            fD__estudiante.append('direccion', direccion.value);
+            fD__estudiante.append('fk_municipio', fk_municipio.value);
+            fD__estudiante.append('fk_carrera', fk_carrera.value);
+            fD__estudiante.append('fk_year_academico', fk_year_academico.value);
+            fD__estudiante.append('fk_brigada', fk_brigada.value);
+
+
+            fetch('<?php echo base_url('/save_student'); ?>', {
+                    method: 'POST',
+                    body: fD__estudiante
+                })
+                .then(res => res.text())
+                .then(respuesta => {
+                    alertBack.innerHTML = respuesta
+                    divMSG.classList.remove('t-inactive')
+                    setTimeout(() => {
+                        divMSG.classList.add('t-inactive')
+                    }, 4000);
+                    reoladTbestudiante();
+                    setTimeout(() => {
+                        document.querySelector('#dataTable-student').classList.remove('t-inactive')
+                    }, 600);
+                });
+            //console.log(...fD__estudiante);
+
+
+
+        });
+
         $("#students tbody").on('click', 'tr', function() {
-            var data = table.row(this).data();
-            console.log(data);
+            var data = tb__student.row(this).data();
+            //console.log(data);
             $("#id").val(data.id);
             $("#id-del").val(data.id);
             $("#enombre").val(data.nombre);
@@ -117,7 +209,7 @@
                     'Se completo el borrado del registro.',
                     'success'
                 );
-                table.ajax.reload();
+                reoladTbestudiante()
             }
 
             function deletFalse() {
@@ -127,7 +219,7 @@
                     title: 'Oops...',
                     text: 'El registro tiene dependencias!'
                 });
-                table.ajax.reload();
+                reoladTbestudiante()
             }
 
             function borrarEstudiante(id) {
@@ -139,15 +231,14 @@
                         id: id
                     },
                     complete: function(data) {
-                        //return JSON.stringify(data.responseText);
-                        //var respuesta = JSON.stringify(data.responseText);                        
                         var response = JSON.parse(data.responseText);
                         $('#retornoDelE').val(response);
-                        //alert(JSON.parse(data.responseText));              
                     }
                 });
             }
         });
+
+        /**@argument {pasar los paramentos con toUpperCase()} */
         $("#edit_student").click(function() {
             $.ajax({
                 url: '<?php echo base_url('/edit_student'); ?>',
@@ -155,7 +246,7 @@
                 data: $('#form-edit').serialize(),
             }).done(function(res) {
                 $('#respuesta').html(res);
-                table.ajax.reload();
+                reoladTbestudiante()
                 var alerta = document.getElementById('alerta');
                 alerta.style.display = '';
                 $("#alerta").show();
@@ -163,27 +254,6 @@
                     $("#alerta").hide();
                 }, 4000);
             });
-
-            //$("#offcanvasRight").removeClass("show");
-
         });
-        $('#sub_e').click(function() {
-            //console.log(caja);
-            $.ajax({
-                    url: '<?php echo base_url('/save_student'); ?>',
-                    type: 'POST',
-                    data: $('#form').serialize(),
-                })
-                .done(function(res) {
-                    $('#resp').html(res);
-                    table.ajax.reload();
-                    var caja = document.getElementById('alert');
-                    caja.style.display = '';
-                    $("#alert").show();
-                    setTimeout(function() {
-                        $("#alert").hide();
-                    }, 6000);
-                })
-        })
     });
 </script>

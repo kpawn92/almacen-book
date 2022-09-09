@@ -69,4 +69,10 @@ class M_entrega extends Model
         $query = $db->query("SELECT fk_libro, date_entrega, tb_libro.titulo FROM op_historial_libroestudiante JOIN tb_libro ON tb_libro.id = fk_libro WHERE op_historial_libroestudiante.id = '$dI'");
         return $query->getRowArray();
     }
+    function getLibro($id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT * FROM op_historial_libroestudiante WHERE op_historial_libroestudiante.id = '$id'");
+        return $query->getRowArray();
+    }
 }

@@ -14,5 +14,6 @@
         </div>
     </div>
     <!-- end page title -->
-    
+    <a href="#day">What day is today?</a>
+    <div id="day">Sunday</div>
 </div>

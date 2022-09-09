@@ -169,7 +169,7 @@
                             </h2>
                         </div>
                         <div class="col-md-6">
-                            <p class="text-muted mb-0 mt-3">Recaudaci&oacute;n</p>
+                            <p class="text-muted mb-0 mt-3">Por recaudar</p>
                             <h2 class="fw-normal mb-3">
                                 <span id="t-recauda"></span>
                             </h2>

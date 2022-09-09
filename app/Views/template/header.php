@@ -26,9 +26,6 @@
     <link href="assets/css/my-style.css" rel="stylesheet" />
     <link href="assets/css/otrostyle.css" rel="stylesheet" type="text/css" />
 
-    
-
-
 </head>
 
 <body class="loading"
