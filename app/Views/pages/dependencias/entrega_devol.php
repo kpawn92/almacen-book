@@ -346,6 +346,9 @@
                 method: "POST",
                 body: fdD
             }).then(respuesta => respuesta.json()).then(datas => {
+                document.querySelectorAll('#prestamosBook button').forEach(btn => {
+                    btn.classList.add('t-inactive')
+                });
                 divEntrega.classList.add('t-inactive');
                 selector.classList.add('t-inactive');
                 divDevol.classList.remove('t-inactive');
@@ -411,7 +414,7 @@
                             setTimeout(function() {
                                 divAlert.classList.add('t-inactive');
                             }, 5000);
-                            divDevol.classList.remove('t-inactive');                            
+                            divDevol.classList.remove('t-inactive');
                             $('#load-prestamo').click();
                         }
                     }
@@ -423,6 +426,9 @@
         });
 
         volver.addEventListener('click', (e) => {
+            document.querySelectorAll('#prestamosBook button').forEach(btn => {
+                btn.classList.remove('t-inactive')
+            });
             e.stopPropagation();
             divEntrega.classList.remove('t-inactive');
             divDevol.classList.add('t-inactive');
