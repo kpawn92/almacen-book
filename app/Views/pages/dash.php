@@ -41,7 +41,7 @@
                         <i class="mdi mdi-currency-usd widget-icon bg-light-lighten rounded-circle text-white"></i>
                     </div>
                     <h5 class="fw-normal mt-0" title="Revenue">Estudiantes</h5>
-                    <h3 class="mt-3 mb-3 text-white">$10,245</h3>
+                    <h3 class="mt-3 mb-3 text-white">10,245</h3>
                     <p class="mb-0">
                         <span class="badge bg-info me-1">
                             <i class="mdi mdi-arrow-up-bold"></i> 17.26%</span>
@@ -58,7 +58,7 @@
                         <i class="mdi mdi-currency-usd widget-icon bg-light-lighten rounded-circle text-white"></i>
                     </div>
                     <h5 class="fw-normal mt-0" title="Revenue">P&eacute;rdidas</h5>
-                    <h3 class="mt-3 mb-3 text-white">$10,245</h3>
+                    <h3 class="mt-3 mb-3 text-white">10,245</h3>
                     <p class="mb-0">
                         <span class="badge bg-info me-1">
                             <i class="mdi mdi-arrow-up-bold"></i> 17.26%</span>
