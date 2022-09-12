@@ -32,7 +32,7 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Auth::index');
 $routes->get('index', 'Dash::index');
 $routes->get('dash', 'Dash::dash');
 $routes->get('estudiante', 'Dash::estudiantes');
@@ -59,6 +59,9 @@ $routes->post('b_entregados', 'Entrega::b_entregados');
 $routes->post('devolution', 'Entrega::devolution');
 $routes->post('dispo', 'Entrega::disponibility');
 $routes->post('tb_dispo', 'Entrega::tb_dispo');
+
+
+
 
 
 
