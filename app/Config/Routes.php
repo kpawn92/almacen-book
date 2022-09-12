@@ -33,6 +33,10 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 
 $routes->get('/', 'Auth::index');
+$routes->post('sign_in', 'Auth::acceder');
+$routes->get('log_out', 'Auth::salir');
+
+
 $routes->get('index', 'Dash::index');
 $routes->get('dash', 'Dash::dash');
 $routes->get('estudiante', 'Dash::estudiantes');
@@ -60,6 +64,8 @@ $routes->post('devolution', 'Entrega::devolution');
 $routes->post('dispo', 'Entrega::disponibility');
 $routes->post('tb_dispo', 'Entrega::tb_dispo');
 
+/* Colaborador */
+$routes->get('colab', 'Colab::index');
 
 
 

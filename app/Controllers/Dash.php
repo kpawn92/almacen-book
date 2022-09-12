@@ -14,6 +14,13 @@ class Dash extends Controller
 {
     public function index()
     {
+        session_start();
+        if (!isset($_SESSION['rol'])) {
+            return redirect()->to(base_url() . '/');
+        } else
+        if ($_SESSION['rol'] != 1) {
+            return redirect()->to(base_url() . '/');
+        }
         $municipios = new M_municipios();
         $dato['municipios'] = $municipios->orderBy('id')->findAll();
         $carreras = new M_carrera();

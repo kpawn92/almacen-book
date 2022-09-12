@@ -65,8 +65,8 @@
         /*  */
         $("#books tbody").on('click', 'tr', function() {
             var data2 = tableBooks.row(this).data();
-            
-            
+
+
             console.log(data2);
             $("#id_libro").val(data2.id_book);
             //$("#id-del").val(data.id);
@@ -91,10 +91,10 @@
                 }).then((result) => {
                     if (result.isConfirmed) {
                         var borrado = document.getElementById("retornoDelB").value;
-                        if( borrado != "false"){
+                        if (borrado != "false") {
                             delTrue();
-                        }else {
-                            delFalse();                            
+                        } else {
+                            delFalse();
                         }
 
                         console.log(borrado);
@@ -108,7 +108,7 @@
                 Swal.fire(
                     'Borrado!',
                     'Se completo el borrado del registro.',
-                    'success'                    
+                    'success'
                 );
                 tableBooks.ajax.reload();
             }
@@ -119,8 +119,8 @@
                     icon: 'error',
                     title: 'Oops...',
                     text: 'El registro tiene dependencias!'
-                });   
-                tableBooks.ajax.reload();                           
+                });
+                tableBooks.ajax.reload();
             }
 
             function borrarLibro(id_libro) {
@@ -134,7 +134,7 @@
                     complete: function(data) {
                         //return JSON.stringify(data.responseText);
                         //var respuesta = JSON.stringify(data.responseText);                        
-                        var respuesta = JSON.parse(data.responseText);                        
+                        var respuesta = JSON.parse(data.responseText);
                         $('#retornoDelB').val(respuesta);
                         //alert(JSON.parse(data.responseText));              
                     }

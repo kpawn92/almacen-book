@@ -38,7 +38,7 @@
                                 <p class="text-muted mb-4">Entre el usuario y contraseña para acceder.</p>
                             </div>
 
-                            <form action="#">
+                            <form action="<?php echo base_url('/sign_in'); ?>" method="POST">
 
                                 <div class="mb-3">
                                     <label for="usuario" class="form-label">Usuario:</label>
@@ -48,7 +48,7 @@
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control" placeholder="Entre la contraseña">
+                                        <input type="password" id="password" name="password" class="form-control" placeholder="Entre la contraseña">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>
