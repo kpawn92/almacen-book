@@ -34,7 +34,7 @@ class Auth extends Controller
             $db = \Config\Database::connect();
             $query = $db->query("SELECT*FROM tb_users WHERE usuario = '$usuario' AND password = '$password'");
             $row = $query->getRowArray();
-            //var_dump(intval($row['rol']));
+
             if ($row == true) {
                 $rol = intval($row['rol']);
                 $_SESSION['rol'] = $rol;
@@ -45,13 +45,16 @@ class Auth extends Controller
                             return redirect()->to(base_url() . '/index');
                             break;
                         case 2:
-                            return view('Colaborador/colab');
+                            return redirect()->to(base_url() . '/colab');
                             break;
                         default:
                     }
                 }
-            } else
-                echo 'El usuario y contraseña son incorrectos';
+            } else {
+                return redirect()->to(base_url() . '/');
+                session_unset();
+                session_destroy();
+            }
         }
     }
 

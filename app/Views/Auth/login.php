@@ -34,7 +34,7 @@
                         <div class="card-body p-4">
 
                             <div class="text-center w-75 m-auto">
-                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Iniciar sesi&aacute;n</h4>
+                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Iniciar secci&oacute;n</h4>
                                 <p class="text-muted mb-4">Entre el usuario y contraseña para acceder.</p>
                             </div>
 
