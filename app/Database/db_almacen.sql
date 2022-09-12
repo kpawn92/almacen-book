@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 09-09-2022 a las 03:45:21
+-- Tiempo de generación: 12-09-2022 a las 08:23:44
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.7
 
@@ -162,6 +162,27 @@ INSERT INTO `tb_municipio` (`id`, `municipio`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `tb_users`
+--
+
+CREATE TABLE `tb_users` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `rol` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_users`
+--
+
+INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`) VALUES
+(1, 'root', '$2y$10$KgiTC9dwQEL3ZFkO8crXzOL/h1Xr6eCRSrecx6exVWixeXo0nw7Oe', 1),
+(2, 'colab', '$2y$10$KgiTC9dwQEL3ZFkO8crXzOL/h1Xr6eCRSrecx6exVWixeXo0nw7Oe', 2);
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `tb_year_academico`
 --
 
@@ -234,6 +255,12 @@ ALTER TABLE `tb_municipio`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Indices de la tabla `tb_users`
+--
+ALTER TABLE `tb_users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `tb_year_academico`
 --
 ALTER TABLE `tb_year_academico`
@@ -284,6 +311,12 @@ ALTER TABLE `tb_libro`
 --
 ALTER TABLE `tb_municipio`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `tb_users`
+--
+ALTER TABLE `tb_users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_year_academico`
