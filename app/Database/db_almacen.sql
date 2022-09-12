@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-09-2022 a las 08:23:44
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.7
+-- Tiempo de generación: 12-09-2022 a las 18:50:07
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -170,15 +170,15 @@ CREATE TABLE `tb_users` (
   `usuario` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
   `rol` int(2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `tb_users`
 --
 
 INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`) VALUES
-(1, 'root', '$2y$10$KgiTC9dwQEL3ZFkO8crXzOL/h1Xr6eCRSrecx6exVWixeXo0nw7Oe', 1),
-(2, 'colab', '$2y$10$KgiTC9dwQEL3ZFkO8crXzOL/h1Xr6eCRSrecx6exVWixeXo0nw7Oe', 2);
+(1, 'root', '1234', 1),
+(2, 'colab', '1234', 2);
 
 -- --------------------------------------------------------
 
@@ -258,7 +258,7 @@ ALTER TABLE `tb_municipio`
 -- Indices de la tabla `tb_users`
 --
 ALTER TABLE `tb_users`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
 -- Indices de la tabla `tb_year_academico`
