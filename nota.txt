@@ -1,7 +1,5 @@
 Sistema informático para el control en el almacén de libros de la Universidad de Ciencias Médicas de Granma
 Gestionar los estudiantes matriculados, libros existentes, prestamos de libros y ventas de libros.
 
--importar la db antes de inicializar la aplicacion
-Sistema de prestamo de libros 90%
-
-GlassIt
+template para los usuarios
+http://localhost/TemplatePro/landing.html

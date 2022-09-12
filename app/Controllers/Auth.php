@@ -17,7 +17,7 @@ class Auth extends Controller
                     return redirect()->to(base_url() . '/index');
                     break;
                 case 2:
-                    return view('Colaborador/colab');
+                    return redirect()->to(base_url() . '/colab');
                     break;
                 default:
             }
