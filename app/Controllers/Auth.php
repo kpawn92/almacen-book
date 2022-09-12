@@ -37,7 +37,9 @@ class Auth extends Controller
 
             if ($row == true) {
                 $rol = intval($row['rol']);
+                $name = $row['usuario'];
                 $_SESSION['rol'] = $rol;
+                $_SESSION['name'] = $name;
 
                 if (isset($_SESSION['rol'])) {
                     switch ($_SESSION['rol']) {
@@ -51,9 +53,9 @@ class Auth extends Controller
                     }
                 }
             } else {
-                return redirect()->to(base_url() . '/');
                 session_unset();
                 session_destroy();
+                return redirect()->back();
             }
         }
     }
