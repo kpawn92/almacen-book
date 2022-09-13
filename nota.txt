@@ -3,3 +3,7 @@ Gestionar los estudiantes matriculados, libros existentes, prestamos de libros y
 
 template para los usuarios
 http://localhost/TemplatePro/landing.html
+
+Crear una columna status(1=logged) en la tabla de users, para asi en una consulta obener los datos del que esta logeado al cerrar la sesion con el id cambiar el status
+
+los invitados(users) tendran cuentas usuario 

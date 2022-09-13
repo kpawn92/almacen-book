@@ -68,6 +68,10 @@ $routes->post('tb_dispo', 'Entrega::tb_dispo');
 $routes->get('colab', 'Colab::index');
 
 
+/* Invitado */
+$routes->get('user', 'Invitado::index');
+
+
 
 
 
