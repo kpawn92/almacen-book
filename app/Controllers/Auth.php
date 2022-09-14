@@ -39,7 +39,6 @@ class Auth extends Controller
                 $rol = intval($row['rol']);
                 $name = $row['usuario'];
                 $_SESSION['rol'] = $rol;
-                $_SESSION['name'] = $name;
 
                 if (isset($_SESSION['rol'])) {
                     switch ($_SESSION['rol']) {

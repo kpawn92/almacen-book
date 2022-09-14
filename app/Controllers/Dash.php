@@ -9,6 +9,7 @@ use App\Models\M_yearA;
 use App\Models\M_brigada;
 use App\Models\M_student;
 use App\Models\M_book;
+use App\Models\M_users;
 
 class Dash extends Controller
 {
@@ -50,11 +51,13 @@ class Dash extends Controller
         } else {
             extract($request->getPost());
             $student = new M_student();
+            $users = new M_users();
             $rows_report = $student->row_preport($ci);
             if ($rows_report->getNumRows() > 0) {
                 echo 'El estudiante <strong>' . $nombre . ' ' . $lastname . '</strong> ya existe';
             } else {
                 $student->guardar($ci, $nombre, $lastname, $direccion, $fk_municipio, $fk_carrera, $fk_year_academico, $fk_brigada);
+                $users->createUser($ci);
                 echo "<strong>Datos guardados correctamente...</strong>";
             }
         }
