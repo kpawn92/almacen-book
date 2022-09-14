@@ -6,4 +6,8 @@ http://localhost/TemplatePro/landing.html
 
 Crear una columna status(1=logged) en la tabla de users, para asi en una consulta obener los datos del que esta logeado al cerrar la sesion con el id cambiar el status
 
-los invitados(users) tendran cuentas usuario 
+Guest:
+En la table users modificar rol que tenga de valor por default 3, crear una nueva columna logged(0,1), al registrar el estudiante tambien crear la cuenta con user: ci, pass: P@ssw0rd(default)
+
+usuario
+crear tickes de compra de libros, viendo la disponibilidad
