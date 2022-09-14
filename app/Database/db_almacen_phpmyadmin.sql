@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-09-2022 a las 08:57:55
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.7
+-- Tiempo de generación: 14-09-2022 a las 18:58:46
+-- Versión del servidor: 10.4.21-MariaDB
+-- Versión de PHP: 8.0.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -107,6 +107,14 @@ CREATE TABLE `tb_estudiante` (
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
+--
+-- Volcado de datos para la tabla `tb_estudiante`
+--
+
+INSERT INTO `tb_estudiante` (`id`, `ci`, `nombre`, `lastname`, `direccion`, `fk_municipio`, `fk_carrera`, `fk_year_academico`, `fk_brigada`, `status`) VALUES
+(92, '92102047481', 'ALEJANDRO', 'POZO CASTRO', 'RPTO CESPEDES / 8 Y 9 ', 1, 1, 1, 1, 0),
+(93, '93145745482', 'LEANDRO', 'POZO CASTRO', 'AAAAA', 1, 1, 1, 1, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -172,7 +180,9 @@ CREATE TABLE `tb_users` (
 
 INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
 (1, 'root', '1234', 1, 0),
-(2, 'colab', '1234', 2, 0);
+(2, 'colab', '1234', 2, 0),
+(3, 'usuario', '92102047481', 3, 0),
+(4, 'usuario', '93145745482', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -292,7 +302,7 @@ ALTER TABLE `tb_carrera`
 -- AUTO_INCREMENT de la tabla `tb_estudiante`
 --
 ALTER TABLE `tb_estudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_libro`
@@ -310,7 +320,7 @@ ALTER TABLE `tb_municipio`
 -- AUTO_INCREMENT de la tabla `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_year_academico`
