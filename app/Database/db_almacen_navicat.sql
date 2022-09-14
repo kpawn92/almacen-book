@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : Farmram
+ Source Server         : FarmaRAM
  Source Server Type    : MySQL
- Source Server Version : 100421
+ Source Server Version : 100419
  Source Host           : localhost:3306
  Source Schema         : db_almacen
 
  Target Server Type    : MySQL
- Target Server Version : 100421
+ Target Server Version : 100419
  File Encoding         : 65001
 
- Date: 12/09/2022 11:49:29
+ Date: 14/09/2022 01:57:25
 */
 
 SET NAMES utf8mb4;
@@ -119,7 +119,6 @@ CREATE TABLE `tb_estudiante`  (
 -- ----------------------------
 -- Records of tb_estudiante
 -- ----------------------------
-INSERT INTO `tb_estudiante` VALUES (91, '23423234553', 'ALEJANDRO', 'SOSA GOMEZ', 'aaa', 1, 1, 1, 1, 0);
 
 -- ----------------------------
 -- Table structure for tb_libro
@@ -166,17 +165,18 @@ INSERT INTO `tb_municipio` VALUES (4, 'CAMPECHUELA');
 DROP TABLE IF EXISTS `tb_users`;
 CREATE TABLE `tb_users`  (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `usuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` varchar(25) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT 'usuario',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `rol` int(2) NOT NULL,
+  `rol` int(2) NOT NULL DEFAULT 3,
+  `logged` int(1) NULL DEFAULT 0,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of tb_users
 -- ----------------------------
-INSERT INTO `tb_users` VALUES (1, 'root', '1234', 1);
-INSERT INTO `tb_users` VALUES (2, 'colab', '1234', 2);
+INSERT INTO `tb_users` VALUES (1, 'root', '1234', 1, 0);
+INSERT INTO `tb_users` VALUES (2, 'colab', '1234', 2, 0);
 
 -- ----------------------------
 -- Table structure for tb_year_academico

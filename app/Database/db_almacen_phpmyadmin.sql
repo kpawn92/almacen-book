@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-09-2022 a las 18:50:07
--- Versión del servidor: 10.4.21-MariaDB
--- Versión de PHP: 8.0.12
+-- Tiempo de generación: 14-09-2022 a las 08:57:55
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -107,13 +107,6 @@ CREATE TABLE `tb_estudiante` (
   `status` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
---
--- Volcado de datos para la tabla `tb_estudiante`
---
-
-INSERT INTO `tb_estudiante` (`id`, `ci`, `nombre`, `lastname`, `direccion`, `fk_municipio`, `fk_carrera`, `fk_year_academico`, `fk_brigada`, `status`) VALUES
-(91, '23423234553', 'ALEJANDRO', 'SOSA GOMEZ', 'aaa', 1, 1, 1, 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -167,18 +160,19 @@ INSERT INTO `tb_municipio` (`id`, `municipio`) VALUES
 
 CREATE TABLE `tb_users` (
   `id` int(11) NOT NULL,
-  `usuario` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `usuario` varchar(25) COLLATE utf8_spanish_ci NOT NULL DEFAULT 'usuario',
   `password` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
-  `rol` int(2) NOT NULL
+  `rol` int(2) NOT NULL DEFAULT 3,
+  `logged` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `tb_users`
 --
 
-INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`) VALUES
-(1, 'root', '1234', 1),
-(2, 'colab', '1234', 2);
+INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
+(1, 'root', '1234', 1, 0),
+(2, 'colab', '1234', 2, 0);
 
 -- --------------------------------------------------------
 
