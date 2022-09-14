@@ -19,6 +19,9 @@ class Auth extends Controller
                 case 2:
                     return redirect()->to(base_url() . '/colab');
                     break;
+                case 3:
+                    return redirect()->to(base_url() . '/user');
+                    break;
                 default:
             }
         } else
@@ -37,7 +40,6 @@ class Auth extends Controller
 
             if ($row == true) {
                 $rol = intval($row['rol']);
-                $name = $row['usuario'];
                 $_SESSION['rol'] = $rol;
 
                 if (isset($_SESSION['rol'])) {
@@ -47,6 +49,9 @@ class Auth extends Controller
                             break;
                         case 2:
                             return redirect()->to(base_url() . '/colab');
+                            break;
+                        case 3:
+                            return redirect()->to(base_url() . '/user');
                             break;
                         default:
                     }

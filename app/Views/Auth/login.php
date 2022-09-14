@@ -42,13 +42,17 @@
                                 <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="card-body p-4">
-                                            <form action="#">
+                                            <form action="<?php echo base_url('/sign_in'); ?>" method="POST">
                                                 <div class="mb-3">
-                                                    <input type="hidden" id="usuario" name="user" value="usuario">
+                                                    <input type="hidden" id="usuario" name="usuario" value="usuario">
                                                     <label for="password" class="form-label">N&uacute;mero de carn&eacute;</label>
-                                                    <input class="form-control" type="password" required="" id="password" placeholder="Entre el carn&eacute; de identidad">
+                                                    <div class="input-group input-group-merge">
+                                                        <input type="password" id="password" name="password" class="form-control" placeholder="Entre el carn&eacute; de identidad" required="">
+                                                        <div class="input-group-text" data-password="false">
+                                                            <span class="password-eye"></span>
+                                                        </div>
+                                                    </div>
                                                 </div>
-
                                                 <div class="mb-0 text-center">
                                                     <button class="btn btn-primary" type="submit">Acceder</button>
                                                 </div>
