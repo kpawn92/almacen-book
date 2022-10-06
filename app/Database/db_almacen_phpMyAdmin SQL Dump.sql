@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 17-09-2022 a las 03:47:16
--- Versión del servidor: 10.4.19-MariaDB
--- Versión de PHP: 8.0.7
+-- Servidor: localhost
+-- Tiempo de generación: 07-10-2022 a las 01:11:54
+-- Versión del servidor: 10.4.24-MariaDB
+-- Versión de PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,6 +33,15 @@ CREATE TABLE `op_books_disponibles` (
   `c_disponibles` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
+--
+-- Volcado de datos para la tabla `op_books_disponibles`
+--
+
+INSERT INTO `op_books_disponibles` (`id`, `fk_libro`, `c_disponibles`) VALUES
+(29, 52, 145),
+(30, 51, 145),
+(31, 53, 155);
+
 -- --------------------------------------------------------
 
 --
@@ -47,6 +56,16 @@ CREATE TABLE `op_historial_libroestudiante` (
   `date_devol` int(11) DEFAULT NULL,
   `status` int(2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `op_historial_libroestudiante`
+--
+
+INSERT INTO `op_historial_libroestudiante` (`id`, `fk_estudiante`, `fk_libro`, `date_entrega`, `date_devol`, `status`) VALUES
+(197, 102, 52, 1662354000, NULL, 1),
+(198, 106, 52, 1662008400, NULL, 1),
+(199, 107, 52, 1662354000, NULL, 1),
+(200, 107, 51, 1662354000, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -96,16 +115,27 @@ INSERT INTO `tb_carrera` (`id`, `carrera`) VALUES
 
 CREATE TABLE `tb_estudiante` (
   `id` int(11) NOT NULL,
-  `ci` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
+  `ci` varchar(12) COLLATE utf8_spanish_ci NOT NULL,
   `nombre` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
   `lastname` varchar(25) COLLATE utf8_spanish_ci NOT NULL,
-  `direccion` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `fk_municipio` int(11) NOT NULL,
+  `nation` tinyint(1) DEFAULT 0,
+  `direccion` varchar(150) COLLATE utf8_spanish_ci NOT NULL,
   `fk_carrera` int(11) NOT NULL,
   `fk_year_academico` int(11) NOT NULL,
   `fk_brigada` int(11) NOT NULL,
-  `status` int(2) NOT NULL
+  `status` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
+
+--
+-- Volcado de datos para la tabla `tb_estudiante`
+--
+
+INSERT INTO `tb_estudiante` (`id`, `ci`, `nombre`, `lastname`, `nation`, `direccion`, `fk_carrera`, `fk_year_academico`, `fk_brigada`, `status`) VALUES
+(102, '92102047481', 'ALEJANDRO', 'SOSA GOMEZ', 0, 'Cuba-cu-Manzanillo Reparto Cespedez #6', 1, 1, 2, 0),
+(103, '44455686564', 'ALEJANDRO', 'POZO CASTRO', 1, 'Alemania-de-Berlin', 2, 1, 2, 0),
+(104, '23423234553', 'JUAN', 'SUAREZ CESPEDEZ', 1, 'Argentina-ar-Buenos aires', 1, 1, 1, 0),
+(106, '45481215785', 'LEANDRO', 'POZO CASTRO', 0, 'Cuba-cu-Niquero Reparto Vazquez', 1, 1, 1, 0),
+(107, '23234234232', 'JUAN', 'SUAREZ CESPEDEZ', 1, 'Guinea Ecuatorial-gq-Estus', 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -129,29 +159,33 @@ CREATE TABLE `tb_libro` (
 --
 
 INSERT INTO `tb_libro` (`id`, `codigo`, `titulo`, `portada`, `precio`, `autor`, `isbn`, `cantidad`) VALUES
-(32, 'AB-5', 'JS', NULL, '12.36', 'JUAN', '45484-454', 125),
-(33, 'AB-6', 'PHP', NULL, '14.56', 'JUAN', '45484-454', 116);
+(51, 'RES-458', 'PHP', '1663818188_3c794c598375d9db95d5.jpeg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 89),
+(52, 'RES-459', 'JS', '1663818265_d6c55dffcad27908ebdc.jpeg', '14.56', 'JUAN SOSA AGUILERA', '458-ASA458-48', 194),
+(53, 'RES-462', 'SQL', '1664663405_e13f7534b5e0fa0e607b.jpg', '136.84', 'ARTUH ERTHREES', '458-ASA458-48', 170);
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `tb_municipio`
+-- Estructura de tabla para la tabla `tb_order`
 --
 
-CREATE TABLE `tb_municipio` (
+CREATE TABLE `tb_order` (
   `id` int(11) NOT NULL,
-  `municipio` varchar(25) COLLATE utf8_spanish_ci NOT NULL
+  `fk_estudiante` int(11) NOT NULL,
+  `libros_id` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `pay` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
+  `date_order` int(11) NOT NULL,
+  `date_okay` int(11) DEFAULT NULL,
+  `condition` int(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
 --
--- Volcado de datos para la tabla `tb_municipio`
+-- Volcado de datos para la tabla `tb_order`
 --
 
-INSERT INTO `tb_municipio` (`id`, `municipio`) VALUES
-(1, 'MANZANILLO'),
-(2, 'NIQUERO'),
-(3, 'PILON'),
-(4, 'CAMPECHUELA');
+INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`, `date_okay`, `condition`) VALUES
+(51, 102, '30', '126.35', 1665002897, NULL, 0),
+(53, 102, '30', '126.35', 1665003776, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -173,7 +207,11 @@ CREATE TABLE `tb_users` (
 
 INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
 (1, 'root', '1234', 1, 0),
-(2, 'colab', '1234', 2, 0);
+(13, 'usuario', '92102047481', 3, 1),
+(14, 'usuario', '44455686564', 3, 0),
+(15, 'usuario', '23423234553', 3, 0),
+(17, 'usuario', '45481215785', 3, 0),
+(18, 'usuario', '23234234232', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -233,7 +271,6 @@ ALTER TABLE `tb_carrera`
 ALTER TABLE `tb_estudiante`
   ADD PRIMARY KEY (`id`) USING BTREE,
   ADD KEY `fk_tb_estudiante_tb_carrera_1` (`fk_carrera`) USING BTREE,
-  ADD KEY `fk_tb_estudiante_tb_municipio_1` (`fk_municipio`) USING BTREE,
   ADD KEY `fk_tb_estudiante_tb_brigada_1` (`fk_brigada`) USING BTREE,
   ADD KEY `fk_tb_estudiante_tb_year_academico_1` (`fk_year_academico`) USING BTREE;
 
@@ -244,10 +281,11 @@ ALTER TABLE `tb_libro`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
--- Indices de la tabla `tb_municipio`
+-- Indices de la tabla `tb_order`
 --
-ALTER TABLE `tb_municipio`
-  ADD PRIMARY KEY (`id`) USING BTREE;
+ALTER TABLE `tb_order`
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD KEY `fk_estudiante` (`fk_estudiante`) USING BTREE;
 
 --
 -- Indices de la tabla `tb_users`
@@ -269,13 +307,13 @@ ALTER TABLE `tb_year_academico`
 -- AUTO_INCREMENT de la tabla `op_books_disponibles`
 --
 ALTER TABLE `op_books_disponibles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de la tabla `op_historial_libroestudiante`
 --
 ALTER TABLE `op_historial_libroestudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=193;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_brigada`
@@ -293,25 +331,25 @@ ALTER TABLE `tb_carrera`
 -- AUTO_INCREMENT de la tabla `tb_estudiante`
 --
 ALTER TABLE `tb_estudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=92;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_libro`
 --
 ALTER TABLE `tb_libro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT de la tabla `tb_municipio`
+-- AUTO_INCREMENT de la tabla `tb_order`
 --
-ALTER TABLE `tb_municipio`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `tb_order`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_year_academico`
@@ -342,8 +380,13 @@ ALTER TABLE `op_historial_libroestudiante`
 ALTER TABLE `tb_estudiante`
   ADD CONSTRAINT `fk_tb_estudiante_tb_brigada_1` FOREIGN KEY (`fk_brigada`) REFERENCES `tb_brigada` (`id`),
   ADD CONSTRAINT `fk_tb_estudiante_tb_carrera_1` FOREIGN KEY (`fk_carrera`) REFERENCES `tb_carrera` (`id`),
-  ADD CONSTRAINT `fk_tb_estudiante_tb_municipio_1` FOREIGN KEY (`fk_municipio`) REFERENCES `tb_municipio` (`id`),
   ADD CONSTRAINT `fk_tb_estudiante_tb_year_academico_1` FOREIGN KEY (`fk_year_academico`) REFERENCES `tb_year_academico` (`id`);
+
+--
+-- Filtros para la tabla `tb_order`
+--
+ALTER TABLE `tb_order`
+  ADD CONSTRAINT `tb_order_ibfk_1` FOREIGN KEY (`fk_estudiante`) REFERENCES `tb_estudiante` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
