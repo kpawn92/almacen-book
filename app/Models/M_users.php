@@ -19,4 +19,12 @@ class M_users extends Model
         ];
         return $builder->insert($data);
     }
+
+    function del_user($ci)
+    {
+        $db = \Config\Database::connect();
+        $builder = $db->table('tb_users');       
+        $builder->where('password', $ci);
+        return $builder->delete();
+    }
 }

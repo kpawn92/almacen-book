@@ -22,10 +22,12 @@
         const selector = document.querySelector('#selector');
         const btnBorrador = document.querySelectorAll('.del-entrega');
         const divDttEntregas = document.querySelector('#dataTable-entrega');
+        const urlbase = document.querySelector('#url').value
 
         document.getElementById('aPrestamo').classList.remove('active');
 
         document.querySelectorAll('.lista').forEach(li => li.style.cursor = "pointer");
+        
 
         /* Funcionalidades de los <page-title-box> */
         document.querySelector('#aPrestamo').addEventListener('click', (e) => {
@@ -33,14 +35,14 @@
             document.querySelector('#aDispo').classList.add('active')
             panelEntrega.classList.remove('t-inactive')
             panelDispo.classList.add('t-inactive')
-        })
+        });
         document.querySelector('#aDispo').addEventListener('click', (e) => {
             e.target.classList.remove('active')
             document.querySelector('#aPrestamo').classList.add('active')
             panelEntrega.classList.add('t-inactive')
             panelDispo.classList.remove('t-inactive')
             booksEntregar()
-        })
+        });
         //---.
         /* Table entregas */
         let f = "listarEntregados"
@@ -58,20 +60,23 @@
                     "defaultContent": `<button type="button" class="del-entrega btn btn-danger"><i class="dripicons-trash"></i></button>`
                 },
                 {
-                    "data": "ci"
-                },
+                    "data": "portada",
+                    "render": function(data) {
+                        return `<img src="${urlbase}/uploads/${data}" width="50">`
+                    }
+                },                
                 {
                     "data": "codigo"
-                },
-                {
-                    "data": "titulo"
-                },
+                },                
                 {
                     "data": "fecha_entrega"
                 },
                 {
                     "data": "fecha_dev"
-                }
+                },
+                {
+                    "data": "ci"
+                },
             ],
             "language": {
                 "url": "assets/json/Spanish.json"

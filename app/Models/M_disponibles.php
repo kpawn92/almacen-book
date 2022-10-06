@@ -39,4 +39,11 @@ class M_disponibles extends Model
         $query = $db->query("UPDATE op_books_disponibles SET c_disponibles = c_disponibles + '$c_disponibles' WHERE id = '$id'");
         return $query;
     }
+
+    function list_book()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT op_books_disponibles.id as id_book, portada, titulo, precio, autor FROM op_books_disponibles JOIN tb_libro ON tb_libro.id = op_books_disponibles.fk_libro");
+        return $query->getResultArray();
+    }
 }

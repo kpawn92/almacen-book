@@ -9,11 +9,9 @@
                         <li class="breadcrumb-item active">Venta</li>
                     </ol>
                 </div>
-                <h4 class="page-title">Formulario para la venta de libros</h4>
+                <h4 class="page-title">Revisi&oacute;n de las solicitudes de compra</h4>
             </div>
         </div>
     </div>
     <!-- end page title -->
-    <a href="#day">What day is today?</a>
-    <div id="day">Sunday</div>
 </div>

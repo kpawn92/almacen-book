@@ -39,8 +39,10 @@ class Auth extends Controller
             $row = $query->getRowArray();
 
             if ($row == true) {
+                $id = intval($row['id']);
                 $rol = intval($row['rol']);
                 $_SESSION['rol'] = $rol;
+                $_SESSION['id'] = $id;
 
                 if (isset($_SESSION['rol'])) {
                     switch ($_SESSION['rol']) {

@@ -22,8 +22,6 @@ class Dash extends Controller
         if ($_SESSION['rol'] != 1) {
             return redirect()->to(base_url() . '/');
         }
-        $municipios = new M_municipios();
-        $dato['municipios'] = $municipios->orderBy('id')->findAll();
         $carreras = new M_carrera();
         $dato['carreras'] = $carreras->orderBy('id')->findAll();
         $year = new M_yearA();
@@ -41,8 +39,7 @@ class Dash extends Controller
         $validation = $this->validate([
             'nombre' => 'required|min_length[1]|max_length[50]|alpha_space',
             'lastname' => 'required|min_length[1]|max_length[50]|alpha_space',
-            'ci' => 'required|is_natural|min_length[11]|max_length[11]|numeric',
-            'direccion' => 'required'
+            'ci' => 'required|is_natural|min_length[11]|max_length[11]|numeric'
         ]);
 
         if (!$validation) {
@@ -54,11 +51,19 @@ class Dash extends Controller
             $users = new M_users();
             $rows_report = $student->row_preport($ci);
             if ($rows_report->getNumRows() > 0) {
-                echo 'El estudiante <strong>' . $nombre . ' ' . $lastname . '</strong> ya existe';
+                echo "2";
             } else {
-                $student->guardar($ci, $nombre, $lastname, $direccion, $fk_municipio, $fk_carrera, $fk_year_academico, $fk_brigada);
-                $users->createUser($ci);
-                echo "<strong>Datos guardados correctamente...</strong>";
+                if ($nation != 1) {
+                    $dir = "Cuba-cu-".$direccion;
+                    $student->guardar($ci, $nombre, $lastname, $nation, $dir, $fk_carrera, $fk_year_academico, $fk_brigada);
+                    $users->createUser($ci);
+                    echo "1";
+                } else {
+                    $dir = $pais."-".$ciudad;
+                    $student->guardar($ci, $nombre, $lastname, $nation, $dir, $fk_carrera, $fk_year_academico, $fk_brigada);
+                    $users->createUser($ci);
+                    echo "1";
+                }
             }
         }
     }
@@ -69,8 +74,7 @@ class Dash extends Controller
         $validation = $this->validate([
             'nombre' => 'required|min_length[1]|max_length[50]|alpha_space',
             'lastname' => 'required|min_length[1]|max_length[50]|alpha_space',
-            'ci' => 'required|is_natural|min_length[11]|max_length[11]|numeric',
-            'direccion' => 'required'
+            'ci' => 'required|is_natural|min_length[6]|max_length[16]|numeric',
         ]);
 
         if (!$validation) {
@@ -79,7 +83,7 @@ class Dash extends Controller
         } else {
             extract($request->getPost());
             $student = new M_student();
-            $act = $student->update_student($id, $nombre, $lastname, $ci, $direccion, $fk_municipio, $fk_carrera, $fk_year_academico, $fk_brigada);
+            $act = $student->update_student($id, $nombre, $lastname, $ci, $fk_carrera, $fk_year_academico, $fk_brigada);
             if ($act == false) {
                 echo "Error de actualizaci&oacute;n";
             } else echo "<strong>Datos actualizados correctamente...</strong>";
@@ -90,11 +94,16 @@ class Dash extends Controller
     {
         $request = \Config\Services::request();
         $student = new M_student();
+        $auth = new M_users();
         extract($request->getPost());
+        $ci = $student->getCI($id);
         $query1 = $student->del_student($id);
         if ($query1 != true) {
             echo "false";
-        } else echo "true";
+        } else {
+            $auth->del_user($ci['ci']);
+            echo "true";
+        }
     }
 
 
@@ -116,7 +125,9 @@ class Dash extends Controller
     public function save_book()
     {
         //echo "preparando el guardar libro";
+
         $request = \Config\Services::request();
+
 
         $validation = $this->validate([
             'codigo' => 'required',
@@ -138,8 +149,16 @@ class Dash extends Controller
             if ($rows_report->getNumRows() > 0) {
                 echo 'El libro <strong>' . $titulo . '</strong> ya existe';
             } else {
-                $book->guardar($codigo, $titulo, $precio, $autor, $isbn, $cantidad);
-                echo "<strong>Datos guardados correctamente...</strong>";
+                if ($img = $request->getFile('portada')) {
+                    $newName = $img->getRandomName();
+                    $img->move('../public/uploads/', $newName);
+                    $book->guardar($codigo, $titulo, $precio, $autor, $isbn, $cantidad, $newName);
+                    echo 1;
+                } else {
+                    $newName = "no_portada.png";
+                    $book->guardar($codigo, $titulo, $precio, $autor, $isbn, $cantidad, $newName);
+                    echo 1;
+                }
             }
         }
     }
@@ -189,16 +208,13 @@ class Dash extends Controller
         $request = \Config\Services::request();
         $book = new M_book();
         extract($request->getPost());
+        //$datosLibro = $book->libroID($id_libro);
+        //$ruta = ('../public/uploads/'.$datosLibro['portada']);
+        //unlink($ruta);
         $query1 = $book->del_book($id_libro);
         if ($query1 != true) {
             echo "false";
         } else echo "true";
-
-
-        /*if ($query1 != true) {
-            echo "El libro tiene registros pendientes";
-        } else
-            echo "El libro ha sido eliminado exitosamente"; */
     }
 
     public function ci()
@@ -206,8 +222,6 @@ class Dash extends Controller
         $estudiante = new M_student();
         $student = $estudiante->orderBy('id', 'DESC')->findAll();
         foreach ($student as $std) :
-            /* 
-            echo '<option value="' . $std['id'] . '">' . $std['ci'] . '</option>'; */
             echo '<option>' . $std['ci'] . '</option>';
         endforeach;
     }

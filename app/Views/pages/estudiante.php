@@ -38,11 +38,7 @@
                 </details>
                 <br>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="t-inactive alert alert-info" role="alert" id="msg-back">
-                            <i class="dripicons-information me-2"></i>
-                            <p id="resp__back"></p>
-                        </div>
+                    <div class="col-6" id="resp__student">
                     </div>
                 </div>
                 <!-- text-danger ->class para los input_span -->
@@ -66,7 +62,7 @@
 
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label" for="ci">CI</label>
+                                    <label class="form-label" for="ci">CI - C&eacute;dula</label>
                                     <input type="text" class="form_input form-control" data-toggle="input-mask" data-mask-format="00000000000" id="ci" name="ci">
                                     <span class="t-inactive font-14" id="novalidate__ci">El campo es obligatorio</span>
                                     <span class="t-inactive font-14" id="validate__ci">Campo validado</span>
@@ -74,24 +70,34 @@
                                     <!-- <span class="font-13 text-muted">Ej. "921015xxx81"</span> -->
                                 </div>
                                 <div class="mb-3">
-                                    <label class="form-label">Textareas</label>
-                                    <p class="text-muted font-13">
-                                        Direcci&oacute;n particular
-                                    </p>
-                                    <textarea data-toggle="maxlength" class="form-control" maxlength="225" rows="2" placeholder="Esta área de texto tiene un límite de 225 caracteres." name="direccion"></textarea>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" id="nacional" name="nation" class="form-check-input" value="0" checked>
+                                        <label class="form-check-label" for="nacional">Nacional</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" id="internacional" name="nation" class="form-check-input" value="1">
+                                        <label class="form-check-label" for="internacional">Internacional</label>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="fk_municipio">Municipio:</label>
-                                    <select class="form-control select2" data-toggle="select2" id="fk_municipio" name="fk_municipio">
-                                        <optgroup label="Municipios de Granma">
-                                            <?php foreach ($municipios as $municipio) : ?>
-                                                <option value="<?= $municipio['id']; ?>"><?= $municipio['municipio']; ?>
-                                                </option>
-                                            <?php endforeach; ?>
-                                        </optgroup>
-                                    </select>
+                                    <label class="form-label">Direcci&oacute;n: <span id="text__dir" class="t-inactive font-14 badge badge-info-lighten">(Pais-estado-cuidad)</span></label>
+                                    <div id="camp__dir" class="t-inactive row">
+                                        <div class="col-6">
+                                            <label class="form-label">Pais-inical</label>
+                                            <input type="text" class="form-control" id="name_pais" name="name_pais" placeholder="Seleccione el pa&iacute;s" list="paises">
+                                            <datalist id="paises">
+                                            </datalist>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label">Ciudad</label>
+                                            <input type="text" class="form-control" id="ciudad" name="ciudad" placeholder="Entre el estado y la ciudad">
+                                        </div>
+                                    </div>
+                                    <div id="direction_cuba">
+                                        <textarea data-toggle="maxlength" class="form-control" maxlength="225" rows="2" placeholder="Esta área de texto tiene un límite de 225 caracteres." name="direccion"></textarea>
+                                    </div>
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="fk_carrera">Carrera:</label>
@@ -147,7 +153,8 @@
                     incidunt exercitationem quibusdam tempore repudiandae, enim deserunt dolorum eos excepturi rerum.
                     Aut, culpa mollitia hic quidem, vel ex veritatis assumenda vero minus repudiandae dolor inventore
                     accusamus deleniti cum placeat sapiente blanditiis dolorum expedita enim repellendus perspiciatis
-                    quasi quae. Quia, accusamus commodi?</p>
+                    quasi quae. Quia, accusamus commodi?
+                </p>
 
                 <div class="row">
                     <table id="students" class="table dt-responsive nowrap w-100">
@@ -157,7 +164,7 @@
                                 <th>Apellidos</th>
                                 <th>CI</th>
                                 <th>Direcci&oacute;n</th>
-                                <th>Municipio</th>
+                                <th>Nacionalidad</th>
                                 <th>Carrera</th>
                                 <th>A&ntilde;o</th>
                                 <th>Brigada</th>
@@ -198,26 +205,6 @@
                             <label class="form-label" for="ci">CI</label>
                             <input type="text" class="form-control" data-toggle="input-mask" data-mask-format="00000000000" id="eci" name="ci">
                             <span class="font-13 text-muted">Ej. "921015xxx81"</span>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Textareas</label>
-                            <p class="text-muted font-13">
-                                Direcci&oacute;n particular
-                            </p>
-                            <textarea data-toggle="maxlength" class="form-control" maxlength="225" rows="2" placeholder="Esta área de texto tiene un límite de 225 caracteres." name="direccion" id="edireccion"></textarea>
-                        </div>
-
-
-                        <div class="mb-3">
-                            <label class="form-label" for="fk_municipio">Municipio:</label>
-                            <select class="form-control" id="efk_municipio" name="fk_municipio">
-                                <optgroup label="Municipios de Granma">
-                                    <?php foreach ($municipios as $municipio) : ?>
-                                        <option value="<?= $municipio['id']; ?>"><?= $municipio['municipio']; ?>
-                                        </option>
-                                    <?php endforeach; ?>
-                                </optgroup>
-                            </select>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="fk_carrera">Carrera:</label>
@@ -263,5 +250,6 @@
     <form action="<?= base_url('/del_book'); ?>" method="post">
         <input type="hidden" name="id_estudiante" id="retornoDelE">
     </form>
+    <input type="hidden" id="bu" value="<?= base_url(); ?>">
     <?= $this->include('pages/dependencias/students'); ?>
 </div>

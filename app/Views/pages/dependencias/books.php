@@ -1,32 +1,22 @@
 <script>
     $(document.getElementById('libros')).ready(function() {
-        document.getElementById("retornoDelB").value = "";
-        /* Enviar formulario - libros */
-        $('#sub_l').click(function() {
-            var formLibro = $('#form2').serialize();
-            console.log(formLibro);
-            $.ajax({
-                    url: '<?php echo base_url('/save_book'); ?>',
-                    type: 'POST',
-                    data: $('#form2').serialize(),
-                })
-                .done(function(res) {
-                    $('#resp-book').html(res);
-                    tableBooks.ajax.reload();
-                    var cajaDos = document.getElementById('alert3');
-                    cajaDos.style.display = '';
-                    $("#alert3").show();
-                    setTimeout(function() {
-                        $("#alert3").hide();
-                    }, 6000);
-                })
-        });
+        document.querySelector('#resp__book').classList.add('t-inactive');
+        document.querySelector('#resp__book').innerHTML = "";
+
+        const baseUrl = document.querySelector('#base_url').value
+
+        const formBook = document.querySelector('#form__book');
+        document.querySelector('#libros').addEventListener('click', (e) => e.stopPropagation());
+
+        const btn_mostrarBook = document.querySelector('#btn-listbooks');
+
 
         /* Mostrar Tabla libros-registrados */
 
-        var accion = "listarLibro";
 
-        var tableBooks = $('#books').DataTable({
+        let accion = "listarLibro";
+
+        let tableBooks = $('#books').DataTable({
             ajax: {
                 "url": "<?php echo base_url('/list_book'); ?>",
                 "method": "POST",
@@ -35,6 +25,12 @@
                 }
             },
             columns: [{
+                    "data": "portada",
+                    "render": function(data) {
+                        return `<img src="${baseUrl}/uploads/${data}" width="100" alt="portadas">`
+                    }
+                },
+                {
                     "data": "codigo"
                 },
                 {
@@ -62,12 +58,100 @@
             },
         });
 
-        /*  */
+        btn_mostrarBook.addEventListener('click', () => {
+            //**__verification si la tabla es null
+            if (!!tableBooks.data().any()) {
+                document.querySelector('#dataTable-book').classList.remove('t-inactive')
+            }
+        });
+
+        /* Reload table */
+        const reoladTblibro = () => {
+            setTimeout(() => {
+                tableBooks.ajax.reload();
+            }, 500);
+        }
+
+        document.querySelector('#btn-update-book').addEventListener('click', () => {
+            reoladTblibro();
+        });
+
+        const mostrarTableBook = (e) => {
+            e.stopPropagation();
+            if (!tableBooks.data().any()) {
+                document.querySelector('#dataTable-book').classList.add('t-inactive')
+            }
+        }
+
+        document.querySelector('#dataTable-book').addEventListener("mousemove", mostrarTableBook);
+
+        formBook.addEventListener('submit', (event) => {
+            event.preventDefault()
+            fD__libro = new FormData();
+            const {
+                codigo,
+                portada,
+                titulo,
+                autor,
+                precio,
+                isbn,
+                cantidad
+            } = event.target;
+
+            fD__libro.append('codigo', codigo.value);
+            fD__libro.append('portada', portada.files[0]);
+            fD__libro.append('titulo', titulo.value.toUpperCase());
+            fD__libro.append('autor', autor.value.toUpperCase());
+            fD__libro.append('precio', precio.value);
+            fD__libro.append('isbn', isbn.value);
+            fD__libro.append('cantidad', cantidad.value);
+
+            const setForm = async () => {
+                try {
+                    const resPost = await fetch('<?php echo base_url('/save_book'); ?>', {
+                        method: "POST",
+                        body: fD__libro
+                    });
+                    const post = await resPost.text()
+                    await document.querySelector('#dataTable-book').classList.remove('t-inactive');
+                    if (post === "1") {
+                        document.querySelector('#resp__book').classList.remove('t-inactive');
+                        document.querySelector('#resp__book').innerHTML = `<div class="alert alert-success" role="alert">
+                                                                                <i class="dripicons-checkmark me-2"></i> Datos <strong>guardados</strong> correctamente
+                                                                            </div>`;
+
+                        setTimeout(() => {
+                            document.querySelector('#resp__book').classList.add('t-inactive');
+                        }, 3000);
+                    } else {
+                        document.querySelector('#resp__book').classList.remove('t-inactive');
+                        document.querySelector('#resp__book').innerHTML = `<div class="alert alert-danger" role="alert">
+                                                                                <i class="dripicons-wrong me-2"></i> ${post}
+                                                                            </div>`;
+
+                        setTimeout(() => {
+                            document.querySelector('#resp__book').classList.add('t-inactive');
+                        }, 5000);
+                    }
+                    await reoladTblibro()
+                    await formBook.reset()
+                } catch (error) {
+                    //console.log(error)
+                }
+            }
+
+            setForm();
+
+
+
+            //console.log(...fD__libro)
+        });
+
         $("#books tbody").on('click', 'tr', function() {
             var data2 = tableBooks.row(this).data();
 
 
-            console.log(data2);
+            //console.log(data2);
             $("#id_libro").val(data2.id_book);
             //$("#id-del").val(data.id);
             $("#ecodigo").val(data2.codigo);
@@ -96,9 +180,6 @@
                         } else {
                             delFalse();
                         }
-
-                        console.log(borrado);
-
                     }
                 })
             });
@@ -110,7 +191,7 @@
                     'Se completo el borrado del registro.',
                     'success'
                 );
-                tableBooks.ajax.reload();
+                reoladTblibro()
             }
 
             function delFalse() {
@@ -120,11 +201,10 @@
                     title: 'Oops...',
                     text: 'El registro tiene dependencias!'
                 });
-                tableBooks.ajax.reload();
+                reoladTblibro();
             }
 
             function borrarLibro(id_libro) {
-                console.log("funcion");
                 $.ajax({
                     url: '<?php echo base_url('/del_book'); ?>',
                     type: 'POST',
@@ -132,11 +212,8 @@
                         id_libro: id_libro
                     },
                     complete: function(data) {
-                        //return JSON.stringify(data.responseText);
-                        //var respuesta = JSON.stringify(data.responseText);                        
                         var respuesta = JSON.parse(data.responseText);
                         $('#retornoDelB').val(respuesta);
-                        //alert(JSON.parse(data.responseText));              
                     }
                 });
             }
@@ -151,7 +228,7 @@
                 data: $('#form-editbook').serialize(),
             }).done(function(res) {
                 $('#respuesta-book').html(res);
-                tableBooks.ajax.reload();
+                reoladTblibro();
                 var alerta2 = document.getElementById('alerta2');
                 alerta2.style.display = '';
                 $("#alerta2").show();
@@ -160,28 +237,5 @@
                 }, 4000);
             });
         });
-
-        /* Actualizar la tabla-libros */
-        $("#btn-update-book").on('click', function() {
-            tableBooks.ajax.reload();
-            var dataBook = tableBooks.row().data();
-            ocultarDivTable(dataBook);
-        });
-
-        $("#btn-listbooks").on('click', function() {
-            tableBooks.ajax.reload();
-            var dataBook = tableBooks.row().data();
-            ocultarDivTable(dataBook);
-        })
-
-        function ocultarDivTable(dataBook) {
-            var divDatatableBook = document.getElementById("dataTable-book");
-            if (dataBook == undefined) {
-                divDatatableBook.style.display = "none";
-                //console.log("bien");
-            } else {
-                divDatatableBook.style.display = "contents";
-            }
-        }
     });
 </script>

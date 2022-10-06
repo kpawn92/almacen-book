@@ -1,12 +1,51 @@
 <script>
     $(document.getElementById('estudiante')).ready(function() {
 
+        const url__Base = document.querySelector('#bu').value
         document.querySelector('#estudiante').addEventListener('click', (e) => e.stopPropagation());
         const expresiones = {
             nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
             lastname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-            ci: /^[0-9]{11}$/, // Solo caracteres numericos.
+            ci: /^[0-9]{6,11}$/, // Solo caracteres numericos.
         }
+
+        const list_paises = () => {
+            const json__flagg = `${url__Base}/assets/json/codes_paises.json`
+            fetch(json__flagg)
+                .then(response => response.json())
+                .then(data => {
+                    /**@description Iterar un objeto */
+                    Object.entries(data).forEach(option => {
+                        document.querySelector('#paises').innerHTML += `<option value="${option[1]+"-"+option[0]}"></option>`
+                    })
+                });
+
+        }
+
+        list_paises()
+        document.querySelector('#internacional').addEventListener('click', (e) => {
+            e.stopPropagation()
+            document.querySelector('#direction_cuba').classList.add('t-inactive')
+            document.querySelector('#camp__dir').classList.remove('t-inactive')
+        });
+
+        document.querySelector('#nacional').addEventListener('click', (e) => {
+            e.stopPropagation()
+            document.querySelector('#direction_cuba').classList.remove('t-inactive')
+            document.querySelector('#camp__dir').classList.add('t-inactive')
+        });
+
+
+        const bandera = (flag) => {
+            // json__banderas = ""
+
+            return `<img
+                        src="${url__Base}/banderas/${flag.index}.png"
+                        width="20"
+                        alt="${flag.pais}"
+                        title="${flag.pais}">&nbsp;${flag.cuidad}`
+        }
+
         let funcion = "listar";
         let tb__student = $('#students').DataTable({
             ajax: {
@@ -26,10 +65,35 @@
                     "data": "ci"
                 },
                 {
-                    "data": "direccion"
+                    "data": "direccion",
+                    "render": function(data) {
+                        if (data) {
+                            /**
+                             * Metodo para transformar el primer caracter en mayuscula y los demas caracteres de la palabra en minuscula
+                             */
+                            //var transf_stringPais = select__pais[0];
+                            // var pais = transf_stringPais[0].toUpperCase() + transf_stringPais.substring(1);
+                            var select__pais = data.split("-")
+                            var params = {
+                                index: select__pais[1],
+                                pais: select__pais[0],
+                                cuidad: select__pais[2]
+                            }
+                            /*----*/
+                        }
+                        return bandera(params);
+                    }
                 },
                 {
-                    "data": "municipio"
+                    "data": "nation",
+                    "render": function(e) {
+                        if (e == 0) {
+                            e = `Nacional`
+                        } else if (e == 1) {
+                            e = `Internacional`
+                        }
+                        return e
+                    }
                 },
                 {
                     "data": "carrera"
@@ -41,8 +105,9 @@
                     "data": "brigada"
                 },
                 {
-                    "defaultContent": `<button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="dripicons-document-edit"></i></button>
-                                       <button type="button" class="del-student btn btn-danger"><i class="dripicons-trash"></i></button>`
+                    "defaultContent": ` 
+                                        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="dripicons-document-edit"></i></button>
+                                        <button type="button" class="del-student btn btn-danger"><i class="dripicons-trash"></i></button>`
                 }
             ],
             "language": {
@@ -70,7 +135,7 @@
             if (!!tb__student.data().any()) {
                 divDatatableStudent.classList.remove('t-inactive')
             }
-        })
+        });
 
         const mostrarTableEstudiantes = (e) => {
             e.stopPropagation();
@@ -125,13 +190,17 @@
         formulario__estudiante.addEventListener('submit', (e) => {
             e.preventDefault();
 
+            console.log(e.target);
+
             fD__estudiante = new FormData();
             const {
                 nombre,
                 lastname,
                 ci,
+                nation,
+                name_pais,
+                ciudad,
                 direccion,
-                fk_municipio,
                 fk_carrera,
                 fk_year_academico,
                 fk_brigada
@@ -140,32 +209,48 @@
             fD__estudiante.append('nombre', nombre.value.toUpperCase());
             fD__estudiante.append('lastname', lastname.value.toUpperCase());
             fD__estudiante.append('ci', ci.value);
+            fD__estudiante.append('nation', nation.value);
+            fD__estudiante.append('pais', name_pais.value);
+            fD__estudiante.append('ciudad', ciudad.value);
             fD__estudiante.append('direccion', direccion.value);
-            fD__estudiante.append('fk_municipio', fk_municipio.value);
             fD__estudiante.append('fk_carrera', fk_carrera.value);
             fD__estudiante.append('fk_year_academico', fk_year_academico.value);
             fD__estudiante.append('fk_brigada', fk_brigada.value);
 
 
-            fetch('<?php echo base_url('/save_student'); ?>', {
-                    method: 'POST',
-                    body: fD__estudiante
-                })
-                .then(res => res.text())
-                .then(respuesta => {
-                    alertBack.innerHTML = respuesta
-                    divMSG.classList.remove('t-inactive')
+            const setStudentForm = async () => {
+                try {
+                    document.querySelector('#resp__student').classList.remove('t-inactive');
+                    const resPost__std = await fetch('<?php echo base_url('/save_student'); ?>', {
+                        method: 'POST',
+                        body: fD__estudiante
+                    });
+                    const post__student = await resPost__std.text();
+                    if (post__student === "1") {
+                        document.querySelector('#resp__student').innerHTML = `<div class="alert alert-success" role="alert">
+                                                                                <i class="dripicons-checkmark me-2"></i> Datos <strong>guardados</strong> correctamente
+                                                                            </div>`;
+                        document.querySelector('#direction_cuba').classList.remove('t-inactive')
+                        document.querySelector('#camp__dir').classList.add('t-inactive')
+                        reoladTbestudiante()
+                        formulario__estudiante.reset()
+                    } else if (post__student === "2") {
+                        document.querySelector('#resp__student').innerHTML = `<div class="alert alert-warning" role="alert">
+                                                                                <i class="dripicons-warning me-2"></i> El <strong>estudiante</strong> ya existe!
+                                                                            </div>`;
+                    } else {
+                        document.querySelector('#resp__student').innerHTML = `<div class="alert alert-danger" role="alert">
+                                                                                <i class="dripicons-wrong me-2"></i> ${post__student}
+                                                                            </div>`;
+                    }
                     setTimeout(() => {
-                        divMSG.classList.add('t-inactive')
-                    }, 4000);
-                    reoladTbestudiante();
-                    setTimeout(() => {
-                        document.querySelector('#dataTable-student').classList.remove('t-inactive')
-                    }, 600);
-                });
-            //console.log(...fD__estudiante);
+                        document.querySelector('#resp__student').innerHTML = "";
+                    }, 3000);
+                } catch (error) {
 
-
+                }
+            }
+            setStudentForm();
 
         });
 
@@ -177,7 +262,6 @@
             $("#enombre").val(data.nombre);
             $("#elastname").val(data.lastname);
             $("#eci").val(data.ci);
-            $("#edireccion").val(data.direccion);
 
             $(".del-student").on("click", function() {
                 var id = data.id;

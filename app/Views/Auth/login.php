@@ -73,12 +73,7 @@
 
                                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="card-body p-4">
-
-                                            <div class="text-center w-75 m-auto">
-                                                <h4 class="text-dark-50 text-center pb-0 fw-bold">Iniciar secci&oacute;n</h4>
-                                                <p class="text-muted mb-4">Entre el usuario y contraseña para acceder.</p>
-                                            </div>
+                                        <div class="card-body p-4">                                            
 
                                             <form action="<?php echo base_url('/sign_in'); ?>" method="POST">
 
@@ -109,14 +104,6 @@
                         </div>
                     </div>
                     <!-- end card -->
-
-                    <div class="row mt-3">
-                        <div class="col-12 text-center">
-                            <p class="text-muted">Don't have an account? <a href="pages-register.html" class="text-muted ms-1"><b>Sign Up</b></a></p>
-                        </div> <!-- end col -->
-                    </div>
-                    <!-- end row -->
-
                 </div> <!-- end col -->
             </div>
             <!-- end row -->
@@ -126,7 +113,7 @@
     <!-- end page -->
 
     <footer class="footer footer-alt">
-        2018 - 2021 © Hyper - Coderthemes.com
+        2022 © Almacen de libros - Universidad de Ciencias M&eacute;dicas
     </footer>
 
     <!-- bundle -->

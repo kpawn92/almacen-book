@@ -1,0 +1,1 @@
+export const suma = (x,y) => console.log(x+y)

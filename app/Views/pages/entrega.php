@@ -141,11 +141,11 @@
                                 <thead>
                                     <tr>
                                         <th>Accion</th>
-                                        <th>CI</th>
+                                        <th>Portada</th>
                                         <th>Codigo</th>
-                                        <th>T&iacute;tulo</th>
                                         <th>F/ entrega</th>
                                         <th>F/ devoluci&oacute;n</th>
+                                        <th>CI</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -215,6 +215,7 @@
                 </div>
             </div>
         </picture>
+        <input type="hidden" id="url" value="<?= base_url(); ?>">
         <?= $this->include('pages/dependencias/entrega_devol'); ?>
     </section>
 </div>

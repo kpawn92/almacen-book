@@ -15,7 +15,7 @@ class M_student extends Model{
         return $query;
     }
 
-    function guardar($ci, $nombre, $lastname, $direccion, $fk_municipio, $fk_carrera, $fk_year_academico, $fk_brigada)
+    function guardar($ci, $nombre, $lastname, $nation, $direccion, $fk_carrera, $fk_year_academico, $fk_brigada)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('tb_estudiante');
@@ -23,8 +23,8 @@ class M_student extends Model{
             'ci' => $ci,
             'nombre' => $nombre,            
             'lastname' => $lastname,
+            'nation' => $nation,
             'direccion' => $direccion,
-            'fk_municipio' => $fk_municipio,
             'fk_carrera' => $fk_carrera,
             'fk_year_academico' => $fk_year_academico,
             'fk_brigada' => $fk_brigada
@@ -32,7 +32,7 @@ class M_student extends Model{
         return $builder->insert($data);
     }
 
-    function update_student($id, $nombre, $lastname, $ci, $direccion, $fk_municipio, $fk_carrera, $fk_year_academico, $fk_brigada)
+    function update_student($id, $nombre, $lastname, $ci, $fk_carrera, $fk_year_academico, $fk_brigada)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('tb_estudiante');
@@ -40,8 +40,6 @@ class M_student extends Model{
             'nombre' => $nombre,
             'lastname' => $lastname,
             'ci' => $ci,
-            'direccion' => $direccion,
-            'fk_municipio' => $fk_municipio,
             'fk_carrera' => $fk_carrera,
             'fk_year_academico' => $fk_year_academico,
             'fk_brigada' => $fk_brigada            
@@ -61,7 +59,7 @@ class M_student extends Model{
     function listar_stud()
     {
         $db = \Config\Database::connect();
-        $query = $db->query("SELECT tb_estudiante.id, nombre, lastname, ci, direccion, municipio, carrera, anno_academico, brigada FROM tb_estudiante JOIN tb_municipio ON tb_municipio.id = tb_estudiante.fk_municipio JOIN tb_carrera ON tb_carrera.id = tb_estudiante.fk_carrera JOIN tb_year_academico ON tb_year_academico.id = tb_estudiante.fk_year_academico JOIN tb_brigada ON tb_brigada.id = tb_estudiante.fk_brigada ORDER BY tb_estudiante.id DESC");
+        $query = $db->query("SELECT tb_estudiante.id, nombre, lastname, ci, direccion, nation, carrera, anno_academico, brigada FROM tb_estudiante JOIN tb_carrera ON tb_carrera.id = tb_estudiante.fk_carrera JOIN tb_year_academico ON tb_year_academico.id = tb_estudiante.fk_year_academico JOIN tb_brigada ON tb_brigada.id = tb_estudiante.fk_brigada ORDER BY tb_estudiante.id DESC");
         return $query->getResultArray();
     }
 
@@ -69,6 +67,13 @@ class M_student extends Model{
     {
         $db = \Config\Database::connect();
         $query = $db->query("SELECT id FROM tb_estudiante WHERE ci = '$ci'");
+        return $query->getRowArray();
+    }
+
+    function getCI($id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT ci FROM tb_estudiante WHERE id = '$id'");
         return $query->getRowArray();
     }
 }

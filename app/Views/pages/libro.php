@@ -14,7 +14,7 @@
         </div>
     </div>
     <!-- end page title -->
-    <div class="row" id="formulario-book" style="display: contents;">
+    <div class="row" id="formulario-book">
         <div class="col-12">
             <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                 <h4 class="header-title">Formulario</h4>
@@ -30,20 +30,20 @@
                 </details>
                 <br>
                 <div class="row">
-                    <div class="col-6">
-                        <div class="alert alert-primary" role="alert" id="alert3" style="display: none">
-                            <i class="dripicons-information me-2"></i>
-                            <p id="resp-book"></p>
-                        </div>
+                    <div class="col-6" id="resp__book">
                     </div>
                 </div>
                 <div class="tab-content">
-                    <form action="" id="form2">
+                    <form id="form__book">
                         <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="codigo">C&oacute;digo:</label>
                                     <input type="text" class="form-control" id="codigo" name="codigo" placeholder="Entre el c&oacute;digo">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="portada" class="form-label">Portada:</label>
+                                    <input type="file" id="portada" name="portada" class="form-control">
                                 </div>
                                 <div class="mb-3">
                                     <label class="form-label" for="titulo">T&iacute;tulo:</label>
@@ -70,13 +70,13 @@
                             </div>
                         </div>
                 </div>
-                <button class="btn btn-warning" type="button" id="sub_l">Enviar form</button>
+                <button class="btn btn-warning" id="sub_l">Enviar form</button>
                 <a class="btn btn-primary" href="#dow-book" id="btn-listbooks">Mostrar Listado <i class="uil-angle-double-down"></i></a>
                 </form>
             </div>
         </div>
     </div>
-    <div class="row" id="dataTable-book" style="display: none;">
+    <div class="row t-inactive" id="dataTable-book">
         <div class="col-12">
             <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                 <div class="row">
@@ -90,9 +90,13 @@
                     quasi quae. Quia, accusamus commodi?</p>
 
                 <div class="row">
+                    <input type="hidden" id="base_url" value="<?= base_url(); ?>">
+                    <input type="hidden" id="retornoDelB">
+
                     <table id="books" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
+                                <th>Portada</th>
                                 <th>Codigo</th>
                                 <th>T&iacute;tulo</th>
                                 <th>Precio</th>
@@ -121,7 +125,7 @@
                     <i class="dripicons-information me-2"></i>
                     <p id="respuesta-book"></p>
                 </div>
-                <form action="" id="form-editbook">
+                <form id="form-editbook">
                     <div class="row">
                         <input type="hidden" id="id_libro" name="id">
                         <div class="mb-3">
@@ -155,8 +159,5 @@
             </form>
         </div>
     </div>
-    <form action="<?= base_url('/del_book'); ?>" method="post">
-        <input type="hidden" name="id_libro" id="retornoDelB">
-    </form>
     <?= $this->include('pages/dependencias/books'); ?>
 </div>

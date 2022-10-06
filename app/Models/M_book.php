@@ -9,14 +9,24 @@ class M_book extends Model
     protected $table      = 'tb_libro';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id';
+    protected $allowedFields = [
+        'codigo',
+        'titulo',
+        'portada',
+        'precio',
+        'autor',
+        'isbn',
+        'cantidad'
+    ];
 
-    function guardar($codigo, $titulo, $precio, $autor, $isbn, $cantidad)
+    function guardar($codigo, $titulo, $precio, $autor, $isbn, $cantidad, $newName)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('tb_libro');
         $data = [
             'codigo' => $codigo,
             'titulo' => $titulo,
+            'portada' => $newName,
             'precio' => $precio,
             'autor' => $autor,
             'isbn' => $isbn,
@@ -35,7 +45,7 @@ class M_book extends Model
     function list_book()
     {
         $db = \Config\Database::connect();
-        $query = $db->query("SELECT id as id_book, codigo, titulo, precio, autor, isbn, cantidad FROM tb_libro");
+        $query = $db->query("SELECT id as id_book, portada, codigo, titulo, precio, autor, isbn, cantidad FROM tb_libro");
         return $query->getResultArray();
     }
 
@@ -93,6 +103,13 @@ class M_book extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query("SELECT cantidad FROM tb_libro WHERE id = '$fk_libro'");
+        return $query->getRowArray();
+    }
+
+    function libroID($id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT * FROM tb_libro WHERE id = '$id'");
         return $query->getRowArray();
     }
 }
