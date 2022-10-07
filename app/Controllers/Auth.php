@@ -35,7 +35,7 @@ class Auth extends Controller
 
         if (isset($usuario) && isset($password)) {
             $db = \Config\Database::connect();
-            $query = $db->query("SELECT*FROM tb_users WHERE usuario = '$usuario' AND password = '$password' AND logged != 2");
+            $query = $db->query("SELECT*FROM tb_users WHERE usuario = '$usuario' AND password = '$password' AND logged != 2"); //logged === 2 user cancelado
             $row = $query->getRowArray();
 
             if ($row == true) {

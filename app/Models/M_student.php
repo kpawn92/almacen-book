@@ -32,14 +32,13 @@ class M_student extends Model{
         return $builder->insert($data);
     }
 
-    function update_student($id, $nombre, $lastname, $ci, $fk_carrera, $fk_year_academico, $fk_brigada)
+    function update_student($id, $nombre, $lastname, $fk_carrera, $fk_year_academico, $fk_brigada)
     {
         $db = \Config\Database::connect();
         $builder = $db->table('tb_estudiante');
         $data = [
             'nombre' => $nombre,
             'lastname' => $lastname,
-            'ci' => $ci,
             'fk_carrera' => $fk_carrera,
             'fk_year_academico' => $fk_year_academico,
             'fk_brigada' => $fk_brigada            

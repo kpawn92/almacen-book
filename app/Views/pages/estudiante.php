@@ -202,11 +202,6 @@
                             <input type="text" class="form-control" id="elastname" name="lastname" placeholder="Apellidos">
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="ci">CI</label>
-                            <input type="text" class="form-control" data-toggle="input-mask" data-mask-format="00000000000" id="eci" name="ci">
-                            <span class="font-13 text-muted">Ej. "921015xxx81"</span>
-                        </div>
-                        <div class="mb-3">
                             <label class="form-label" for="fk_carrera">Carrera:</label>
                             <select class="form-control select2" id="efk_carrera" name="fk_carrera">
                                 <optgroup label="Carreras de la Universidad">

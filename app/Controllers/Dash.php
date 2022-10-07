@@ -74,7 +74,6 @@ class Dash extends Controller
         $validation = $this->validate([
             'nombre' => 'required|min_length[1]|max_length[50]|alpha_space',
             'lastname' => 'required|min_length[1]|max_length[50]|alpha_space',
-            'ci' => 'required|is_natural|min_length[6]|max_length[16]|numeric',
         ]);
 
         if (!$validation) {
@@ -83,7 +82,7 @@ class Dash extends Controller
         } else {
             extract($request->getPost());
             $student = new M_student();
-            $act = $student->update_student($id, $nombre, $lastname, $ci, $fk_carrera, $fk_year_academico, $fk_brigada);
+            $act = $student->update_student($id, $nombre, $lastname, $fk_carrera, $fk_year_academico, $fk_brigada);
             if ($act == false) {
                 echo "Error de actualizaci&oacute;n";
             } else echo "<strong>Datos actualizados correctamente...</strong>";

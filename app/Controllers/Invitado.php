@@ -69,13 +69,10 @@ class Invitado extends Controller
         $orden = new M_orders();
         $request = \Config\Services::request();
         $orden = new M_orders();
+        $book = new M_disponibles();
         extract($request->getPost());
-
-        //        var_dump($libros);
-
-        /**
-         * Falta descontar libro al entregar
-         */
+        
+        $array = explode(",", $libros[0]);
 
         $rows_report = $orden->row_preport($fk_estudiante);
 
@@ -83,6 +80,9 @@ class Invitado extends Controller
             echo "3";
         } else {
             $sendOrden = $orden->guardar($fk_estudiante, $libros, $pay, $date = time());
+            for ($i = 0; $i < count($array); $i++) {
+                $book->descontar(intval($array[$i]));
+            }
             $resultado = $sendOrden ? "1" : "2";
             echo $resultado;
         }
