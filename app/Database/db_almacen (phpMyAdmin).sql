@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 07-10-2022 a las 01:11:54
+-- Tiempo de generación: 07-10-2022 a las 18:36:33
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -38,9 +38,9 @@ CREATE TABLE `op_books_disponibles` (
 --
 
 INSERT INTO `op_books_disponibles` (`id`, `fk_libro`, `c_disponibles`) VALUES
-(29, 52, 145),
-(30, 51, 145),
-(31, 53, 155);
+(29, 52, 143),
+(30, 51, 142),
+(31, 53, 152);
 
 -- --------------------------------------------------------
 
@@ -131,10 +131,10 @@ CREATE TABLE `tb_estudiante` (
 --
 
 INSERT INTO `tb_estudiante` (`id`, `ci`, `nombre`, `lastname`, `nation`, `direccion`, `fk_carrera`, `fk_year_academico`, `fk_brigada`, `status`) VALUES
-(102, '92102047481', 'ALEJANDRO', 'SOSA GOMEZ', 0, 'Cuba-cu-Manzanillo Reparto Cespedez #6', 1, 1, 2, 0),
-(103, '44455686564', 'ALEJANDRO', 'POZO CASTRO', 1, 'Alemania-de-Berlin', 2, 1, 2, 0),
+(102, '92102047481', 'ALEJANDRO', 'SOSA GOMEZ', 0, 'Cuba-cu-Manzanillo Reparto Cespedez #6', 1, 2, 1, 0),
+(103, '44455686564', 'ALEJANDRO', 'POZO CASTRO', 1, 'Alemania-de-Berlin', 1, 2, 1, 0),
 (104, '23423234553', 'JUAN', 'SUAREZ CESPEDEZ', 1, 'Argentina-ar-Buenos aires', 1, 1, 1, 0),
-(106, '45481215785', 'LEANDRO', 'POZO CASTRO', 0, 'Cuba-cu-Niquero Reparto Vazquez', 1, 1, 1, 0),
+(106, '45481215785', 'LEANDRO', 'POZO CASTRO', 0, 'Cuba-cu-Niquero Reparto Vazquez', 3, 1, 1, 0),
 (107, '23234234232', 'JUAN', 'SUAREZ CESPEDEZ', 1, 'Guinea Ecuatorial-gq-Estus', 1, 1, 1, 0);
 
 -- --------------------------------------------------------
@@ -184,8 +184,8 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`, `date_okay`, `condition`) VALUES
-(51, 102, '30', '126.35', 1665002897, NULL, 0),
-(53, 102, '30', '126.35', 1665003776, NULL, 0);
+(54, 102, '30,29', '140.91', 1665158160, NULL, 0),
+(55, 102, '30,29,31', '277.75', 1665159292, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -207,7 +207,7 @@ CREATE TABLE `tb_users` (
 
 INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
 (1, 'root', '1234', 1, 0),
-(13, 'usuario', '92102047481', 3, 1),
+(13, 'usuario', '92102047481', 3, 0),
 (14, 'usuario', '44455686564', 3, 0),
 (15, 'usuario', '23423234553', 3, 0),
 (17, 'usuario', '45481215785', 3, 0),
@@ -343,7 +343,7 @@ ALTER TABLE `tb_libro`
 -- AUTO_INCREMENT de la tabla `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_users`
