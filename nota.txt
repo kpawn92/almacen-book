@@ -1,25 +1,12 @@
 Sistema informático para el control en el almacén de libros de la Universidad de Ciencias Médicas de Granma
 Gestionar los estudiantes matriculados, libros existentes, prestamos de libros y ventas de libros.
 
-template para los usuarios
-http://localhost/TemplatePro/landing.html
+Por terminar:
+1. Session control de los libros user:
+- Mostrar historial libros entregados.
+- Mostrar el estado de las ordenes (generar notificaciones al ser aceptada la orden).
+- Crear form para generar comentarios, criterios.
 
-Crear una columna status(1=logged) en la tabla de users, para asi en una consulta obener los datos del que esta logeado al cerrar la sesion con el id cambiar el status
-
-Guest:
-En la table users modificar rol que tenga de valor por default 3, crear una nueva columna logged(0,1), al registrar el estudiante tambien crear la cuenta con user: ci, pass: P@ssw0rd(default)
-
-usuario
-Crear solicitud de compra con fecha pendiente para cerrar la compra. Seleccionar los libros que desea dentro de los disponibles.
-
-Crear un gestor de notificaciones, el estudiante seleciona los libros que va a comprar, mostrar una campana con notificacion que muestre el estudiante y la solicitud, al darle click la notificacion abrir una ventana con todos los datos de la solicitud y un input donde enviara la fecha que sera atendido posteriormente cambiar el estado de la solicitud que sera eliminada cuando se cierre la venta
-
-se creara una tabla que guarde la solicitud
-id, id__estudiante, fecha de solicitud, fecha de atendido, estado
-
-rev los tasks de http://localhost/TemplatePro/dashboard-projects.html
-
-
-http://localhost/TemplatePro/apps-ecommerce-orders-details.html
-
-http://localhost/TemplatePro/apps-ecommerce-products.html
+2. Session admin
+- Generar notificaciones cuando existan nuevas ordenes __vale
+- Generar el form para la aceptacion de las ordenes

@@ -9,6 +9,7 @@ use App\Models\M_yearA;
 use App\Models\M_brigada;
 use App\Models\M_student;
 use App\Models\M_book;
+use App\Models\M_orders;
 use App\Models\M_users;
 
 class Dash extends Controller
@@ -54,12 +55,12 @@ class Dash extends Controller
                 echo "2";
             } else {
                 if ($nation != 1) {
-                    $dir = "Cuba-cu-".$direccion;
+                    $dir = "Cuba-cu-" . $direccion;
                     $student->guardar($ci, $nombre, $lastname, $nation, $dir, $fk_carrera, $fk_year_academico, $fk_brigada);
                     $users->createUser($ci);
                     echo "1";
                 } else {
-                    $dir = $pais."-".$ciudad;
+                    $dir = $pais . "-" . $ciudad;
                     $student->guardar($ci, $nombre, $lastname, $nation, $dir, $fk_carrera, $fk_year_academico, $fk_brigada);
                     $users->createUser($ci);
                     echo "1";
@@ -223,5 +224,19 @@ class Dash extends Controller
         foreach ($student as $std) :
             echo '<option>' . $std['ci'] . '</option>';
         endforeach;
+    }
+
+    public function toast()
+    {
+        $orden = new M_orders();
+        $ordenes = $orden->getOrdenNotif();
+
+        $json = array();
+
+        foreach ($ordenes as $data) {
+            $json[] = $data;
+        }
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
     }
 }

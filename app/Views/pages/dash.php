@@ -84,4 +84,6 @@
             </div>
         </div> <!-- end col-->
     </div>
+    <?= $this->include('pages/dependencias/panel'); ?>
 </div>
+

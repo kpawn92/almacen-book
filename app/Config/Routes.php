@@ -75,6 +75,9 @@ $routes->post('nombre', 'Invitado::getUserName');
 $routes->post('libros__disponibles', 'Invitado::libros__disponibles');
 $routes->post('orders', 'Invitado::orders');
 
+/** Notificaciones */
+$routes->post('toast', 'Dash::toast');
+
 
 
 
