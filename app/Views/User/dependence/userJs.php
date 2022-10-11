@@ -49,7 +49,7 @@
                     "data": "id_book",
                     "render": function(data) {
                         return `<div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="${data}">
+                                    <input type="checkbox" class="form-check-input" id="${data}" disabled>
                                     <label class="form-check-label" for="${data}">&nbsp;</label>
                                 </div>`
                     }

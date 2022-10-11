@@ -44,8 +44,8 @@
             // console.log(object.id)
             toastr("<h4><i class='uil-bell'></i> Notificacion</h4>", `Nuevas solicitudes de compra <i class='uil-chat-bubble-user'></i>`, "Info")
             document.querySelector('#item').innerHTML += `<a href="#" class="noti dropdown-item notify-item">
-                                                              <div class="notify-icon bg-${arr1[i]}">
-                                                                  <i class="${icons[i]}"></i>
+                                                              <div class="notify-icon bg-danger">
+                                                                  <i class="uil-users-alt"></i>
                                                               </div>
                                                               <p class="notify-details">${object.nombre.toLowerCase()} ${object.lastname.toLowerCase()}
                                                                   <small class="text-muted">${days} d&iacute;as atras</small>
