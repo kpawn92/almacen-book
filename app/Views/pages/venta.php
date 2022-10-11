@@ -66,6 +66,7 @@
                                     <td>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-cart-plus me-1"></i></a>
                                     </td>
                                 </tr>
 
@@ -91,6 +92,7 @@
                                     <td>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-cart-plus me-1"></i></a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -115,12 +117,14 @@
                                     <td>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-cart-plus me-1"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
                             <tfoot>
                                 <button class="btn btn-warning mb-2 me-2"> <i class="uil-check-square"></i> Editar</button>
                                 <button class="btn btn-danger mb-2 me-2"> <i class="uil-check-square"></i> Cancelar</button>                            
+                                <button class="btn btn-success mb-2 me-2"> <i class="uil-check-square"></i> P&aacute;gado</button>                            
                             </tfoot>
                         </table>
                     </div>
