@@ -124,7 +124,7 @@
                             <tfoot>
                                 <button class="btn btn-warning mb-2 me-2"> <i class="uil-check-square"></i> Editar</button>
                                 <button class="btn btn-danger mb-2 me-2"> <i class="uil-check-square"></i> Cancelar</button>                            
-                                <button class="btn btn-success mb-2 me-2"> <i class="uil-check-square"></i> P&aacute;gado</button>                            
+                                <button class="btn btn-success mb-2 me-2"> <i class="uil-check-square"></i> Pagado</button>                            
                             </tfoot>
                         </table>
                     </div>

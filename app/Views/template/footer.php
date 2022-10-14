@@ -52,6 +52,10 @@
 <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
 
 <script src="assets/js/sweetalert2.js"></script>
+<script src="assets/js/html2pdf.bundle.min.js"></script>
+
+
+
 </body>
 
 </html>
