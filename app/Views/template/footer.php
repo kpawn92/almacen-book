@@ -5,15 +5,15 @@
         <div class="row">
             <div class="col-md-6">
                 <script>
-                document.write(new Date().getFullYear())
+                    document.write(new Date().getFullYear())
                 </script> © UCM - Universidad de Ciencias M&eacute;dicas en Manzanillo.
             </div>
             <div class="col-md-6">
                 <div class="text-md-end footer-links d-none d-md-block">
                     <a href="javascript: void(0);">About</a>
                     <a href="javascript: void(0);">Support</a>
-                    <a href="javascript: void(0);">Contact Us</a>    
-                    <!-- boton de ir arriba -->                
+                    <a href="javascript: void(0);">Contact Us</a>
+                    <!-- boton de ir arriba -->
                     <a href="#content_principal" class="btn btn-light btn-rounded btn-sm"><i class="uil-top-arrow-to-top "></i></a>
                 </div>
             </div>
@@ -55,6 +55,12 @@
 <script src="assets/js/html2pdf.bundle.min.js"></script>
 
 
+/** Dashboard */
+<!-- third party js -->
+<script src="assets/js/vendor/apexcharts.min.js"></script>
+<script src="assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+<!-- third party js ends -->
 
 </body>
 
