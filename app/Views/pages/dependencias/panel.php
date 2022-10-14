@@ -94,7 +94,7 @@
     }
     document.querySelector('#card_ventas').addEventListener('click', card_ventas);
     document.querySelector('#export').addEventListener('click', () => {
-      pdf({element: print, filename: "Libros registrados" /*orientation: "landscape" format: "tabloid"*/})
+      pdf({element: print, filename: "Informe general" /*orientation: "landscape" format: "tabloid"*/})
     })
 
   })
