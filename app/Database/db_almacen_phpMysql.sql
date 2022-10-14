@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 10-10-2022 a las 02:18:51
+-- Tiempo de generación: 15-10-2022 a las 01:42:32
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -38,9 +38,12 @@ CREATE TABLE `op_books_disponibles` (
 --
 
 INSERT INTO `op_books_disponibles` (`id`, `fk_libro`, `c_disponibles`) VALUES
-(29, 52, 142),
-(30, 51, 141),
-(31, 53, 151);
+(29, 52, 140),
+(30, 51, 139),
+(31, 53, 150),
+(32, 56, 56),
+(33, 55, 15),
+(34, 54, 15);
 
 -- --------------------------------------------------------
 
@@ -134,7 +137,8 @@ INSERT INTO `tb_estudiante` (`id`, `ci`, `nombre`, `lastname`, `nation`, `direcc
 (102, '92102047481', 'ALEJANDRO', 'SOSA GOMEZ', 0, 'Cuba-cu-Manzanillo Reparto Cespedez #6', 1, 2, 1, 0),
 (106, '45481215785', 'LEANDRO', 'POZO CASTRO', 0, 'Cuba-cu-Niquero Reparto Vazquez', 3, 1, 1, 0),
 (107, '23234234232', 'JUAN', 'SUAREZ CESPEDEZ', 1, 'Guinea Ecuatorial-gq-Estus', 1, 1, 1, 0),
-(108, '22222222222', 'JUANA', 'CASTRO LASTRE', 0, 'Cuba-cu-34 Malecon', 1, 1, 1, 0);
+(108, '22222222222', 'JUANA', 'CASTRO LASTRE', 0, 'Cuba-cu-34 Malecon', 1, 1, 1, 0),
+(109, '77777777777', 'FIDEL', 'AS ASDTEF', 1, 'Afganistán-af-Estus', 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -158,9 +162,12 @@ CREATE TABLE `tb_libro` (
 --
 
 INSERT INTO `tb_libro` (`id`, `codigo`, `titulo`, `portada`, `precio`, `autor`, `isbn`, `cantidad`) VALUES
-(51, 'RES-458', 'Lorem ipsum dolor sit amet, consectetur adipiscing', '1663818188_3c794c598375d9db95d5.jpeg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 89),
+(51, 'RES-458', 'PHP', '1663818188_3c794c598375d9db95d5.jpeg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 89),
 (52, 'RES-459', 'JS', '1663818265_d6c55dffcad27908ebdc.jpeg', '14.56', 'JUAN SOSA AGUILERA', '458-ASA458-48', 194),
-(53, 'RES-462', 'SQL', '1664663405_e13f7534b5e0fa0e607b.jpg', '136.84', 'ARTUH ERTHREES', '458-ASA458-48', 170);
+(53, 'RES-462', 'SQL', '1664663405_e13f7534b5e0fa0e607b.jpg', '136.84', 'ARTUH ERTHREES', '458-ASA458-48', 170),
+(54, 'RES-460', 'ANGULAR', '1665783046_4bb4e0e1c3521e456e89.jpg', '14.56', 'ARTUH GONSAS', '45484-454', 435),
+(55, 'RES-461', 'REACT', '1665783084_24a2174b40a68717d44b.jpg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 48),
+(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 67);
 
 -- --------------------------------------------------------
 
@@ -186,7 +193,9 @@ INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`,
 (54, 102, '30,29', '140.91', 1665158160, NULL, 0),
 (55, 102, '30,29,31', '277.75', 1665159292, NULL, 0),
 (56, 108, '30,29', '140.91', 1665358403, NULL, 0),
-(57, 108, '31', '136.84', 1665358408, NULL, 0);
+(57, 108, '31', '136.84', 1665358408, NULL, 0),
+(58, 109, '30,29', '140.91', 1665521828, NULL, 0),
+(59, 109, '30,29,31', '277.75', 1665521832, NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -211,7 +220,8 @@ INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
 (13, 'usuario', '92102047481', 3, 0),
 (17, 'usuario', '45481215785', 3, 0),
 (18, 'usuario', '23234234232', 3, 0),
-(19, 'usuario', '22222222222', 3, 0);
+(19, 'usuario', '22222222222', 3, 0),
+(20, 'usuario', '77777777777', 3, 0);
 
 -- --------------------------------------------------------
 
@@ -307,7 +317,7 @@ ALTER TABLE `tb_year_academico`
 -- AUTO_INCREMENT de la tabla `op_books_disponibles`
 --
 ALTER TABLE `op_books_disponibles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de la tabla `op_historial_libroestudiante`
@@ -331,25 +341,25 @@ ALTER TABLE `tb_carrera`
 -- AUTO_INCREMENT de la tabla `tb_estudiante`
 --
 ALTER TABLE `tb_estudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=109;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=110;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_libro`
 --
 ALTER TABLE `tb_libro`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_users`
 --
 ALTER TABLE `tb_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_year_academico`
