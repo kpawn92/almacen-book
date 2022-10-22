@@ -1,5 +1,5 @@
 <script>
-  $(document.getElementById('dash')).ready(function() {
+  $(document).ready(function() {
 
     const d = new Date();
     const today = d.toLocaleDateString('en-US')
@@ -53,7 +53,7 @@
           method: "POST"
         })
         const res_post = await postNotif.json()
-        await console.log(res_post)
+        //await console.log(res_post)
         await res_post.map((object, i) => {
           if (object.date_okay === null) {
             let day1 = new Date(`${object.date_orden}`);
@@ -83,7 +83,7 @@
             fragment.appendChild(a)
           }
         });
-        div_item.appendChild(fragment)
+        await div_item.appendChild(fragment)
       } catch (error) {
         console.log(error)
       }
@@ -104,6 +104,53 @@
         filename: "Informe general" /*orientation: "landscape" format: "tabloid"*/
       })
     })
+
+    document.getElementById("e_std_sales").addEventListener("click", function() {
+
+      html2canvas(document.querySelector('#top_estudiante_compras')).then(function(canvas) {
+
+        saveAs(canvas.toDataURL(), 'top_estudiantes_compras.png');
+      });
+    });
+    document.getElementById("grafica").addEventListener("click", function() {
+      const indicadores = document.querySelector('#indicadores_grafica')
+
+      html2canvas(document.querySelector('#average-sales')).then(function(canvas) {
+        saveAs(canvas.toDataURL(), 'top_4_mejores_ventas_grafica.png');
+      });
+    });
+    document.getElementById("indicadores_ventas").addEventListener("click", function() {
+      html2canvas(document.querySelector('#indicators_sales')).then(function(canvas) {
+        saveAs(canvas.toDataURL(), 'top_4_mejores_ventas_indicadores.png');
+      });
+    });
+
+
+    function saveAs(uri, filename) {
+
+      var link = document.createElement('a');
+
+      if (typeof link.download === 'string') {
+
+        link.href = uri;
+        link.download = filename;
+
+        //Firefox requires the link to be in the body
+        document.body.appendChild(link);
+
+        //simulate click
+        link.click();
+
+        //remove the link when done
+        document.body.removeChild(link);
+
+      } else {
+
+        window.open(uri);
+
+      }
+    }
+
 
     const grafica = () => {
       !(function(o) {

@@ -62,6 +62,8 @@
 <script src="assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
 <!-- third party js ends -->
 
+<script src="assets/js/html2canvas.min.js"></script>
+
 </body>
 
 </html>

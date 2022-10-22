@@ -183,28 +183,28 @@
 
     <div class="col-xl-3 col-lg-6 order-lg-1">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body" id="caja_grafica">
                 <div class="dropdown float-end">
                     <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="mdi mdi-dots-vertical"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Sales Report</a>
+                        <a href="javascript:void(0);" class="dropdown-item" id="indicadores_ventas">Sales Report</a>
                         <!-- item-->
-                        <a href="javascript:void(0);" class="dropdown-item">Export Report</a>
+                        <a href="javascript:void(0);" class="dropdown-item" id="grafica">Export Report</a>
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item">Profit</a>
                         <!-- item-->
                         <a href="javascript:void(0);" class="dropdown-item">Action</a>
                     </div>
                 </div>
-                <h4 class="header-title">Top 4 de las mejores ventas</h4>
+                <h4 class="header-title">Top 4 de libros m&aacute;s vendidos</h4>
 
                 <div id="average-sales" class="apex-charts mb-4 mt-4" data-colors="#727cf5,#0acf97,#fa5c7c,#ffbc00"></div>
 
 
-                <div class="chart-widget-list">
+                <div class="chart-widget-list" id="indicators_sales">
                     <p>
                         <i class="mdi mdi-square text-primary"></i> React
                         <span class="float-end">$300.56</span>
@@ -230,12 +230,12 @@
     <div class="col-xl-6 col-lg-12 order-lg-2 order-xl-1">
         <div class="card">
             <div class="card-body">
-                <a href="" class="btn btn-sm btn-link float-end">Export
+                <a href="#" class="btn btn-sm btn-link float-end" id="e_std_sales">Export
                     <i class="mdi mdi-download ms-1"></i>
                 </a>
-                <h4 class="header-title mt-2 mb-3">Top Estudiantes con mayor compras</h4>
+                <h4 class="header-title mt-2 mb-3">Top 5 de Estudiantes con mayor compras</h4>
 
-                <div class="table-responsive">
+                <div class="table-responsive" id="top_estudiante_compras">
                     <table class="table table-centered table-nowrap table-hover mb-0">
                         <tbody>
                             <tr>
@@ -334,8 +334,29 @@
                 </div> <!-- end table-responsive-->
             </div> <!-- end card-body-->
         </div> <!-- end card-->
+        
     </div> <!-- end col-->
 
 
+
+    <script type="text/javascript">
+        // Define the function 
+        // to screenshot the div
+        function takeshot() {
+            let div =
+                document.getElementById('photo');
+
+            // Use the html2canvas
+            // function to take a screenshot
+            // and append it
+            // to the output div
+            html2canvas(div).then(
+                function(canvas) {
+                    document
+                        .getElementById('output')
+                        .appendChild(canvas);
+                })
+        }
+    </script>
     <?= $this->include('pages/dependencias/panel'); ?>
 </div>
