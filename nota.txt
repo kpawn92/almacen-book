@@ -8,5 +8,6 @@ Por terminar:
 - Crear form para generar comentarios, criterios.
 
 2. Session admin
-- Generar notificaciones cuando existan nuevas ordenes __vale
 - Generar el form para la aceptacion de las ordenes
+
+
