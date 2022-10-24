@@ -20,6 +20,10 @@
     <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="light-style">
     <link href="assets/css/app-dark.min.css" rel="stylesheet" type="text/css" id="dark-style">
 
+    <!-- Datatables css -->
+    <link href="assets/css/vendor/dataTables.bootstrap5.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/vendor/responsive.bootstrap5.css" rel="stylesheet" type="text/css" />
+
 </head>
 
 <body class="loading" data-layout-config='{"darkMode":false}'>
@@ -31,7 +35,7 @@
                 <div class="modal-body p-4">
                     <div class="text-center">
                         <i class="dripicons-checkmark h1"></i>
-                        <h6 class="text-uppercase mt-0">Total a pagar en cup:</h6>                        
+                        <h6 class="text-uppercase mt-0">Total a pagar en cup:</h6>
                         <h2 class="my-2" id="cuenta"></h2>
                         <button type="button" class="btn btn-light my-2" data-bs-dismiss="modal" id="modal">Continue</button>
                     </div>
@@ -65,7 +69,7 @@
                         <a class="nav-link" href="#selection__books">Disponibles</a>
                     </li>
                     <li class="nav-item mx-lg-1">
-                        <a class="nav-link" href="">Entregas</a>
+                        <a class="nav-link" href="#bookSlope">Entregas</a>
                     </li>
                     <li class="nav-item mx-lg-1">
                         <a class="nav-link" href="">Contact</a>
@@ -174,6 +178,54 @@
         </div>
     </section>
     <!-- END SERVICES -->
+
+    <!-- START SLOPE BOOKS  -->
+    <section class="py-5 bg-light-lighten border-top border-bottom border-light" id="bookSlope">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-center">
+                        <h3>Historial de<span class="text-primary"> libros recibidos</span></h3>
+                        <details>
+                            <summary class="text-muted font-15">Detalles de la tabla</summary>
+                            <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion de la tabla}</code> dolor sit amet
+                                consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
+                                incidunt exercitationem quibusdam tempore repudiandae, enim deserunt dolorum eos excepturi rerum.
+                                Aut, culpa mollitia hic quidem, vel ex veritatis assumenda vero minus repudiandae dolor inventore
+                                accusamus deleniti cum placeat sapiente blanditiis dolorum expedita enim repellendus perspiciatis
+                                quasi quae. Quia, accusamus commodi?
+                            </p>
+                        </details>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-hover table-centered w-100 dt-responsive nowrap" id="books-borrowed">
+                                    <thead class="table-light">
+                                        <tr>
+                                            <th>Portada</th>
+                                            <th>Title</th>
+                                            <th>Autor</th>
+                                            <th>Recibidos</th>
+                                            <th>Devueltos</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col -->
+            </div>
+        </div>
+    </section>
+    <!-- END CONTACT -->
 
 
     <!-- START CONTACT -->
@@ -334,6 +386,7 @@
     <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
     <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
     <script src="assets/js/vendor/dataTables.checkboxes.min.js"></script>
+    
 
     <!-- third party js ends -->
     <?= $this->include('User/dependence/userJs'); ?>

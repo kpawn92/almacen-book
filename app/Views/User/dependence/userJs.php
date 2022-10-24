@@ -1,5 +1,4 @@
 <script>
-    
     window.addEventListener('load', (e) => {
         e.stopPropagation();
 
@@ -11,7 +10,41 @@
             .then(response => response.json())
             .then(r => {
                 document.querySelector('#idname').innerHTML = "Bienvenido " + r[0].toLowerCase() + " " + r[1].toLowerCase()
-                id__std = r[2]
+                id = r[2]
+
+                console.log(id);
+
+                let tableEntregaID = $('#books-borrowed').DataTable({
+                    ajax: {
+                        "url": "<?php echo base_url('/libXid'); ?>",
+                        "method": "POST",
+                        "data": {
+                            id: id
+                        }
+                    },
+                    columns: [{
+                            "data": "portada",
+                            "render": function(name) {
+                                return `<img src="${base__url}/uploads/${name}" width="50" alt="portadas">`
+                            }
+                        },
+                        {
+                            "data": "titulo"
+                        },
+                        {
+                            "data": "autor"
+                        },
+                        {
+                            "data": "entrega"
+                        },
+                        {
+                            "data": "devolucion"
+                        }
+                    ],
+                    "language": {
+                        "url": "assets/json/Spanish.json"
+                    }
+                });
             });
 
         document.querySelector('#salir').addEventListener('click', () => {
@@ -33,10 +66,7 @@
             })
         }
 
-
-
         let accion = "listarLibro";
-
         let tableBooks = $('#books-disponibles').DataTable({
             ajax: {
                 "url": "<?php echo base_url('/libros__disponibles'); ?>",
@@ -147,7 +177,7 @@
         }
 
         btn_generar.addEventListener('click', () => {
-            document.querySelector('#cuenta').innerHTML = sumaTotal.toFixed(2)            
+            document.querySelector('#cuenta').innerHTML = sumaTotal.toFixed(2)
         })
 
 

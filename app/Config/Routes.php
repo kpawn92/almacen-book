@@ -74,6 +74,7 @@ $routes->post('logoff', 'Invitado::cerrar');
 $routes->post('nombre', 'Invitado::getUserName');
 $routes->post('libros__disponibles', 'Invitado::libros__disponibles');
 $routes->post('orders', 'Invitado::orders');
+$routes->post('libXid', 'Invitado::libXid');
 
 /** Notificaciones */
 $routes->post('toast', 'Dash::toast');

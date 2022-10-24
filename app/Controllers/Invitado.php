@@ -5,6 +5,7 @@ namespace App\Controllers;
 use CodeIgniter\Controller;
 use App\Models\M_book;
 use App\Models\M_disponibles;
+use App\Models\M_entrega;
 use App\Models\M_orders;
 
 class Invitado extends Controller
@@ -71,7 +72,7 @@ class Invitado extends Controller
         $orden = new M_orders();
         $book = new M_disponibles();
         extract($request->getPost());
-        
+
         $array = explode(",", $libros[0]);
 
         $rows_report = $orden->row_preport($fk_estudiante);
@@ -86,5 +87,17 @@ class Invitado extends Controller
             $resultado = $sendOrden ? "1" : "2";
             echo $resultado;
         }
+    }
+    public function libXid()
+    {
+        $id = $_POST['id'];
+        $libros_dados = new M_entrega();
+        $json = array();
+        $query = $libros_dados->list_book_id($id);
+        foreach ($query as $data) {
+            $json['data'][] = $data;
+        }
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
     }
 }
