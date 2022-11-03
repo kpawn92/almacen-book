@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 15-10-2022 a las 01:42:32
+-- Tiempo de generación: 03-11-2022 a las 02:07:38
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -67,8 +67,13 @@ CREATE TABLE `op_historial_libroestudiante` (
 INSERT INTO `op_historial_libroestudiante` (`id`, `fk_estudiante`, `fk_libro`, `date_entrega`, `date_devol`, `status`) VALUES
 (197, 102, 52, 1662354000, NULL, 1),
 (198, 106, 52, 1662008400, NULL, 1),
-(199, 107, 52, 1662354000, NULL, 1),
-(200, 107, 51, 1662354000, NULL, 1);
+(199, 107, 52, 1662354000, 1665896400, 2),
+(200, 107, 51, 1662354000, 1665896400, 3),
+(201, 107, 56, 1664773200, 1667106000, 3),
+(202, 102, 56, 1642053600, NULL, 1),
+(203, 102, 55, 1642744800, NULL, 1),
+(204, 102, 54, 1665464400, NULL, 1),
+(205, 109, 56, 1662008400, 1667106000, 3);
 
 -- --------------------------------------------------------
 
@@ -163,11 +168,11 @@ CREATE TABLE `tb_libro` (
 
 INSERT INTO `tb_libro` (`id`, `codigo`, `titulo`, `portada`, `precio`, `autor`, `isbn`, `cantidad`) VALUES
 (51, 'RES-458', 'PHP', '1663818188_3c794c598375d9db95d5.jpeg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 89),
-(52, 'RES-459', 'JS', '1663818265_d6c55dffcad27908ebdc.jpeg', '14.56', 'JUAN SOSA AGUILERA', '458-ASA458-48', 194),
+(52, 'RES-459', 'JS', '1663818265_d6c55dffcad27908ebdc.jpeg', '14.56', 'JUAN SOSA AGUILERA', '458-ASA458-48', 195),
 (53, 'RES-462', 'SQL', '1664663405_e13f7534b5e0fa0e607b.jpg', '136.84', 'ARTUH ERTHREES', '458-ASA458-48', 170),
-(54, 'RES-460', 'ANGULAR', '1665783046_4bb4e0e1c3521e456e89.jpg', '14.56', 'ARTUH GONSAS', '45484-454', 435),
-(55, 'RES-461', 'REACT', '1665783084_24a2174b40a68717d44b.jpg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 48),
-(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 67);
+(54, 'RES-460', 'ANGULAR', '1665783046_4bb4e0e1c3521e456e89.jpg', '14.56', 'ARTUH GONSAS', '45484-454', 434),
+(55, 'RES-461', 'REACT', '1665783084_24a2174b40a68717d44b.jpg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 47),
+(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 64);
 
 -- --------------------------------------------------------
 
@@ -191,11 +196,11 @@ CREATE TABLE `tb_order` (
 
 INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`, `date_okay`, `condition`) VALUES
 (54, 102, '30,29', '140.91', 1665158160, NULL, 0),
-(55, 102, '30,29,31', '277.75', 1665159292, NULL, 0),
+(55, 102, '30,29,31', '277.75', 1665159292, NULL, 1),
 (56, 108, '30,29', '140.91', 1665358403, NULL, 0),
-(57, 108, '31', '136.84', 1665358408, NULL, 0),
+(57, 108, '31', '136.84', 1665358408, NULL, 1),
 (58, 109, '30,29', '140.91', 1665521828, NULL, 0),
-(59, 109, '30,29,31', '277.75', 1665521832, NULL, 0);
+(59, 109, '30,29,31', '277.75', 1665521832, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -323,7 +328,7 @@ ALTER TABLE `op_books_disponibles`
 -- AUTO_INCREMENT de la tabla `op_historial_libroestudiante`
 --
 ALTER TABLE `op_historial_libroestudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_brigada`
