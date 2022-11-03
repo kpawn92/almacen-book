@@ -89,7 +89,7 @@
                     accusamus deleniti cum placeat sapiente blanditiis dolorum expedita enim repellendus perspiciatis
                     quasi quae. Quia, accusamus commodi?</p>
 
-                <div class="row">
+                <div class="row table-responsive">
                     <input type="hidden" id="base_url" value="<?= base_url(); ?>">
                     <input type="hidden" id="retornoDelB">
 

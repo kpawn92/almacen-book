@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-11-2022 a las 02:07:38
+-- Tiempo de generación: 03-11-2022 a las 23:56:42
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -199,7 +199,7 @@ INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`,
 (55, 102, '30,29,31', '277.75', 1665159292, NULL, 1),
 (56, 108, '30,29', '140.91', 1665358403, NULL, 0),
 (57, 108, '31', '136.84', 1665358408, NULL, 1),
-(58, 109, '30,29', '140.91', 1665521828, NULL, 0),
+(58, 109, '30,29', '140.91', 1665521828, NULL, 3),
 (59, 109, '30,29,31', '277.75', 1665521832, NULL, 1);
 
 -- --------------------------------------------------------

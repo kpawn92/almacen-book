@@ -156,7 +156,7 @@
                     quasi quae. Quia, accusamus commodi?
                 </p>
 
-                <div class="row">
+                <div class="row table-responsive">
                     <table id="students" class="table dt-responsive nowrap w-100">
                         <thead>
                             <tr>
