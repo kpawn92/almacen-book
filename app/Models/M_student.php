@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class M_student extends Model{
+class M_student extends Model
+{
     protected $table      = 'tb_estudiante';
     // Uncomment below if you want add primary key
     protected $primaryKey = 'id';
@@ -19,9 +21,9 @@ class M_student extends Model{
     {
         $db = \Config\Database::connect();
         $builder = $db->table('tb_estudiante');
-        $data = [                        
+        $data = [
             'ci' => $ci,
-            'nombre' => $nombre,            
+            'nombre' => $nombre,
             'lastname' => $lastname,
             'nation' => $nation,
             'direccion' => $direccion,
@@ -41,16 +43,16 @@ class M_student extends Model{
             'lastname' => $lastname,
             'fk_carrera' => $fk_carrera,
             'fk_year_academico' => $fk_year_academico,
-            'fk_brigada' => $fk_brigada            
+            'fk_brigada' => $fk_brigada
         ];
-        $builder->where('id', $id);        
+        $builder->where('id', $id);
         return $builder->update($data);
     }
 
     function del_student($id)
     {
         $db = \Config\Database::connect();
-        $builder = $db->table('tb_estudiante');       
+        $builder = $db->table('tb_estudiante');
         $builder->where('id', $id);
         return $builder->delete();
     }
@@ -73,6 +75,12 @@ class M_student extends Model{
     {
         $db = \Config\Database::connect();
         $query = $db->query("SELECT ci FROM tb_estudiante WHERE id = '$id'");
+        return $query->getRowArray();
+    }
+    function estudiantes()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT COUNT(id) as std FROM tb_estudiante WHERE `status` = 0");
         return $query->getRowArray();
     }
 }

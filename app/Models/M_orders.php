@@ -36,6 +36,11 @@ class M_orders extends Model
     $query = $db->query("SELECT tb_order.id, nombre, lastname, pay, FROM_UNIXTIME(date_order,'%m/%d/%Y') as date_orden, date_okay  FROM tb_order JOIN tb_estudiante ON tb_estudiante.id = fk_estudiante WHERE `condition`= 0");
     return $query->getResultArray();
   }
-  
-  
+
+  function ventas()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT pay FROM tb_order WHERE `condition` = 1");
+    return $query->getResultArray();
+  }
 }

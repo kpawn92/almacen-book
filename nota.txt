@@ -11,3 +11,6 @@ Por terminar:
 - Generar el form para la aceptacion de las ordenes
 
 
+generar el comentario en la sesion de usuarios
+generar la gestion de las ordenes en el root
+generar vista para darle seguimiento a las ordenes en el usuario

@@ -47,7 +47,7 @@ class M_book extends Model
         $db = \Config\Database::connect();
         $query = $db->query("SELECT id as id_book, portada, codigo, titulo, precio, autor, isbn, cantidad FROM tb_libro");
         return $query->getResultArray();
-    }    
+    }
 
     function update_book($id, $codigo, $titulo, $precio, $autor, $isbn, $cantidad)
     {
@@ -110,6 +110,12 @@ class M_book extends Model
     {
         $db = \Config\Database::connect();
         $query = $db->query("SELECT * FROM tb_libro WHERE id = '$id'");
+        return $query->getRowArray();
+    }
+    public function libros()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT COUNT(id) as idl  FROM tb_libro");
         return $query->getRowArray();
     }
 }

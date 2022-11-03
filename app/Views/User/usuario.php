@@ -234,7 +234,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <h3>Get In <span class="text-primary">Touch</span></h3>
+                        <h3>Ponerse en <span class="text-primary">contacto</span></h3>
                         <p class="text-muted mt-2">Please fill out the following form and we will get back to you shortly. For more
                             <br>information please contact us.
                         </p>
@@ -247,30 +247,16 @@
                     <p class="text-muted"><span class="fw-bold">Customer Support:</span><br> <span class="d-block mt-1">+1 234 56 7894</span></p>
                     <p class="text-muted mt-4"><span class="fw-bold">Email Address:</span><br> <span class="d-block mt-1">info@gmail.com</span></p>
                     <p class="text-muted mt-4"><span class="fw-bold">Office Address:</span><br> <span class="d-block mt-1">4461 Cedar Street Moro, AR 72368</span></p>
-                    <p class="text-muted mt-4"><span class="fw-bold">Office Time:</span><br> <span class="d-block mt-1">9:00AM To 6:00PM</span></p>
+                    <p class="text-muted mt-4"><span class="fw-bold">Office Time:</span><br> <span class="d-block mt-1">9:00AM To 4:00PM</span></p>
                 </div>
 
                 <div class="col-md-8">
                     <form>
-                        <div class="row mt-4">
-                            <div class="col-lg-6">
-                                <div class="mb-2">
-                                    <label for="fullname" class="form-label">Your Name</label>
-                                    <input class="form-control form-control-light" type="text" id="fullname" placeholder="Name...">
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-2">
-                                    <label for="emailaddress" class="form-label">Your Email</label>
-                                    <input class="form-control form-control-light" type="email" required="" id="emailaddress" placeholder="Enter you email...">
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="row mt-1">
                             <div class="col-lg-12">
                                 <div class="mb-2">
-                                    <label for="subject" class="form-label">Your Subject</label>
+                                    <label for="subject" class="form-label">Asunto</label>
                                     <input class="form-control form-control-light" type="text" id="subject" placeholder="Enter subject...">
                                 </div>
                             </div>
@@ -279,7 +265,7 @@
                         <div class="row mt-1">
                             <div class="col-lg-12">
                                 <div class="mb-2">
-                                    <label for="comments" class="form-label">Message</label>
+                                    <label for="comments" class="form-label">Mensaje</label>
                                     <textarea id="comments" rows="4" class="form-control form-control-light" placeholder="Type your message here..."></textarea>
                                 </div>
                             </div>

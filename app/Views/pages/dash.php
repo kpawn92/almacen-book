@@ -22,7 +22,7 @@
                         <i class="mdi mdi-book-education widget-icon bg-white text-success"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Libros</h6>
-                    <h3 class="mt-3 mb-3">0</h3>
+                    <h3 class="mt-3 mb-3" id="i_libros">0</h3>
                 </div>
             </div>
         </div> <!-- end col-->
@@ -34,7 +34,7 @@
                         <i class="mdi mdi-account-multiple widget-icon bg-white text-primary"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">Estudiantes</h6>
-                    <h3 class="mt-3 mb-3">0</h3>
+                    <h3 class="mt-3 mb-3" id="i_estudiantes">0</h3>
                 </div>
             </div>
         </div> <!-- end col-->
@@ -46,18 +46,18 @@
                         <i class="mdi mdi-book-cancel widget-icon bg-white text-danger"></i>
                     </div>
                     <h6 class="text-uppercase mt-0" title="Customers">P&eacute;rdidas</h6>
-                    <h3 class="mt-3 mb-3">0</h3>
+                    <h3 class="mt-3 mb-3" id="i_perdidas">0</h3>
                 </div>
             </div>
         </div> <!-- end col-->
         <div class="col-xxl-3 col-lg-6">
-            <div class="card widget-flat bg-warning text-black">
+            <div class="card widget-flat bg-warning text-white">
                 <div class="card-body">
                     <div class="float-end">
                         <i class="mdi mdi-cash-usd widget-icon bg-white text-warning"></i>
                     </div>
-                    <h6 class="text-uppercase mt-0" title="Customers">Ventas</h6>
-                    <h3 class="mt-3 mb-3">0</h3>
+                    <h6 class="text-uppercase mt-0" title="Customers">Recaudado</h6>
+                    <h3 class="mt-3 mb-3" id="i_ventas">$0</h3>
                 </div>
             </div>
         </div> <!-- end col-->

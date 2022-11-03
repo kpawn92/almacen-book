@@ -7,9 +7,31 @@
     const div_item = document.querySelector('#item');
     const fragment = document.createDocumentFragment();
 
-    const print = document.querySelector('#panel_control');
+    const panel = document.querySelector('#panel_control');
 
-    // console.log(days)
+    const indicators = document.querySelectorAll('#panel_control h3');
+    const [i_libros, i_estudiantes, i_perdidas, i_ventas] = [...indicators];
+    i_ventas.textContent = "$0"
+
+    const div_i_ventas = document.querySelector('#indicators_sales');
+
+
+
+    const indicadores = async () => {
+      try {
+        const post = await fetch('<?= base_url('/indicadores') ?>', {method: "POST"})
+        const res = await post.text()
+        
+        const [books, loss, students, ventas] = await res.split('-');
+        i_libros.textContent = books
+        i_estudiantes.textContent = students
+        i_perdidas.textContent = loss
+        i_ventas.textContent = "$"+ ventas      
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    indicadores()
 
 
     const toastr = (info, text, item) => {
@@ -100,7 +122,7 @@
     document.querySelector('#card_ventas').addEventListener('click', card_ventas);
     document.querySelector('#export').addEventListener('click', () => {
       pdf({
-        element: print,
+        element: panel,
         filename: "Informe general" /*orientation: "landscape" format: "tabloid"*/
       })
     })

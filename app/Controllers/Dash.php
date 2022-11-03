@@ -9,6 +9,7 @@ use App\Models\M_yearA;
 use App\Models\M_brigada;
 use App\Models\M_student;
 use App\Models\M_book;
+use App\Models\M_entrega;
 use App\Models\M_orders;
 use App\Models\M_users;
 
@@ -238,5 +239,25 @@ class Dash extends Controller
         }
         $jsonstring = json_encode($json);
         echo $jsonstring;
+    }
+
+
+    public function indicadores()
+    {
+        $book = new M_book();
+        $student = new M_student();
+        $perdida = new M_entrega();
+        $venta = new M_orders();
+        $books = $book->libros();
+        $perdidos = $perdida->libros__perdidos();
+        $std = $student->estudiantes();
+        $sale = $venta->ventas();
+        $total = 0;
+
+        for ($i = 0; $i < count($sale); $i++) {
+            $total += floatval($sale[$i]['pay']);
+        }
+
+        echo $books['idl'] . "-" . $perdidos['perdido'] . "-" . $std['std']."-".$total;
     }
 }

@@ -66,7 +66,7 @@
                                     <td>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-square-edit-outline"></i></a>
                                         <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-delete"></i></a>
-                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-cart-plus me-1"></i></a>
+                                        <a href="javascript:void(0);" class="action-icon"> <i class="mdi mdi-cart-check me-1"></i></a>
                                     </td>
                                 </tr>
 

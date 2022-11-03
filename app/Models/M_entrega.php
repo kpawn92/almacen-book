@@ -82,4 +82,11 @@ class M_entrega extends Model
         $query = $db->query("SELECT portada, titulo, autor, FROM_UNIXTIME(date_entrega, '%d-%m-%Y') as entrega, FROM_UNIXTIME(date_devol, '%d-%m-%Y') as devolucion FROM op_historial_libroestudiante JOIN tb_estudiante ON tb_estudiante.id = op_historial_libroestudiante.fk_estudiante JOIN tb_libro ON tb_libro.id = op_historial_libroestudiante.fk_libro WHERE tb_estudiante.id ='$id'");
         return $query->getResultArray();
     }
+
+    function libros__perdidos()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT COUNT(id) as perdido FROM op_historial_libroestudiante WHERE `status` = 3");
+        return $query->getRowArray();
+    }
 }
