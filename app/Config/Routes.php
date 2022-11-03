@@ -78,7 +78,8 @@ $routes->post('libXid', 'Invitado::libXid');
 
 /** Notificaciones */
 $routes->post('toast', 'Dash::toast');
-
+/**Ordenes */
+$routes->post('order', 'Ventas::order');
 // Indicadores
 $routes->post('indicadores', 'Dash::indicadores');
 

@@ -43,4 +43,11 @@ class M_orders extends Model
     $query = $db->query("SELECT pay FROM tb_order WHERE `condition` = 1");
     return $query->getResultArray();
   }
+
+  function getOrders()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT tb_order.id, FROM_UNIXTIME(tb_order.date_order, '%d-%m-%Y') as fecha_solicitud, tb_estudiante.nombre, tb_estudiante.lastname, tb_order.pay, tb_order.condition, FROM_UNIXTIME(tb_order.date_okay, '%d-%m-%Y') as fecha_aprobado FROM `tb_order` JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante");
+    return $query->getResultArray();
+  }
 }
