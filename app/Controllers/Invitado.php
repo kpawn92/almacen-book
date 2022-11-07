@@ -90,7 +90,7 @@ class Invitado extends Controller
     }
     public function libXid()
     {
-        $id = $_POST['id'];
+        $id = $_POST['item'];
         $libros_dados = new M_entrega();
         $json = array();
         $query = $libros_dados->list_book_id($id);
@@ -99,5 +99,36 @@ class Invitado extends Controller
         }
         $jsonstring = json_encode($json);
         echo $jsonstring;
+    }
+    public function p_order()
+    {
+        $order = new M_orders();
+        $id = $_POST['id'];
+        $json = array();
+        $orden = $order->getOrdersID($id);
+
+        foreach ($orden as $data) {
+            $json[] = $data;
+        }
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
+    }
+
+    public function librosSales()
+    {
+        $libro = new M_disponibles();
+        $libros = $_POST['libros'];
+
+        $json = array();
+
+        $array = explode(',', $libros);
+
+        for ($i = 0; $i < count($array); $i++) {
+            $getTitulo = $libro->getLibroReceived(intval($array[$i]));
+            $json[] = $getTitulo['titulo'];
+        }
+
+        $jsonstring = json_encode($json);
+        echo $jsonstring;        
     }
 }

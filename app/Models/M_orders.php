@@ -33,7 +33,7 @@ class M_orders extends Model
   function getOrdenNotif()
   {
     $db = \Config\Database::connect();
-    $query = $db->query("SELECT tb_order.id, nombre, lastname, pay, FROM_UNIXTIME(date_order,'%m/%d/%Y') as date_orden, date_okay  FROM tb_order JOIN tb_estudiante ON tb_estudiante.id = fk_estudiante WHERE `condition`= 0");
+    $query = $db->query("SELECT tb_order.id, nombre, lastname, pay, FROM_UNIXTIME(date_order,'%m/%d/%Y') as date_orden, date_okay  FROM tb_order JOIN tb_estudiante ON tb_estudiante.id = fk_estudiante WHERE `condition`= 0 ORDER BY tb_order.id DESC");
     return $query->getResultArray();
   }
 
@@ -47,7 +47,49 @@ class M_orders extends Model
   function getOrders()
   {
     $db = \Config\Database::connect();
-    $query = $db->query("SELECT tb_order.id, FROM_UNIXTIME(tb_order.date_order, '%d-%m-%Y') as fecha_solicitud, tb_estudiante.nombre, tb_estudiante.lastname, tb_order.pay, tb_order.condition, FROM_UNIXTIME(tb_order.date_okay, '%d-%m-%Y') as fecha_aprobado FROM `tb_order` JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante");
+    $query = $db->query("SELECT tb_order.id, FROM_UNIXTIME(tb_order.date_order, '%d %M %Y') as fecha_solicitud, tb_estudiante.nombre, tb_estudiante.lastname, tb_order.pay, tb_order.condition, FROM_UNIXTIME(tb_order.date_okay, '%d %M %Y') as fecha_aprobado FROM `tb_order` JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante ORDER BY tb_order.id DESC");
     return $query->getResultArray();
   }
+
+  function getOrdersID($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT tb_order.id, FROM_UNIXTIME(tb_order.date_order, '%d %M %Y') as fecha_solicitud, tb_estudiante.nombre, tb_estudiante.lastname, tb_order.pay, tb_order.condition, FROM_UNIXTIME(tb_order.date_okay, '%d %M %Y') as fecha_aprobado, libros_id FROM `tb_order` JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante  WHERE tb_order.fk_estudiante = '$id' ORDER BY tb_order.id DESC");
+    return $query->getResultArray();
+  }
+
+  function update_order($id, $date)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("UPDATE tb_order SET date_okay ='$date', `condition`= 3  WHERE id = '$id'");
+    return $query;
+  }
+
+  function upd_order_status($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("UPDATE tb_order SET `condition` = 2  WHERE id = '$id'");
+    return $query;
+  }
+
+  function getDateOrder($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT date_order FROM tb_order WHERE id = '$id'");
+    return $query->getRowArray();
+  }
+
+  function getDateOk($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT date_okay FROM tb_order WHERE id = '$id'");
+    return $query->getRowArray();
+  }
+
+  function upd_payeer($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("UPDATE tb_order SET `condition` = 1  WHERE id = '$id'");
+    return $query;
+  }  
 }

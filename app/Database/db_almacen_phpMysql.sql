@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-11-2022 a las 23:56:42
+-- Tiempo de generación: 07-11-2022 a las 14:28:16
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -38,12 +38,12 @@ CREATE TABLE `op_books_disponibles` (
 --
 
 INSERT INTO `op_books_disponibles` (`id`, `fk_libro`, `c_disponibles`) VALUES
-(29, 52, 140),
-(30, 51, 139),
-(31, 53, 150),
-(32, 56, 56),
-(33, 55, 15),
-(34, 54, 15);
+(29, 52, 135),
+(30, 51, 134),
+(31, 53, 144),
+(32, 56, 54),
+(33, 55, 14),
+(34, 54, 13);
 
 -- --------------------------------------------------------
 
@@ -69,11 +69,11 @@ INSERT INTO `op_historial_libroestudiante` (`id`, `fk_estudiante`, `fk_libro`, `
 (198, 106, 52, 1662008400, NULL, 1),
 (199, 107, 52, 1662354000, 1665896400, 2),
 (200, 107, 51, 1662354000, 1665896400, 3),
-(201, 107, 56, 1664773200, 1667106000, 3),
 (202, 102, 56, 1642053600, NULL, 1),
 (203, 102, 55, 1642744800, NULL, 1),
 (204, 102, 54, 1665464400, NULL, 1),
-(205, 109, 56, 1662008400, 1667106000, 3);
+(205, 109, 56, 1662008400, 1667106000, 3),
+(206, 109, 56, 1669183200, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -172,7 +172,7 @@ INSERT INTO `tb_libro` (`id`, `codigo`, `titulo`, `portada`, `precio`, `autor`, 
 (53, 'RES-462', 'SQL', '1664663405_e13f7534b5e0fa0e607b.jpg', '136.84', 'ARTUH ERTHREES', '458-ASA458-48', 170),
 (54, 'RES-460', 'ANGULAR', '1665783046_4bb4e0e1c3521e456e89.jpg', '14.56', 'ARTUH GONSAS', '45484-454', 434),
 (55, 'RES-461', 'REACT', '1665783084_24a2174b40a68717d44b.jpg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 47),
-(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 64);
+(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 63);
 
 -- --------------------------------------------------------
 
@@ -195,12 +195,17 @@ CREATE TABLE `tb_order` (
 --
 
 INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`, `date_okay`, `condition`) VALUES
-(54, 102, '30,29', '140.91', 1665158160, NULL, 0),
-(55, 102, '30,29,31', '277.75', 1665159292, NULL, 1),
-(56, 108, '30,29', '140.91', 1665358403, NULL, 0),
-(57, 108, '31', '136.84', 1665358408, NULL, 1),
-(58, 109, '30,29', '140.91', 1665521828, NULL, 3),
-(59, 109, '30,29,31', '277.75', 1665521832, NULL, 1);
+(54, 102, '30,29', '140.91', 1665158160, 1665158160, 3),
+(55, 102, '30,29,31', '277.75', 1665159292, 1667702529, 1),
+(56, 108, '30,29', '140.91', 1665358403, 1667710800, 3),
+(57, 108, '31', '136.84', 1665358408, 1667710800, 3),
+(58, 109, '30,29', '140.91', 1665521828, 1665521828, 3),
+(59, 109, '30,29,31', '277.75', 1665521832, 1667710800, 2),
+(63, 102, '29,31', '151.40', 1667610360, 1667710800, 2),
+(64, 102, '30', '126.35', 1667681620, 1667710800, 1),
+(65, 102, '30,29,31,34,33,32', '545.01', 1667748552, 1668578400, 2),
+(66, 102, '30,29,31', '277.75', 1667766479, 1669183200, 1),
+(67, 102, '31,32', '263.19', 1667786185, 1667887200, 1);
 
 -- --------------------------------------------------------
 
@@ -222,7 +227,7 @@ CREATE TABLE `tb_users` (
 
 INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
 (1, 'root', '1234', 1, 0),
-(13, 'usuario', '92102047481', 3, 0),
+(13, 'usuario', '92102047481', 3, 1),
 (17, 'usuario', '45481215785', 3, 0),
 (18, 'usuario', '23234234232', 3, 0),
 (19, 'usuario', '22222222222', 3, 0),
@@ -328,7 +333,7 @@ ALTER TABLE `op_books_disponibles`
 -- AUTO_INCREMENT de la tabla `op_historial_libroestudiante`
 --
 ALTER TABLE `op_historial_libroestudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=206;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_brigada`
@@ -358,7 +363,7 @@ ALTER TABLE `tb_libro`
 -- AUTO_INCREMENT de la tabla `tb_order`
 --
 ALTER TABLE `tb_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_users`

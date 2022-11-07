@@ -44,6 +44,21 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 
+    <div id="info-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body p-4">
+                    <div class="text-center">
+                        <i class="dripicons-information h1 text-info"></i>
+                        <h4 class="mt-2">Heads up!</h4>
+                        <p class="mt-3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
+                        <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Continue</button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
     <!-- NAVBAR START -->
     <nav class="navbar navbar-expand-lg py-lg-3 navbar-dark">
         <div class="container">
@@ -83,6 +98,8 @@
         </div>
     </nav>
     <!-- NAVBAR END -->
+
+
 
     <!-- START HERO -->
     <section class="hero-section">
@@ -135,7 +152,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <div class="col-md-8 col-sm-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row mb-2">
@@ -174,6 +191,29 @@
                         </div> <!-- end card-body-->
                     </div> <!-- end card-->
                 </div> <!-- end col -->
+
+                <div class="col-md-4 col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dropdown float-end">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">Action</a>
+                                </div>
+                            </div>
+                            <h4 class="header-title mb-3">Historial de &oacute;rdenes de compra</h4>
+
+                            <div data-simplebar="" style="max-height: 320px; overflow-x: hidden;" id="solicitudes">
+                            </div> <!-- end slimscroll -->
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -372,7 +412,7 @@
     <script src="assets/js/vendor/dataTables.responsive.min.js"></script>
     <script src="assets/js/vendor/responsive.bootstrap5.min.js"></script>
     <script src="assets/js/vendor/dataTables.checkboxes.min.js"></script>
-    
+
 
     <!-- third party js ends -->
     <?= $this->include('User/dependence/userJs'); ?>

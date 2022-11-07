@@ -83,6 +83,15 @@ $routes->post('order', 'Ventas::order');
 // Indicadores
 $routes->post('indicadores', 'Dash::indicadores');
 
+//post orders
+$routes->post('p_order', 'Invitado::p_order');
+$routes->post('librosSales', 'Invitado::librosSales');
+
+
+$routes->post('date_aprobado', 'Ventas::date_aprobado');
+$routes->post('cancel_order', 'Ventas::cancel_order');
+$routes->post('set_pay', 'Ventas::set_pay');
+
 
 
 

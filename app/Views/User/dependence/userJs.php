@@ -2,50 +2,166 @@
     window.addEventListener('load', (e) => {
         e.stopPropagation();
 
-        let id__std = 0
+        const div_solicitudes = document.querySelector('#solicitudes')
 
-        fetch('<?php echo base_url('/nombre'); ?>', {
-                method: 'POST'
+        let id = 0
+        const getBooksSales = async (libros) => {
+            const fd_libros = new FormData()
+            fd_libros.append('libros', libros)
+            const postLibros = await fetch('<?= base_url('/librosSales') ?>', {
+                method: "POST",
+                body: fd_libros
             })
-            .then(response => response.json())
-            .then(r => {
-                document.querySelector('#idname').innerHTML = "Bienvenido " + r[0].toLowerCase() + " " + r[1].toLowerCase()
-                id = r[2]
+            const resPostLibros = await postLibros.json()
+            return resPostLibros
+        }
 
-                console.log(id);
+        const icons_condition = async (status, ico, span, libros, fecha_set, fecha_ok, small_date) => {
+            const array_libros = await getBooksSales(libros)
 
-                let tableEntregaID = $('#books-borrowed').DataTable({
-                    ajax: {
-                        "url": "<?php echo base_url('/libXid'); ?>",
-                        "method": "POST",
-                        "data": {
-                            id: id
+            if (status === "0") {
+                ico.classList.add("mdi", "mdi-timer-sand", "text-warning", "font-18")
+                span.textContent = " Esperando ser atendido "
+                small_date.textContent = fecha_set + " | Libros: " + array_libros.map(title => title)
+            }
+
+            if (status === "1") {
+                ico.classList.add("mdi", "mdi-account-cash", "text-success", "font-18")
+                span.textContent = " Pagado "
+                small_date.textContent = fecha_ok + " | Libros: " + array_libros.map(title => title)
+            }
+
+            if (status === "3") {
+                ico.classList.add("mdi", "mdi-check-outline", "text-primary", "font-18")
+                span.textContent = " Aprobado "
+                small_date.textContent = fecha_ok + " | Libros: " + array_libros.map(title => title)
+            }
+
+            if (status === "2") {
+                ico.classList.add("mdi", "mdi-cancel", "text-danger", "font-18")
+                span.textContent = " Orden cancelada, contactenos"
+                small_date.textContent = fecha_set + " | Libros: " + array_libros.map(title => title)
+            }
+        }
+
+        const ordenes = (orders) => {
+
+            orders.map(order => {
+                const container = document.createElement('div')
+                const div_ico = document.createElement('div')
+                const div_description = document.createElement('div')
+                const div_price = document.createElement('div')
+
+                const ico = document.createElement("i")
+                const a_description = document.createElement('a')
+                const span_descrition = document.createElement('span')
+                const span_price = document.createElement('span')
+                const p_description = document.createElement('p')
+                const s_date = document.createElement('small')
+                container.classList.add("row", "py-1", "align-items-center")
+                div_ico.classList.add('col-auto')
+                div_description.classList.add("col", "ps-0")
+                div_price.classList.add('col-auto')
+                a_description.classList.add('text-body', 'fw-bold', 'a_list')
+                p_description.classList.add('mb-0', 'text-muted')
+                span_price.classList.add('text-info', 'fw-bold', 'pe-2')
+
+                icons_condition(
+                    order.condition,
+                    ico,
+                    span_descrition,
+                    order.libros_id,
+                    order.fecha_solicitud,
+                    order.fecha_aprobado,
+                    s_date
+                )
+
+                // s_date.textContent = order.fecha_solicitud
+                a_description.textContent = "BM" + order.id
+                span_price.textContent = "$" + order.pay
+
+                div_ico.appendChild(ico)
+                div_description.appendChild(a_description)
+                div_description.appendChild(span_descrition)
+                p_description.appendChild(s_date)
+                div_description.appendChild(p_description)
+                div_price.appendChild(span_price)
+                container.appendChild(div_ico)
+                container.appendChild(div_description)
+                container.appendChild(div_price)
+
+                div_solicitudes.appendChild(container)
+            })
+        }
+
+        const postOrder = async (formData) => {
+
+            const postOrden = await fetch('<?php echo base_url('/p_order') ?>', {
+                method: "POST",
+                body: formData
+            })
+            const resOrden = await postOrden.json()
+            console.log(resOrden)
+
+            ordenes(resOrden)
+        }
+
+        const tableReceived = (item) => {
+            $('#books-borrowed').DataTable({
+                ajax: {
+                    "url": "<?php echo base_url('/libXid'); ?>",
+                    "method": "POST",
+                    "data": {
+                        item: item
+                    }
+                },
+                columns: [{
+                        "data": "portada",
+                        "render": function(name) {
+                            return `<img src="${base__url}/uploads/${name}" width="50" alt="portadas">`
                         }
                     },
-                    columns: [{
-                            "data": "portada",
-                            "render": function(name) {
-                                return `<img src="${base__url}/uploads/${name}" width="50" alt="portadas">`
-                            }
-                        },
-                        {
-                            "data": "titulo"
-                        },
-                        {
-                            "data": "autor"
-                        },
-                        {
-                            "data": "entrega"
-                        },
-                        {
-                            "data": "devolucion"
-                        }
-                    ],
-                    "language": {
-                        "url": "assets/json/Spanish.json"
+                    {
+                        "data": "titulo"
+                    },
+                    {
+                        "data": "autor"
+                    },
+                    {
+                        "data": "entrega"
+                    },
+                    {
+                        "data": "devolucion"
                     }
-                });
+                ],
+                "language": {
+                    "url": "assets/json/Spanish.json"
+                }
+            })
+        }
+
+        const setUser = (res) => {
+            document.querySelector('#idname').innerHTML = "Bienvenido " + res[0].toLowerCase() + " " + res[1].toLowerCase()
+            id = res[2]
+
+            const fid = new FormData()
+            fid.append('id', id)
+
+            postOrder(fid)
+
+            tableReceived(id)
+        }
+
+
+        const getDataUser = async () => {
+            const postUser = await fetch('<?php echo base_url('/nombre'); ?>', {
+                method: 'POST'
             });
+            const r = await postUser.json();
+            setUser(r)
+        }
+
+        getDataUser()
 
         document.querySelector('#salir').addEventListener('click', () => {
             fetch('<?php echo base_url('/logoff'); ?>', {
@@ -199,10 +315,11 @@
                 }
             })
 
-            await sendOrder(sumaTotal, libros, parseInt(id__std))
+            await sendOrder(sumaTotal, libros, parseInt(id))
 
             //sendOrder(sumaTotal, libros, id__std)
         })
+
 
     })
 </script>
