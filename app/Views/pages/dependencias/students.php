@@ -9,6 +9,37 @@
             ci: /^[0-9]{6,11}$/, // Solo caracteres numericos.
         }
 
+        function saveStudentImg(uri, filename) {
+
+            var link = document.createElement('a');
+
+            if (typeof link.download === 'string') {
+
+                link.href = uri;
+                link.download = filename;
+
+                //Firefox requires the link to be in the body
+                document.body.appendChild(link);
+
+                //simulate click
+                link.click();
+
+                //remove the link when done
+                document.body.removeChild(link);
+
+            } else {
+
+                window.open(uri);
+
+            }
+        }
+
+        document.getElementById("btn-down-student").addEventListener("click", function() {
+            html2canvas(document.querySelector('#students')).then(function(canvas) {
+                saveStudentImg(canvas.toDataURL(), 'Estudiantes_registrados.png');
+            });
+        });
+
         const list_paises = () => {
             const json__flagg = `${url__Base}/assets/json/codes_paises.json`
             fetch(json__flagg)

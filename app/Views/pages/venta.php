@@ -1,4 +1,42 @@
 <div class="cerodiv row" id="ventaB">
+
+    <!-- Info OrderID Modal -->
+    <div id="info-description" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-body p-4">
+                    <input type="hidden" name="id_libros_order" id="id_libros_order">
+                    <input type="hidden" value="<?php echo base_url() ?>" id="burl">
+                    <div class="text-center">
+                        <i class="dripicons-information h1 text-info"></i>
+                        <h4 class="mt-2">Descripci&oacute;n de la Orden #BM<span id="header_order"></span></h4>
+                        <div class="col-lg-12">
+                            <div class="card-body">
+                                <h4 class="header-title mb-3"></h4>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0" id="tb_ordenID">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Portada</th>
+                                                <th>Libro</th>
+                                                <th>Autor</th>
+                                                <th>Precio</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_order_sales"></tbody>
+                                    </table>
+                                </div>
+                                <!-- end table-responsive -->
+
+                            </div>
+                        </div> <!-- end col -->
+                        <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal" id="btn-down-descriptionOrder">Exportar</button>
+                    </div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- Info Pagado Modal -->
     <div id="info-alert-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-sm">
@@ -62,6 +100,31 @@
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
+
+    <!-- Warning Editar All Fecha Modal -->
+    <div id="editAll-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="warning-header-modalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header modal-colored-header bg-warning">
+                    <h3 class="modal-title" id="warning-header-modalLabel"><i class="mdi mdi-calendar-edit h2"></i> Entre la fecha</h3>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-hidden="true"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editAllSales">
+                        <div class="mb-3">
+                            <label class="form-label">Fecha de venta</label>
+                            <input type="text" class="form-control date" id="birthdatepicker" data-toggle="date-picker" data-single-date-picker="true" name="fecha_edit">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" class="btn btn-warning" data-bs-dismiss="modal">Guardar cambios</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- start page title -->
     <div class="row">
         <div class="col-12">
@@ -75,6 +138,8 @@
                 <h4 class="page-title">Revisi&oacute;n de las solicitudes de compra</h4>
             </div>
         </div>
+        <div class="t-inactive alert alert-danger bg-white text-danger" role="alert" id="mensaje_tableSales">
+        </div>
     </div>
     <!-- end page title -->
 
@@ -84,9 +149,12 @@
                 <div class="col-12">
                     <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                         <div class="row">
-                            <h4><button class="btn btn-warning btn-rounded mb-2 me-2"> <i class="mdi mdi-calendar-edit"></i> Editar fecha</button>
-                                <button class="btn btn-danger btn-rounded mb-2 me-2"> <i class="mdi mdi-delete"></i> Cancelar</button>
-                                <button class="btn btn-success btn-rounded mb-2 me-2"> <i class="mdi mdi-cart-check"></i> Pagado</button>
+                            <h4>
+                                <button class="btn btn-primary btn-rounded mb-2 me-2" id="btn-img-ventas"> <i class=" uil-corner-left-down"></i> Export</button>
+                                <button class="btn btn-warning btn-rounded mb-2 me-2" data-bs-toggle="modal" data-bs-target="#editAll-modal"> <i class=" uil-corner-left-down"></i> Aprobar orden</button>
+                                <button class="btn btn-danger btn-rounded mb-2 me-2" id="cancelOrder"> <i class=" uil-corner-left-down"></i> Cancelar</button>
+
+                                <button class="btn btn-success btn-rounded mb-2 me-2" id="payOrder"> <i class=" uil-corner-left-down"></i> Pagado</button>
                                 <button id="up_tbOrder" class="btn btn-info btn-rounded mb-2 me-2"> <i class="mdi mdi-update"></i> Actualizar</button>
                             </h4>
                         </div>
@@ -99,7 +167,7 @@
                                         <th style="width: 20px;">
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input" id="checkAll">
-                                                <label class="form-check-label" for="customCheck1">&nbsp;</label>
+                                                <label class="form-check-label" for="checkAll">&nbsp;&nbsp;&nbsp;</label>
                                             </div>
                                         </th>
                                         <th>Orden ID</th>

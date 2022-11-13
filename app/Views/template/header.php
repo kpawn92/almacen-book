@@ -8,7 +8,7 @@
     <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description">
     <meta content="Coderthemes" name="author">
     <!-- App favicon -->
-    <link rel="shortcut icon" href="logo/logo.png">
+    <link rel="shortcut icon" href="logo/logo2.jpg">
 
     <!-- App css -->
     <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css">
@@ -56,7 +56,7 @@
             </a>
 
             <!-- LOGO -->
-            <a href="index.html" class="logo text-center logo-dark">
+            <a href="#" class="logo text-center logo-dark">
                 <span class="logo-lg">
                     <img src="assets/images/logo-dark.png" alt="" height="16">
                 </span>
@@ -161,13 +161,13 @@
 
 
                         <li class="dropdown notification-list">
-                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                                <span class="account-user-avatar">
-                                    <img src="logo/logo.png" alt="user-image" class="rounded-circle">
-                                </span>
+                            <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">                                
                                 <span>
-                                    <span class="account-user-name">Root</span>
-                                    <span class="account-position">Founder</span>
+                                    <span class="account-user-name">Alex Gonzalez</span>
+                                    <span class="account-position"><b>root</b></span>
+                                </span>
+                                <span class="account-user-avatar">
+                                    <i class="mdi mdi-account-details rounded-circle h2"></i>
                                 </span>
                             </a>
                             <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">

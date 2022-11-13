@@ -3,6 +3,37 @@
         document.querySelector('#resp__book').classList.add('t-inactive');
         document.querySelector('#resp__book').innerHTML = "";
 
+        function saveBookImg(uri, filename) {
+
+            var link = document.createElement('a');
+
+            if (typeof link.download === 'string') {
+
+                link.href = uri;
+                link.download = filename;
+
+                //Firefox requires the link to be in the body
+                document.body.appendChild(link);
+
+                //simulate click
+                link.click();
+
+                //remove the link when done
+                document.body.removeChild(link);
+
+            } else {
+
+                window.open(uri);
+
+            }
+        }
+
+        document.getElementById("btn-down-books").addEventListener("click", function() {
+            html2canvas(document.querySelector('#books')).then(function(canvas) {
+                saveBookImg(canvas.toDataURL(), 'Libros_registrados.png');
+            });
+        });
+
         const baseUrl = document.querySelector('#base_url').value
 
         const formBook = document.querySelector('#form__book');

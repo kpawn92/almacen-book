@@ -4,12 +4,156 @@
       const form_date = document.querySelector('#form_edit_modal')
       const form_cancel = document.querySelector('#form-delOrden')
       const form_pay = document.querySelector('#form_pay')
+      const tbodyOrder = document.querySelector('#tb_order_sales')
+      const url = document.querySelector('#burl').value
+      const headerOrder = document.querySelector('#header_order')
+      const btnEdit = document.querySelector('#editOrder')
+      const btnCancel = document.querySelector('#cancelOrder')
+      const btnPay = document.querySelector('#payOrder')
+      const checkAll = document.querySelector('#checkAll')
+      const formEditSalesAll = document.querySelector('#editAllSales')
+      const div_mesanjeSales = document.querySelector('#mensaje_tableSales')
+
+
+
+      function saveIMG(uri, filename) {
+
+        var link = document.createElement('a');
+
+        if (typeof link.download === 'string') {
+
+          link.href = uri;
+          link.download = filename;
+
+          //Firefox requires the link to be in the body
+          document.body.appendChild(link);
+
+          //simulate click
+          link.click();
+
+          //remove the link when done
+          document.body.removeChild(link);
+
+        } else {
+
+          window.open(uri);
+
+        }
+      }
+
+      const img_export = (btn, table, name) => {
+        btn.addEventListener("click", function() {
+          html2canvas(table).then(function(canvas) {
+            saveIMG(canvas.toDataURL(), name);
+          });
+        });
+      }
+
+      img_export(document.getElementById("btn-img-ventas"), document.querySelector('#tb__orders'), 'Ordenes_de_compras.png')
+
+      img_export(document.getElementById("btn-down-descriptionOrder"), document.querySelector('#tb_ordenID'), `Descripcion de la orden.png`)
+
+
+      checkAll.addEventListener('click', () => {
+        const checkBoxSales = document.querySelectorAll('tbody input')
+        checkBoxSales.forEach(check => check.checked = !check.checked)
+      })
+
+      const mensajePost = (post) => {
+        div_mesanjeSales.classList.remove('t-inactive')
+        console.log(post)
+        if (post === "0") {
+          div_mesanjeSales.innerHTML = " <strong>Error en la actualizaci&oacute;n de las &oacute;rdenes</strong>"
+        }
+
+        if (post === "1") {
+          div_mesanjeSales.classList.remove('alert-danger', 'text-danger')
+          div_mesanjeSales.classList.add('alert-success', 'text-success')
+          div_mesanjeSales.innerHTML = " <strong>Actualizaci&oacute;n realizada</strong>"
+        }
+
+        setTimeout(() => {
+          div_mesanjeSales.classList.add('t-inactive')
+          div_mesanjeSales.classList.add('alert-danger', 'text-danger')
+          div_mesanjeSales.classList.remove('alert-success', 'text-success')
+        }, 5000)
+      }
+
+      const fetchIds = async (url, formData) => {
+        const post = await fetch(url, {
+          method: "POST",
+          body: formData
+        })
+        const resPost = await post.text()
+        await mensajePost(resPost)
+      }
+
+      const setCheckBox = (btn, url) => {
+        btn.addEventListener('click', () => {
+          formData = new FormData()
+          document.querySelectorAll('tbody input').forEach(check => {
+            if (check.checked !== false) {
+              formData.append('id', check.id)
+              fetchIds(url, formData)
+            }
+          })
+        })
+      }
+
+      const setEditAllsales = (form, url) => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault()
+          formData = new FormData()
+          formData.append('fecha', e.target.fecha_edit.value)
+
+          document.querySelectorAll('tbody input').forEach(check => {
+            if (check.checked !== false) {
+              formData.append('id', check.id)
+              fetchIds(url, formData)
+            }
+          })
+
+
+        })
+      }
+
+      setEditAllsales(formEditSalesAll, "<?= base_url('/editSalesAll') ?>")
+      setCheckBox(btnCancel, "<?= base_url('/cancelSales') ?>")
+      setCheckBox(btnPay, "<?= base_url('/paySales') ?>")
+
+
+
+      tbodyOrder.innerHTML = ''
+
+
+
+      const tableOfOrder = (element) => {
+        element.map(e => {
+          tbodyOrder.innerHTML += `              <tr>
+                                                    <td><img src="${url}/uploads/${e.portada}" width="30" alt="portadas"></td>
+                                                    <td>${e.titulo}</td>
+                                                    <td>${e.autor}</td>
+                                                    <td>$${e.precio}</td>
+                                                </tr>`
+        })
+      }
+
+      const getLibrosOrder = async (element) => {
+        const libros = new FormData()
+        libros.append('libros', element)
+        const postLibros = await fetch('<?= base_url('/librosSalesRoot') ?>', {
+          method: "POST",
+          body: libros
+        })
+        const resPostLibros = await postLibros.json()
+        tableOfOrder(resPostLibros)
+      }
 
       form_pay.addEventListener('submit', async (e) => {
         e.preventDefault()
         const fdpay = new FormData()
         fdpay.append('id', e.target.id_pay.value)
-        const postPay = await fetch('<?= base_url('/set_pay')?>', {
+        const postPay = await fetch('<?= base_url('/set_pay') ?>', {
           method: "POST",
           body: fdpay
         })
@@ -107,14 +251,14 @@
             "render": function(id) {
               return `<div class="form-check">
                          <input type="checkbox" class="form-check-input" id="${id}">
-                         <label class="form-check-label" for="${id}">&nbsp;</label>
+                         <label class="form-check-label" for="${id}">&nbsp;&nbsp;&nbsp;&nbsp;</label>
                       </div>`
             }
           },
           {
             "data": "id",
             "render": function(id) {
-              return `<a href="#" class="text-body fw-bold">#BM${id}</a>`
+              return `<a href="#" class="text-body fw-bold" data-bs-toggle="modal" data-bs-target="#info-description">#BM${id}</a>`
             }
           },
           {
@@ -158,17 +302,18 @@
 
       $("#tb__orders tbody").on('click', 'tr', function() {
         const data = table_order.row(this).data();
-        //console.log(data);
         $("#id_book_ok").val(data.id);
         $("#del-order").val(data.id);
         $("#id_pay").val(data.id);
+        headerOrder.innerHTML = ''
+        $("#id_libros_order").val(data.libros_id);
+        headerOrder.innerHTML = data.id
+
+        tbodyOrder.innerHTML = ''
+
+        getLibrosOrder(document.querySelector('#id_libros_order').value)
 
       });
-
-      document.querySelector('#checkAll').addEventListener('click', () => {
-        const checkBoxSales = document.querySelectorAll('tbody input')
-        checkBoxSales.forEach(check => check.checked = !check.checked)
-      })
 
     });
   })

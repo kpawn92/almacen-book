@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\M_disponibles;
 use App\Models\M_orders;
 use CodeIgniter\Controller;
 
@@ -21,7 +22,7 @@ class Ventas extends Controller
             echo $jsonstring;
         }
     }
-    
+
     public function date_aprobado()
     {
         $order = new M_orders();
@@ -29,14 +30,16 @@ class Ventas extends Controller
         extract($request->getPost());
 
         $fecha = strtotime($date);
+        $condition = $order->getFechaOk($id)['condition'];
         $fecha_solicited = $order->getDateOrder($id)['date_order'];
-        $fecha_aprobado = $order->getDateOk($id)['date_okay'];
-        
-        if ($fecha_solicited < $fecha && $fecha_aprobado === null) {
-            $order->update_order($id, $fecha);
-            return "3";
+
+        if ($fecha_solicited < $fecha) {
+            if ($condition === "0" || $condition === "2") {
+                $order->update_order($id, $fecha);
+                return "3";
+            }
         }
-        return "0";
+        return $condition;
     }
 
     public function cancel_order()
@@ -45,8 +48,12 @@ class Ventas extends Controller
         $request = \Config\Services::request();
         extract($request->getPost());
 
-        $order->upd_order_status($id);
-        return "0";        
+        $condition = $order->getFechaOk($id)['condition'];
+        if ($condition === "0") {
+            $order->upd_order_status($id);
+            return "1";
+        }
+        return "0";
     }
 
     public function set_pay()
@@ -55,7 +62,76 @@ class Ventas extends Controller
         $request = \Config\Services::request();
         extract($request->getPost());
 
-        $order->upd_payeer($id);
-        return "0";        
+        $condition = $order->getFechaOk($id)['condition'];
+
+        if ($condition === "3") {
+
+            $order->upd_payeer($id);
+            return "1";
+        }
+        return "0";
+    }
+
+    public function librosSales()
+    {
+        $libro = new M_disponibles();
+        $libros = $_POST['libros'];
+
+        $json = array();
+
+        $array = explode(',', $libros);
+
+        for ($i = 0; $i < count($array); $i++) {
+            $getTitulo = $libro->getLibroReceivedRoot(intval($array[$i]));
+            foreach ($getTitulo as $data) {
+                $json[] = $data;
+            }
+        }
+
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
+    }
+
+    public function cancelSales()
+    {
+        $order = new M_orders();
+        $id = $_POST['id'];
+        $condition = $order->getFechaOk($id)['condition'];
+        if ($condition === "0") {
+            $order->upd_order_status($id);
+            return "1";
+        }
+        return "0";
+    }
+
+    public function paySales()
+    {
+        $order = new M_orders();
+        $id = $_POST['id'];
+        $condition = $order->getFechaOk($id)['condition'];
+        if ($condition === "3") {
+            $order->upd_payeer($id);
+            return "1";
+        }
+        return "0";
+    }
+
+    public function editSalesAll()
+    {
+        $order = new M_orders();
+        $id = $_POST['id'];
+        $fecha = $_POST['fecha'];
+        $fecha_order = $order->getDateOrder($id)['date_order'];
+        $date = strtotime($fecha);
+        $condition = $order->getFechaOk($id)['condition'];
+        if ($fecha_order > $date) {
+            return "0";
+        } else {
+            if ($condition === "0" || $condition === "2") {
+                $order->update_order($id, $date);
+                return "1";
+            }
+        }
+        return "0";
     }
 }

@@ -61,4 +61,11 @@ class M_disponibles extends Model
         $query = $db->query("SELECT titulo FROM op_books_disponibles JOIN tb_libro ON tb_libro.id = op_books_disponibles.fk_libro WHERE op_books_disponibles.id = '$id'");
         return $query->getRowArray();
     }
+
+    function getLibroReceivedRoot($id)
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT portada, titulo, autor, precio FROM op_books_disponibles JOIN tb_libro ON tb_libro.id = op_books_disponibles.fk_libro WHERE op_books_disponibles.id = '$id'");
+        return $query->getResultArray();
+    }
 }

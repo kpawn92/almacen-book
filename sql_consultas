@@ -1,0 +1,2 @@
+SELECT DISTINCT fk_estudiante FROM tb_order
+SELECT SUM(pay) FROM tb_order WHERE fk_estudiante = 102;

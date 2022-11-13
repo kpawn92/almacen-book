@@ -27,7 +27,7 @@
         document.getElementById('aPrestamo').classList.remove('active');
 
         document.querySelectorAll('.lista').forEach(li => li.style.cursor = "pointer");
-        
+
 
         /* Funcionalidades de los <page-title-box> */
         document.querySelector('#aPrestamo').addEventListener('click', (e) => {
@@ -64,10 +64,10 @@
                     "render": function(data) {
                         return `<img src="${urlbase}/uploads/${data}" width="50">`
                     }
-                },                
+                },
                 {
                     "data": "codigo"
-                },                
+                },
                 {
                     "data": "fecha_entrega"
                 },
@@ -81,6 +81,37 @@
             "language": {
                 "url": "assets/json/Spanish.json"
             },
+        });
+
+        function saveImgeEntregas(uri, filename) {
+
+            var link = document.createElement('a');
+
+            if (typeof link.download === 'string') {
+
+                link.href = uri;
+                link.download = filename;
+
+                //Firefox requires the link to be in the body
+                document.body.appendChild(link);
+
+                //simulate click
+                link.click();
+
+                //remove the link when done
+                document.body.removeChild(link);
+
+            } else {
+
+                window.open(uri);
+
+            }
+        }
+
+        document.getElementById("btn-down-entrega").addEventListener("click", function() {
+            html2canvas(document.querySelector('#prestamosBook')).then(function(canvas) {
+                saveImgeEntregas(canvas.toDataURL(), `Libros_entregados_estudiante_${selectEst.value}.png`);
+            });
         });
 
 

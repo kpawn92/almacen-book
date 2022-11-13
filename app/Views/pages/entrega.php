@@ -128,6 +128,7 @@
                             <h4 class="header-title">
                                 <button class="btn btn-sm btn-warning" id="copy-devolution"><i class=" uil-list-ul "></i></button>
                                 <button class="btn btn-sm btn-primary" id="upto-dev"><i class="mdi mdi-autorenew"></i></button>
+                                <button class="btn btn-sm btn-info" id="btn-down-entrega"><i class="uil-down-arrow"></i></button>
                                 Libros pendientes:
                             </h4>
                         </div>

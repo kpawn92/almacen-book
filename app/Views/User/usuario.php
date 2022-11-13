@@ -52,7 +52,7 @@
                         <i class="dripicons-information h1 text-info"></i>
                         <h4 class="mt-2">Heads up!</h4>
                         <p class="mt-3">Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam.</p>
-                        <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal">Continue</button>
+                        <button type="button" class="btn btn-info my-2" data-bs-dismiss="modal" id="modal-order">Continue</button>
                     </div>
                 </div>
             </div><!-- /.modal-content -->
@@ -352,47 +352,12 @@
                     </ul>
 
                 </div>
-
-                <div class="col-lg-2 mt-3 mt-lg-0">
-                    <h5 class="text-light">Company</h5>
-
-                    <ul class="list-unstyled ps-0 mb-0 mt-3">
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">About Us</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Documentation</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Blog</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Affiliate Program</a></li>
-                    </ul>
-
-                </div>
-
-                <div class="col-lg-2 mt-3 mt-lg-0">
-                    <h5 class="text-light">Apps</h5>
-
-                    <ul class="list-unstyled ps-0 mb-0 mt-3">
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Ecommerce Pages</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Email</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Social Feed</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Projects</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Tasks Management</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-2 mt-3 mt-lg-0">
-                    <h5 class="text-light">Discover</h5>
-
-                    <ul class="list-unstyled ps-0 mb-0 mt-3">
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Help Center</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Our Products</a></li>
-                        <li class="mt-2"><a href="javascript: void(0);" class="text-muted">Privacy</a></li>
-                    </ul>
-                </div>
             </div>
 
             <div class="row">
                 <div class="col-lg-12">
                     <div class="mt-5">
-                        <p class="text-muted mt-4 text-center mb-0">© 2018 - 2021 Hyper. Design and coded by
-                            Coderthemes</p>
+                        <p class="text-muted mt-4 text-center mb-0">© 2018 - 2022 UCM. Universidad de Ciencias M&eacute;dicas</p>
                     </div>
                 </div>
             </div>

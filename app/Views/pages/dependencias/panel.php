@@ -348,8 +348,8 @@
             stroke: {
               colors: ["transparent"]
             },
-            series: [44, 55, 41, 17],
-            labels: ["Direct", "Affilliate", "Sponsored", "E-mail"],
+            series: [44, 55, 4, 2], //cantidad distribuida en 4 products
+            labels: ["React", "JS", "Angular", "Sql"], //nombres de los products
             colors: e,
             responsive: [{
               breakpoint: 480,

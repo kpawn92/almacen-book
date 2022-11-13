@@ -47,7 +47,7 @@ class M_orders extends Model
   function getOrders()
   {
     $db = \Config\Database::connect();
-    $query = $db->query("SELECT tb_order.id, FROM_UNIXTIME(tb_order.date_order, '%d %M %Y') as fecha_solicitud, tb_estudiante.nombre, tb_estudiante.lastname, tb_order.pay, tb_order.condition, FROM_UNIXTIME(tb_order.date_okay, '%d %M %Y') as fecha_aprobado FROM `tb_order` JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante ORDER BY tb_order.id DESC");
+    $query = $db->query("SELECT tb_order.id, FROM_UNIXTIME(tb_order.date_order, '%d %M %Y') as fecha_solicitud, tb_estudiante.nombre, tb_estudiante.lastname, tb_order.pay, tb_order.condition, FROM_UNIXTIME(tb_order.date_okay, '%d %M %Y') as fecha_aprobado, libros_id FROM `tb_order` JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante ORDER BY tb_order.id DESC");
     return $query->getResultArray();
   }
 
@@ -91,5 +91,12 @@ class M_orders extends Model
     $db = \Config\Database::connect();
     $query = $db->query("UPDATE tb_order SET `condition` = 1  WHERE id = '$id'");
     return $query;
-  }  
+  }
+  
+  function getFechaOk($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT `condition` FROM tb_order WHERE id = '$id'");
+    return $query->getRowArray();
+  }
 }

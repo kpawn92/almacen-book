@@ -146,7 +146,10 @@
         <div class="col-12">
             <div class="shadow-lg p-3 mb-5 mt-4 bg-body rounded">
                 <div class="row">
-                    <h4 class="header-title">Estudiantes registrados<button class="btn btn-primary ms-2" id="btn-update"><i class="mdi mdi-autorenew"></i></button></h4>
+                    <h4 class="header-title">Estudiantes registrados
+                        <button class="btn btn-primary ms-2" id="btn-update"><i class="mdi mdi-autorenew"></i></button>
+                        <button class="btn btn-warning ms-2" id="btn-down-student"><i class="uil-down-arrow"></i></button>
+                </h4>
                 </div>
                 <p class="text-muted font-13">Lorem ipsum <code>{Breve descripcion del DataTable}</code> dolor sit amet
                     consectetur adipisicing elit. Atque iusto cum, vel cupiditate quaerat modi quis porro dolores est
