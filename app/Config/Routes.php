@@ -99,6 +99,9 @@ $routes->post('cancelSales', 'Ventas::cancelSales');
 $routes->post('paySales', 'Ventas::paySales');
 
 
+$routes->post('topStudentsMayorSales', 'Dash::topStudentsMayorSales');
+
+
 
 
 

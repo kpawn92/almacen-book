@@ -258,6 +258,44 @@ class Dash extends Controller
             $total += floatval($sale[$i]['pay']);
         }
 
-        echo $books['idl'] . "-" . $perdidos['perdido'] . "-" . $std['std']."-".$total;
+        echo $books['idl'] . "-" . $perdidos['perdido'] . "-" . $std['std'] . "-" . $total;
+    }
+
+    public function topStudentsMayorSales()
+    {
+        $order = new M_orders();
+        $json = array();
+        $students = $order->getOrderStudents();
+
+        $libros = $order->getBooksOrders();
+        $arrayBooks = array();
+
+
+        foreach ($libros as $key => $value) {
+            $orderWithBooks = explode(",", $value['libros']);
+            for ($i = 0; $i < count($orderWithBooks); $i++) {
+                $arrayBooks[] = $orderWithBooks[$i];
+            }
+        }
+
+        $uniqueBooks = array_unique($arrayBooks);
+
+
+        sort($uniqueBooks);
+
+        //Libros vendidos
+        $json['books'][] = $arrayBooks;
+        $json['books']['unique'] = $uniqueBooks;
+
+        foreach ($students as $key => $data) {
+            $json['data'][] = $data;
+            $payTotal = $order->totalPayOrStudent(intval($data['fk_estudiante']));
+
+            $json['data'][$key][] = $payTotal;
+        }
+
+
+        $jsonstring = json_encode($json);
+        echo $jsonstring;
     }
 }

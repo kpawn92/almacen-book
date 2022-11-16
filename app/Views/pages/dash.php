@@ -233,7 +233,7 @@
                 <a href="#" class="btn btn-sm btn-link float-end" id="e_std_sales">Export
                     <i class="mdi mdi-download ms-1"></i>
                 </a>
-                <h4 class="header-title mt-2 mb-3">Top 5 de Estudiantes con mayor compras</h4>
+                <h4 class="header-title mt-2 mb-3">Top de Estudiantes con m&aacute;s &oacute;rdenes cerradas</h4>
 
                 <div class="table-responsive" id="top_estudiante_compras">
                     <table class="table table-centered table-nowrap table-hover mb-0">

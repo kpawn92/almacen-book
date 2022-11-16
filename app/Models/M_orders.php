@@ -92,11 +92,31 @@ class M_orders extends Model
     $query = $db->query("UPDATE tb_order SET `condition` = 1  WHERE id = '$id'");
     return $query;
   }
-  
+
   function getFechaOk($id)
   {
     $db = \Config\Database::connect();
     $query = $db->query("SELECT `condition` FROM tb_order WHERE id = '$id'");
     return $query->getRowArray();
+  }
+
+  function getOrderStudents()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT DISTINCT fk_estudiante, nombre, lastname as estudiante FROM tb_order JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante WHERE `condition` = 1 limit 5 ");
+    return $query->getResultArray();
+  }
+
+  function totalPayOrStudent($id)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT SUM(pay) as payTotal FROM tb_order WHERE fk_estudiante = '$id' AND `condition` = 1");
+    return $query->getRowArray();
+  }
+  function getBooksOrders()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT libros_id as libros FROM tb_order WHERE `condition` = 1");
+    return $query->getResultArray();
   }
 }

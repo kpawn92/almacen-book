@@ -1,6 +1,14 @@
 <script>
   $(document).ready(function() {
 
+    const getTopStudentSales = async () => {
+      const post = await fetch('<?= base_url('topStudentsMayorSales')?>', { method: "POST"})
+      const res = await post.json()
+      console.log(res)
+    }
+
+    getTopStudentSales()
+
     const d = new Date();
     const today = d.toLocaleDateString('en-US')
 

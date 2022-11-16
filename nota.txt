@@ -1,16 +1,22 @@
-Sistema informático para el control en el almacén de libros de la Universidad de Ciencias Médicas de Granma
-Gestionar los estudiantes matriculados, libros existentes, prestamos de libros y ventas de libros.
+DashBoard
+- Array de objetos 
+data: datos de los estudiantes con mayores compras
+libros: objeto de los libros vendidos
+        - Sacar los id unicos
+        - Contar los id repetidos
+        - Cada cantidad de ids multiplicarlo por el precio del libro
+        - Seleccionar los 4 primeros(mayor recaudacion)
 
-Por terminar:
-1. Session control de los libros user:
-- Mostrar historial libros entregados.
-- Mostrar el estado de las ordenes (generar notificaciones al ser aceptada la orden).
-- Crear form para generar comentarios, criterios.
+- crear una table comentarios
+  [id(user), coment]
+        
 
-2. Session admin
-- Generar el form para la aceptacion de las ordenes
+var array = [4,1,2,1,1,3,45,13,42,52,45,25,13,40,13,2];
 
+var repetidos = {};
 
-generar el comentario en la sesion de usuarios
-generar la gestion de las ordenes en el root
-generar vista para darle seguimiento a las ordenes en el usuario
+array.forEach(function(numero){
+  repetidos[numero] = (repetidos[numero] || 0) + 1;
+});
+
+console.log(repetidos);
