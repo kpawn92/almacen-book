@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use App\Models\M_book;
+use App\Models\M_comment;
 use App\Models\M_disponibles;
 use App\Models\M_entrega;
 use App\Models\M_orders;
@@ -68,9 +69,9 @@ class Invitado extends Controller
     {
 
         $orden = new M_orders();
-        $request = \Config\Services::request();
         $orden = new M_orders();
         $book = new M_disponibles();
+        $request = \Config\Services::request();
         extract($request->getPost());
 
         $array = explode(",", $libros[0]);
@@ -130,5 +131,19 @@ class Invitado extends Controller
 
         $jsonstring = json_encode($json);
         echo $jsonstring;        
+    }
+
+    public function commentSave()
+    {
+        $request = \Config\Services::request();
+        extract($request->getPost());
+        $comments = new M_comment();
+
+        $query = $comments->guardar(intval($id), $subject, $comment);
+
+        if(!$query) return "0";
+
+        return "1";
+
     }
 }

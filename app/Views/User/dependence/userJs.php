@@ -2,7 +2,35 @@
     window.addEventListener('load', (e) => {
         e.stopPropagation();
 
+        const toastr = (info, text, item) => {
+            return $.NotificationApp.send(
+                `${info}!`,
+                `${text}.`,
+                "top-right",
+                "rgba(0,0,0,0.2)",
+                `${item}`
+            );
+        }
+
         const div_solicitudes = document.querySelector('#solicitudes')
+        const formComent = document.querySelector('#form-comment')
+
+        const sendComment = async (formData) => {
+            const post = await fetch('<?= base_url('/commentSave')?>', { method: "POST", body: formData})
+            const resPost = await post.text()
+            if(resPost === "1") toastr("Acepatada", "El comentario ha sido enviado satisfactoriamente", "success")
+        }
+
+        formComent.addEventListener('submit', (e)=>{
+            e.preventDefault()
+            const {identificador, subject, comment} = e.target
+            const formData = new FormData()
+            formData.append('id', identificador.value)
+            formData.append('subject', subject.value)
+            formData.append('comment', comment.value)
+
+            sendComment(formData)
+        })
 
         let id = 0
         const getBooksSales = async (libros) => {
@@ -144,6 +172,8 @@
             document.querySelector('#idname').innerHTML = "Bienvenido " + res[0].toLowerCase() + " " + res[1].toLowerCase()
             id = res[2]
 
+            document.querySelector('#identificador').value = id
+
             const fid = new FormData()
             fid.append('id', id)
 
@@ -254,16 +284,6 @@
                 a_pagar.innerHTML = sumaTotal.toFixed(2)
             }
         });
-
-        const toastr = (info, text, item) => {
-            return $.NotificationApp.send(
-                `${info}!`,
-                `${text}.`,
-                "top-right",
-                "rgba(0,0,0,0.2)",
-                `${item}`
-            );
-        }
 
         const sendOrder = async (cont, books, id) => {
             try {

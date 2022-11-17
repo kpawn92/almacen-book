@@ -101,6 +101,9 @@ $routes->post('paySales', 'Ventas::paySales');
 
 $routes->post('topStudentsMayorSales', 'Dash::topStudentsMayorSales');
 
+//Comentarios
+$routes->post('commentSave', 'Invitado::commentSave');
+
 
 
 
