@@ -89,4 +89,11 @@ class M_entrega extends Model
         $query = $db->query("SELECT COUNT(id) as perdido FROM op_historial_libroestudiante WHERE `status` = 3");
         return $query->getRowArray();
     }
+
+    function getBooksPerdidos()
+    {
+        $db = \Config\Database::connect();
+        $query = $db->query("SELECT SUM(precio) as perdido FROM op_historial_libroestudiante JOIN tb_libro ON tb_libro.id = op_historial_libroestudiante.fk_libro WHERE `status` = 3");
+        return $query->getRowArray();
+    }
 }

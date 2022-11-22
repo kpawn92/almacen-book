@@ -9,6 +9,8 @@ use App\Models\M_yearA;
 use App\Models\M_brigada;
 use App\Models\M_student;
 use App\Models\M_book;
+use App\Models\M_comment;
+use App\Models\M_disponibles;
 use App\Models\M_entrega;
 use App\Models\M_orders;
 use App\Models\M_users;
@@ -252,11 +254,15 @@ class Dash extends Controller
         $perdidos = $perdida->libros__perdidos();
         $std = $student->estudiantes();
         $sale = $venta->ventas();
+        $recaudadoPerdido = $perdida->getBooksPerdidos();
         $total = 0;
+
+        //*** Falta sumar los libros perdidos que tambien son pagados y entra en recaudacion
 
         for ($i = 0; $i < count($sale); $i++) {
             $total += floatval($sale[$i]['pay']);
         }
+        $total += floatval($recaudadoPerdido['perdido']);
 
         echo $books['idl'] . "-" . $perdidos['perdido'] . "-" . $std['std'] . "-" . $total;
     }
@@ -264,28 +270,27 @@ class Dash extends Controller
     public function topStudentsMayorSales()
     {
         $order = new M_orders();
+        $comments = new M_comment();
+        // $booksReceived = new M_disponibles();
         $json = array();
         $students = $order->getOrderStudents();
+        $comment = $comments->getComments();
+        $espera = $order->getSaleByState(0);
+        $pay = $order->getSaleByState(1);
+        $cancel = $order->getSaleByState(2);
+        $acept = $order->getSaleByState(3);
+        $total = $order->getSaleTotal();
 
-        $libros = $order->getBooksOrders();
-        $arrayBooks = array();
+        //Grafica
+        $json['grafica']['espera'] = $espera;
+        $json['grafica']['pay'] = $pay;
+        $json['grafica']['cancel'] = $cancel;
+        $json['grafica']['acept'] = $acept;
+        $json['grafica']['total'] = $total;
 
 
-        foreach ($libros as $key => $value) {
-            $orderWithBooks = explode(",", $value['libros']);
-            for ($i = 0; $i < count($orderWithBooks); $i++) {
-                $arrayBooks[] = $orderWithBooks[$i];
-            }
-        }
-
-        $uniqueBooks = array_unique($arrayBooks);
-
-
-        sort($uniqueBooks);
-
-        //Libros vendidos
-        $json['books'][] = $arrayBooks;
-        $json['books']['unique'] = $uniqueBooks;
+        //Comentarios
+        $json['comments'][] = $comment;
 
         foreach ($students as $key => $data) {
             $json['data'][] = $data;

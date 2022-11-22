@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Servidor: localhost
--- Tiempo de generación: 16-11-2022 a las 17:04:31
--- Versión del servidor: 10.4.24-MariaDB
--- Versión de PHP: 8.1.6
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 22-11-2022 a las 18:57:26
+-- Versión del servidor: 10.4.19-MariaDB
+-- Versión de PHP: 8.0.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -73,7 +73,8 @@ INSERT INTO `op_historial_libroestudiante` (`id`, `fk_estudiante`, `fk_libro`, `
 (203, 102, 55, 1642744800, NULL, 1),
 (204, 102, 54, 1665464400, NULL, 1),
 (205, 109, 56, 1662008400, 1667106000, 3),
-(206, 109, 56, 1669183200, 1669788000, 3);
+(206, 109, 56, 1669183200, 1669788000, 3),
+(207, 109, 56, 1668751200, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -114,6 +115,31 @@ INSERT INTO `tb_carrera` (`id`, `carrera`) VALUES
 (1, 'MEDICINA'),
 (2, 'ENFERMERIA'),
 (3, 'TECNOLOGIAS');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tb_comment`
+--
+
+CREATE TABLE `tb_comment` (
+  `id` int(11) NOT NULL,
+  `fk_estudiante` int(11) NOT NULL,
+  `subject` varchar(255) COLLATE utf8_spanish_ci NOT NULL,
+  `comment` varchar(350) COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `tb_comment`
+--
+
+INSERT INTO `tb_comment` (`id`, `fk_estudiante`, `subject`, `comment`) VALUES
+(8, 102, 'assadsadsd', 'sasdasdsa'),
+(9, 102, 'assadsadsd', 'sasdasdsa'),
+(10, 102, 'sasdasdassdas', 'dasdasdasdasdasdasd'),
+(11, 102, 'asdasdasdasdaasd', 'sdasdasadasdas'),
+(12, 102, 'asdasdasdasdaasd', 'sdasdasadasdas'),
+(13, 109, 'Libros de programacion', 'Necesidad de obtener libros para programar ');
 
 -- --------------------------------------------------------
 
@@ -172,7 +198,7 @@ INSERT INTO `tb_libro` (`id`, `codigo`, `titulo`, `portada`, `precio`, `autor`, 
 (53, 'RES-462', 'SQL', '1664663405_e13f7534b5e0fa0e607b.jpg', '136.84', 'ARTUH ERTHREES', '458-ASA458-48', 170),
 (54, 'RES-460', 'ANGULAR', '1665783046_4bb4e0e1c3521e456e89.jpg', '14.56', 'ARTUH GONSAS', '45484-454', 434),
 (55, 'RES-461', 'REACT', '1665783084_24a2174b40a68717d44b.jpg', '126.35', 'ARTUH GONSAS', '458-ASA458-48', 47),
-(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 63);
+(56, 'RES-463', 'VUE', '1665783110_705ab79688e1dbe074cd.jpg', '126.35', 'ARTUH GONSAS', '45484-454', 62);
 
 -- --------------------------------------------------------
 
@@ -187,7 +213,7 @@ CREATE TABLE `tb_order` (
   `pay` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
   `date_order` int(11) NOT NULL,
   `date_okay` int(11) DEFAULT NULL,
-  `condition` int(1) DEFAULT 0
+  `condition` int(1) DEFAULT 0 COMMENT '0 = esperando respuesta, 1=pagado, 2=cancelado, 3=aprobado'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci ROW_FORMAT=DYNAMIC;
 
 --
@@ -201,7 +227,7 @@ INSERT INTO `tb_order` (`id`, `fk_estudiante`, `libros_id`, `pay`, `date_order`,
 (76, 109, '29,31,34,33', '292.31', 1668199545, 1668232800, 1),
 (77, 109, '30,29,31,34,33,32', '545.01', 1668219780, 1668664800, 3),
 (78, 102, '30,29', '140.91', 1668356490, NULL, 0),
-(79, 102, '31,34,33,32', '404.10', 1668356642, NULL, 0);
+(79, 102, '31,34,33,32', '404.10', 1668356642, NULL, 2);
 
 -- --------------------------------------------------------
 
@@ -223,7 +249,7 @@ CREATE TABLE `tb_users` (
 
 INSERT INTO `tb_users` (`id`, `usuario`, `password`, `rol`, `logged`) VALUES
 (1, 'root', '1234', 1, 0),
-(13, 'usuario', '92102047481', 3, 1),
+(13, 'usuario', '92102047481', 3, 0),
 (17, 'usuario', '45481215785', 3, 0),
 (18, 'usuario', '23234234232', 3, 0),
 (19, 'usuario', '22222222222', 3, 0),
@@ -282,6 +308,13 @@ ALTER TABLE `tb_carrera`
   ADD PRIMARY KEY (`id`) USING BTREE;
 
 --
+-- Indices de la tabla `tb_comment`
+--
+ALTER TABLE `tb_comment`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `fk_estudiante` (`fk_estudiante`);
+
+--
 -- Indices de la tabla `tb_estudiante`
 --
 ALTER TABLE `tb_estudiante`
@@ -329,7 +362,7 @@ ALTER TABLE `op_books_disponibles`
 -- AUTO_INCREMENT de la tabla `op_historial_libroestudiante`
 --
 ALTER TABLE `op_historial_libroestudiante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=207;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=208;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_brigada`
@@ -342,6 +375,12 @@ ALTER TABLE `tb_brigada`
 --
 ALTER TABLE `tb_carrera`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `tb_comment`
+--
+ALTER TABLE `tb_comment`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `tb_estudiante`
@@ -389,6 +428,12 @@ ALTER TABLE `op_books_disponibles`
 ALTER TABLE `op_historial_libroestudiante`
   ADD CONSTRAINT `fk_op_historial_libroestudiante_tb_estudiante_1` FOREIGN KEY (`fk_estudiante`) REFERENCES `tb_estudiante` (`id`),
   ADD CONSTRAINT `fk_op_historial_libroestudiante_tb_libro_1` FOREIGN KEY (`fk_libro`) REFERENCES `tb_libro` (`id`);
+
+--
+-- Filtros para la tabla `tb_comment`
+--
+ALTER TABLE `tb_comment`
+  ADD CONSTRAINT `tb_comment_ibfk_1` FOREIGN KEY (`fk_estudiante`) REFERENCES `tb_estudiante` (`id`);
 
 --
 -- Filtros para la tabla `tb_estudiante`

@@ -33,7 +33,7 @@
             </div>
         </div>
         <!-- end page title -->
-        <div class="col-3 shadow-lg p-3 mb-5 mt-4 bg-body rounded" id="panel-entrega">
+        <div class="col-md-3 col-sm-6 shadow-lg p-3 mb-5 mt-4 bg-body rounded" id="panel-entrega">
             <div id="selector">
                 <h4 class="page-title">
                     <button type="button" class="btn btn-primary" id="g-entrega"><i class="uil-file-search-alt"></i> Generar entrega</button>
@@ -47,8 +47,8 @@
                     </select>
                 </div>
             </div>
-            <div class="t-inactive caja row col-12" id="content-prestamo">
-                <div class="col-3" id="entreg">
+            <div class="t-inactive caja row col-md-12" id="content-prestamo">
+                <div class="col-md-3 col-sm-12" id="entreg">
                     <form id="form-entrega">
                         <h4 class="page-title">
                             Entrega de libros
@@ -76,8 +76,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="t-inactive col-3" id="devol">
-                    <div class="col-12 mb-3">
+                <div class="t-inactive col-md-3 col-sm-12" id="devol">
+                    <div class="mb-3">
                         <form id="form-devolution">
                             <h4 class="page-title">
                                 Devoluci&oacute;n de los libros
@@ -178,7 +178,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4">
+                    <div class="col-md-4 col-sm-12">
                         <form id="formDispo">
                             <div class="mb-3" id="message">
                             </div>
@@ -198,7 +198,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="col-8 mb-3">
+                    <div class="col-md-8 col-sm-12 mb-3">
                         <table class="table table-sm table-centered mb-0" id="tb-dispo">
                             <thead>
                                 <tr>

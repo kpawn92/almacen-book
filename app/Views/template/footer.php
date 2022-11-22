@@ -55,7 +55,6 @@
 <script src="assets/js/html2pdf.bundle.min.js"></script>
 
 
-/** Dashboard */
 <!-- third party js -->
 <script src="assets/js/vendor/apexcharts.min.js"></script>
 <script src="assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>

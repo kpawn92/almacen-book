@@ -220,8 +220,8 @@
             booksEntregar();
             let objetTable = tableEntregados.row().data();
 
-            panelEntrega.classList.remove('col-3')
-            panelEntrega.classList.add('col-12')
+            panelEntrega.classList.remove('col-md-3')
+            panelEntrega.classList.add('col-sm-12', 'col-md-12')
             document.querySelector('#select-entrega').classList.add('col-md-3')
 
             const mostrarTableEntregas = () => {
@@ -365,8 +365,8 @@
             genCI.removeAttribute('disabled');
             divDevol.classList.add('t-inactive');
 
-            panelEntrega.classList.remove('col-12')
-            panelEntrega.classList.add('col-3')
+            panelEntrega.classList.remove('col-md-12')
+            panelEntrega.classList.add('col-md-3')
             document.querySelector('#select-entrega').classList.remove('col-md-3')
 
         });

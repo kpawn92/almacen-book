@@ -28,7 +28,7 @@
 
 </head>
 
-<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":false, "showRightSidebarOnStart": true}'>
+<body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":true, "leftSidebarScrollable":true,"darkMode":false, "showRightSidebarOnStart": true}'>
     <!-- Pre-loader -->
     <div id="preloader">
         <div id="status">
@@ -175,12 +175,6 @@
                                 <div class=" dropdown-header noti-title">
                                     <h6 class="text-overflow m-0">Administrador</h6>
                                 </div>
-
-                                <!-- item-->
-                                <a href="javascript:void(0);" class="dropdown-item notify-item">
-                                    <i class="mdi mdi-account-circle me-1"></i>
-                                    <span>My Account</span>
-                                </a>
 
                                 <!-- item-->
                                 <a href="<?php echo base_url('/log_out'); ?>" class="dropdown-item notify-item">

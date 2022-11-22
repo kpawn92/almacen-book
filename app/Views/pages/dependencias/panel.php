@@ -1,13 +1,104 @@
 <script>
   $(document).ready(function() {
 
-    const getTopStudentSales = async () => {
-      const post = await fetch('<?= base_url('topStudentsMayorSales')?>', { method: "POST"})
-      const res = await post.json()
-      console.log(res)
+    const host = document.querySelector('#host').value
+    const div__comments = document.querySelector('#comentarios');
+    const div__tb_students_sales = document.querySelector('#table-students-sales')
+
+
+    const maqGrafic = (grafic) => {
+
+      const {
+        acept,
+        cancel,
+        espera,
+        pay,
+        total
+      } = grafic
+
+      document.querySelector('#indicators_sales').innerHTML = `<p>
+                                                                  <i class="mdi mdi-square text-primary"></i> Aprobado
+                                                                  <span class="float-end">$${acept.money}</span>
+                                                              </p>
+                                                              <p>
+                                                                  <i class="mdi mdi-square text-danger"></i> Cancelado
+                                                                  <span class="float-end">$${cancel.money}</span>
+                                                              </p>
+                                                              <p>
+                                                                  <i class="mdi mdi-square text-success"></i> Pagado
+                                                                  <span class="float-end">$${pay.money}</span>
+                                                              </p>
+                                                              <p>
+                                                                  <i class="mdi mdi-square text-warning"></i> Esperando
+                                                                  <span class="float-end">$${espera.money}</span>
+                                                              </p>`
+
+      const data = [parseInt(acept.estado), parseInt(pay.estado), parseInt(cancel.estado), parseInt(espera.estado)]
+      grafica(data)
     }
 
-    getTopStudentSales()
+    const mapComments = (comments) => {
+      comments.map(comment => {
+        div__comments.innerHTML += `<div class="timeline-item">
+                                        <i class="mdi mdi-upload bg-info-lighten text-info timeline-icon"></i>
+                                        <div class="timeline-item-info">
+                                            <a href="#" class="text-info fw-bold mb-1 d-block">${comment.subject}</a>
+                                            <small>${comment.comment}!</small>
+                                            <p class="mb-0 pb-2">
+                                            <small class="text-muted">${comment.ci}</small>
+                                                <small class="text-muted">${comment.nombre} ${comment.lastname}</small>
+                                            </p>
+                                        </div>
+                                    </div>`
+      })
+    }
+
+    const bandera = (direction) => {
+
+      const select__pais = direction.split("-")
+      const params = {
+        index: select__pais[1],
+        pais: select__pais[0],
+        cuidad: select__pais[2]
+      }
+
+      return `<img
+                        src="${host}/banderas/${params.index}.png"
+                        width="20"
+                        alt="${params.pais}"
+                        title="${params.pais}">&nbsp;${params.cuidad}`
+    }
+
+    const mapStudentsDash = students => {
+      // console.log(students[0][0].payTotal);
+      students.map(std => {
+
+        div__tb_students_sales.innerHTML += `<tr>
+                                              <td>
+                                                  <h5 class="font-14 my-1 fw-normal">${std.nombre} ${std.estudiante}</h5>
+                                                  <span class="text-muted font-13">${bandera(std.direccion)}</span>
+                                              </td>
+                                              <td>
+                                                  <h5 class="font-14 my-1 fw-normal">${parseFloat(std[0].payTotal).toFixed(2)}</h5>
+                                                  <span class="text-muted font-13">Monto pagado</span>
+                                              </td>
+                                          </tr>`
+      })
+    }
+
+
+    const getIndicatorsAll = async () => {
+      const post = await fetch('<?= base_url('topStudentsMayorSales') ?>', {
+        method: "POST"
+      })
+      const res = await post.json()
+
+      mapStudentsDash(res.data)
+      maqGrafic(res.grafica)
+      mapComments(res.comments[0])
+    }
+
+    getIndicatorsAll()
 
     const d = new Date();
     const today = d.toLocaleDateString('en-US')
@@ -27,14 +118,16 @@
 
     const indicadores = async () => {
       try {
-        const post = await fetch('<?= base_url('/indicadores') ?>', {method: "POST"})
+        const post = await fetch('<?= base_url('/indicadores') ?>', {
+          method: "POST"
+        })
         const res = await post.text()
-        
+
         const [books, loss, students, ventas] = await res.split('-');
         i_libros.textContent = books
         i_estudiantes.textContent = students
         i_perdidas.textContent = loss
-        i_ventas.textContent = "$"+ ventas      
+        i_ventas.textContent = "$" + ventas
       } catch (error) {
         console.log(error)
       }
@@ -55,8 +148,8 @@
     const pdf = ({
       element,
       filename,
-      format = 'letter',
-      orientation = 'portrait'
+      format = 'legal',
+      orientation = 'landscape'
     }) => {
       html2pdf(element, {
         margin: 0.2,
@@ -182,7 +275,7 @@
     }
 
 
-    const grafica = () => {
+    const grafica = (dat) => {
       !(function(o) {
         "use strict";
 
@@ -356,8 +449,8 @@
             stroke: {
               colors: ["transparent"]
             },
-            series: [44, 55, 4, 2], //cantidad distribuida en 4 products
-            labels: ["React", "JS", "Angular", "Sql"], //nombres de los products
+            series: dat, //cantidad distribuida en 4 products
+            labels: ["Aprobado", "Pagado", "Cancelado", "Esperando"], //nombres de los products
             colors: e,
             responsive: [{
               breakpoint: 480,

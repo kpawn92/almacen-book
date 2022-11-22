@@ -87,7 +87,7 @@
                         <a class="nav-link" href="#bookSlope">Entregas</a>
                     </li>
                     <li class="nav-item mx-lg-1">
-                        <a class="nav-link" href="">Contact</a>
+                        <a class="nav-link" href="#div_contact">Contact</a>
                     </li>
                     <li class="nav-item mx-lg-1" id="salir">
                         <a class="nav-link" href="<?php echo base_url('/log_out'); ?>">Salir</a>
@@ -270,7 +270,7 @@
 
     <!-- START CONTACT -->
     <section class="py-5 bg-light-lighten border-top border-bottom border-light">
-        <div class="container">
+        <div class="container" id="div_contact">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">

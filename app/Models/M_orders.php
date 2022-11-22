@@ -103,7 +103,7 @@ class M_orders extends Model
   function getOrderStudents()
   {
     $db = \Config\Database::connect();
-    $query = $db->query("SELECT DISTINCT fk_estudiante, nombre, lastname as estudiante FROM tb_order JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante WHERE `condition` = 1 limit 5 ");
+    $query = $db->query("SELECT DISTINCT direccion, fk_estudiante, nombre, lastname as estudiante FROM tb_order JOIN tb_estudiante ON tb_estudiante.id = tb_order.fk_estudiante WHERE `condition` = 1 limit 5 ");
     return $query->getResultArray();
   }
 
@@ -118,5 +118,19 @@ class M_orders extends Model
     $db = \Config\Database::connect();
     $query = $db->query("SELECT libros_id as libros FROM tb_order WHERE `condition` = 1");
     return $query->getResultArray();
+  }
+
+  function getSaleByState($status)
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT COUNT(`condition`) as estado, SUM(pay) as `money` FROM tb_order WHERE `condition`= '$status'");
+    return $query->getRowArray();
+  }
+
+  function getSaleTotal()
+  {
+    $db = \Config\Database::connect();
+    $query = $db->query("SELECT COUNT(`condition`) as estado, SUM(pay) as `money` FROM tb_order");
+    return $query->getRowArray();
   }
 }
